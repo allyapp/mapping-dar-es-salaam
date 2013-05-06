@@ -1,0 +1,24 @@
+.dragdealer {
+	position: relative;
+	height: 30px;
+	background: #EEE;
+    width:512px;
+}
+
+.dragdealer .handle {
+	position: absolute;
+	cursor: pointer;
+}
+
+.dragdealer .red-bar {
+	width: 50px;
+	height: 30px;
+	background: #CC0000;
+	color: #FFF;
+	line-height: 30px;
+	text-align: center;
+}
+
+.dragdealer .disabled {
+	background: #898989;
+}
