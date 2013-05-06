@@ -2,7 +2,7 @@
 	position: relative;
 	height: 30px;
 	background: #EEE;
-    width:512px;
+    max-width:100%;
 }
 
 .dragdealer .handle {
@@ -22,3 +22,8 @@
 .dragdealer .disabled {
 	background: #898989;
 }
+
+.cartogram-frame {
+    max-width:100%;
+}
+
