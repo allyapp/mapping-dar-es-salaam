@@ -1,51 +1,44 @@
 .fillL {
-    background-color:#eee;
+    background-color:#ccddc4;
 }
 
-.dragdealer {
-	position: relative;
-	height: 30px;
-	background: #EEE;
-    max-width:100%;
+.fillD {
+    background-color:#44664a;
+    color:#fff;
 }
 
-.dragdealer .handle {
-	position: absolute;
-	cursor: pointer;
+.tab {
+    border-right:1px solid #fff;
+    font-size:18px;
 }
 
-.dragdealer .red-bar {
-	width: 50px;
-	height: 30px;
-	background: #CC0000;
-	color: #FFF;
-	line-height: 30px;
-	text-align: center;
+.tab a {
+    text-shadow: 0 0 2px #fff;
 }
 
-.dragdealer .disabled {
-	background: #898989;
+div .tab:last-child {
+    border-right:none;
 }
 
-.cartogram-frame {
-    max-width:100%;
+a {
+    text-decoration:none;
+    color:#222;
 }
 
-.bar {
-    height:20px;
-    background:#e5e8dd;
+.rel {
+    position:relative;
 }
 
-.bar.all {
-    background:#9fd285;
+.cartogram-image {
+    width:512px;
+    height:512px;
+    background-size:512px 512px;
+    background:url(../frames/joined.png);
 }
 
-.made-one-edit {
-    width:28%;
-    background:#9fd285;
-}
-
-.contribute-ninety {
-    width:8%;
-    background:#9fd285;
+.userlife {
+    background:url(../images/user_abs.png);
+    background-size:400px 800px;
+    width:400px;
+    height:800px;
 }

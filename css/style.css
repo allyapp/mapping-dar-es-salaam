@@ -92,21 +92,6 @@ p {
   }
   p:last-child { margin-bottom:0;}
 
-/* Links */
-a {
-  color:#77c453;
-  text-decoration:none;
-  }
-  a:visited {
-    color:#9ed485;
-    }
-  a:hover {
-    color:#54af29;
-    }
-  a:active {
-    color:#9ed485;
-    }
-
 abbr {
   border-bottom:1px dotted #000;
   cursor:help;
