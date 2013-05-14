@@ -49,3 +49,25 @@ a {
     width:400px;
     height:200px;
 }
+
+.chicagos {
+    position:relative;
+}
+
+#chicago {
+    max-width:100%;
+    height:500px;
+    background:url(../images/before.png);
+    background-size:100% auto;
+    border:1px solid #b5d0d0;
+}
+
+.notice {
+    background:#fff;
+    padding:10px;
+    text-align:center;
+}
+
+.hide {
+    display:none;
+}

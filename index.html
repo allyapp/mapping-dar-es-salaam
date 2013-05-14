@@ -8,6 +8,11 @@
     <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0' />
     <meta name='apple-mobile-web-app-status-bar-style' content='default' />
     <meta name='apple-mobile-web-app-capable' content='yes' />
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
+    <!--[if lte IE 8]>
+      <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
+    <![endif]-->
   </head>
   <body>
     <div class='container'>
@@ -65,7 +70,7 @@
                   </p>
               </div>
               <div class='col6 margin1'>
-                  <iframe src="http://player.vimeo.com/video/65424442?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="100%" height="300px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                  <iframe src="http://player.vimeo.com/video/65424442?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="100%" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
               </div>
           </div>
           <div id='regions' class='col10 margin1 pad4'>
@@ -120,17 +125,28 @@
           </div>
           <div class='col10 margin1 pad4'>
               <h2 id='highlights'>Highlights</h2>
-              <div class='col5'>
+              <p>
+              The explosive growth of OpenStreetMap has required multiple
+              large reinventions: rewriting and redacting history, introducing
+              new, better APIs, and more.
+              </p>
+          </div>
+          <div class='col10 margin1'>
+                  <div class='notice'>click to show city after import</div>
+              <div class='chicagos'>
+                  <div id='chicago'></div>
+              </div>
+              <div class='pad2 col6 margin3'>
                   <p>
-                  The explosive growth of OpenStreetMap has required multiple
-                  large reinventions: rewriting and redacting history, introducing
-                  new, better APIs, and more.
+                  In Chicago, Ian Dees led an import of building data
+                  from the city government that both improved addressing
+                  to locations in the city and made the map more useful.
                   </p>
-
           </div>
       </div>
   </div>
     </div>
+    <script src='js/underscore-min.js'></script>
     <script src='js/d3.v3.min.js'></script>
     <script src='js/site.js'></script>
   </body>
