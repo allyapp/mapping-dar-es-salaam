@@ -41,3 +41,40 @@ d3.select('.chicagos')
             return true;
         }, 0);
     });
+
+var milesWords = d3.selectAll('.miles-diagram h1.big');
+var points = d3.selectAll('.points a');
+
+var n = -1,
+    cancelAnim = false;
+
+function setPoint(n) {
+    milesWords.classed('show', function(d, i) {
+        return i == n;
+    });
+    points.classed('on', function(d, i) {
+        return i == n;
+    });
+}
+
+points.on('click', function(d, i) {
+    n = i;
+    cancelAnim = true;
+    setPoint(n);
+});
+
+function run() {
+    if (++n > milesWords.length) n = 0;
+    setPoint(n);
+    if (!cancelAnim) d3.timer(run, 10 * 1000);
+    return true;
+}
+
+d3.select('.share-buttons .twitter').on('click', function(d, i) {
+    window.open('https://twitter.com/intent/tweet?source=webclient&text=' +
+        '.@OpenStreetMap has ' +
+        d3.select('.miles-phrase .show').text() + ' of road data ' +
+        encodeURIComponent('' + location.href));
+});
+
+run();

@@ -137,6 +137,75 @@ a {
 #handle {
     position:absolute;
     padding-top:5px;
-    top:100px;
+    bottom:0px;
     background:#fff;
+}
+
+h1.big {
+    background:#F6FFB4;
+    margin:20px 0;
+    padding:10px;
+    font-size:50px;
+    display:none;
+}
+
+h1.big.show {
+    display:block;
+}
+
+h1.big span.unit {
+    font-size:50px;
+}
+
+h1.precursor, h1.postcursor {
+    color:#999;
+}
+
+h1.precursor {
+    margin-top:70px;
+    margin-bottom:0;
+}
+
+.miles-diagram {
+    background:#edefed;
+}
+
+.points {
+    margin-top:20px;
+}
+
+.points a {
+    width:20px;
+    height:20px;
+    display:inline-block;
+    background:#999;
+    border-radius:10px;
+    transition:background 200ms ease-in;
+}
+
+.points a:hover,
+.points a.on {
+    background:#222;
+}
+
+.share-buttons {
+    margin-top:10px;
+}
+
+.share-buttons .sprite {
+    display:inline-block;
+    background-image:url(sprite.png);
+    background-size:250px 100px;
+    width:25px;
+    height:25px;
+    opacity:0.5;
+    transition:opacity 150ms ease-in;
+}
+
+.share-buttons .sprite:hover {
+    opacity:1;
+}
+
+.share-buttons .sprite.facebook {
+    background-position:-25px 0;
 }
