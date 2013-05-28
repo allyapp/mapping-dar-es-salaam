@@ -22,7 +22,7 @@ circle {
 }
 
 .resize path {
-    fill: #eee;
+    fill: #222;
     fill-opacity: 1;
     stroke: #000;
     stroke-width: 1px;
@@ -35,7 +35,7 @@ circle {
 }
 
 .brush .extent {
-    fill:#3f4548;
+    fill:#b5d378;
     stroke-width:1;
     stroke:#fff;
     fill-opacity: 1;

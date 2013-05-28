@@ -143,6 +143,7 @@ a {
 
 h1.big {
     background:#F6FFB4;
+    color:#000;
     margin:20px 0;
     padding:10px;
     font-size:50px;
@@ -168,6 +169,7 @@ h1.precursor {
 
 .miles-diagram {
     background:#edefed;
+    border-radius:4px;
 }
 
 .points {

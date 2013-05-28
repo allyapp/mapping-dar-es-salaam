@@ -6,7 +6,12 @@ var canvas_width = c.offsetWidth,
 var sample_coeff = 1 / 0.100303569986;
 var sample_sum = 275065462;
 var sample_count = 30797;
-var color = d3.scale.category20c();
+
+var colors = ['#476674', '#3887be', '#28353d', '#b5d378'];
+
+function color(i) {
+    return colors[i % colors.length];
+}
 
 var treemap = d3.layout.treemap()
     .size([canvas_width, canvas_height])
@@ -43,14 +48,15 @@ d3.json("js/sampled.json", function(error, root) {
           total_count++;
           ctx.fillStyle = (d.children) ? '#fff' : color(i);
           ctx.fillRect(~~d.x, ~~d.y,
-              ~~Math.max(0, d.dx),
-              ~~Math.max(0, d.dy));
+              ~~Math.max(0, d.dx) - 1,
+              ~~Math.max(0, d.dy) - 1);
         }
 
         var total_sum = 0;
         var total_count = 0;
 
-        map.forEach(position)
+        map.forEach(position);
+
         text_summary.text(
             (100 * total_sum / sample_sum).toFixed(2) + '% of changes are submitted by ' +
             (100 * total_count / sample_count).toFixed(2) + '% of users');
