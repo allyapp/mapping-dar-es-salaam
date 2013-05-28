@@ -30,22 +30,14 @@ d3.select('#regions')
 d3.selectAll('.cartogram span')
     .on('click', clickYear);
 
-var setChi = function(y) {
-    d3.select('#chicago')
-        .style('background-position', '0 ' + (100 - (y / 5)) + '%');
-};
+var beforeLayer = d3.select('#chicago-before').node();
 
 d3.select('.chicagos')
-    .on('click', function() {
-        d3.select('#chicago').classed('after',
-            !d3.select('#chicago').classed('after'));
-        d3.select('#chicago')
-            .style('background-image',
-                   d3.select('#chicago').classed('after') ?
-                   'url(../images/after.png)' :
-                   'url(../images/before.png)');
-    })
     .on('mousemove', function() {
         var pos = d3.mouse(this);
-        setChi(pos[1]);
+        d3.timer.flush();
+        d3.timer(function() {
+            beforeLayer.style.clip = 'rect(0px ' + pos[0] + 'px 9999999px 0px)';
+            return true;
+        }, 0);
     });

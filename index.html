@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+
     <title>OpenStreetMap Data Report</title>
+
     <link rel='stylesheet' type='text/css' href='css/style.css' />
     <link rel='stylesheet' type='text/css' href='css/site.css' />
     <link rel='stylesheet' type='text/css' href='css/inequality.css' />
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Squada+One' rel='stylesheet' type='text/css'>
+
     <meta http-equiv='content-type' content='text/html; charset=utf-8' />
     <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0' />
     <meta name='apple-mobile-web-app-status-bar-style' content='default' />
     <meta name='apple-mobile-web-app-capable' content='yes' />
-    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
-    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
+
     <!--[if lte IE 8]>
-      <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
-    <![endif]-->
-  </head>
-  <body>
-    <div class='container'>
-      <div class='col12 pad4 clearfix fillD'>
-        <div class='col4 margin4'>
+          <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
+        <![endif]-->
+
+</head>
+<body>
+<div class='container'>
+    <div class='col12 pad4 clearfix fillD fl'>
+        <div class='col2 pad1 margin1 osm-logo'>
+            <span class='sprite'>osm-logo</span>
+        </div>
+        <div class='col5'>
             <h1>OpenStreetMap <span>Data Report</span></h1>
             <p>This year for State of the Map we look at the last
             six years of OpenStreetMap's growth and change.</p>
@@ -26,140 +34,71 @@
             project to a worldwide map with widespread use and
             high data quality.</p>
         </div>
-      </div>
-      <div class='col12 fillL clearfix'>
-          <div class='col3 pad1 tab center'>
-              <a href='#users'>Users</a>
-          </div>
-          <div class='col3 pad1 tab center'>
-              <a href='#data'>Data</a>
-          </div>
-          <div class='col3 pad1 tab center'>
-              <a href='#regions'>Regions</a>
-          </div>
-          <div class='col3 pad1 tab center'>
-              <a href='#highlights'>Highlights</a>
-          </div>
-      </div>
-      <div class='col12 clearfix sections'>
-          <div class='col10 margin1 pad4'>
-              <div class='col12 pad2'>
-                  <h2 id='users'>Users</h2>
-                  <p>
-                  On January 6, 2013, OpenStreetMap crossed
-                  the 1 million users mark, and continued to grow, both
-                  in terms of data and active userbase.
-                  </p>
-                  <p>
-                  Like most internet projects, a majority of users
-                  are casual or inactive, with a small minority contributing
-                  the majority of additions and corrections to the map.
-                  </p>
-              </div>
-              <div class='col12 pad1'>
-                  <canvas id='c'></canvas>
-                  <div id='handle'></div>
-              </div>
-          </div>
-          <div class='col10 margin1 pad4'>
-              <div class='col5'>
-                  <h2 id='data'>Data</h2>
-                  <p>
-                  OpenStreetMap's database, called the 'Planet', has
-                  grown tremendously over time, as well as other forms of
-                  user-contributed data, like GPX tracks from GPS devices.
-                  </p>
-              </div>
-              <div class='col6 margin1'>
-                  <iframe src="http://player.vimeo.com/video/65424442?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="100%" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-              </div>
-          </div>
-          <div id='regions' class='col10 margin1 pad4'>
-              <div class='col5'>
-                  <h2>Regions</h2>
-                  <p>
-                  Many variables affect how active OpenStreetMap users are
-                  in each region. Some areas are quickly, exhaustively
-                  mapped after natural disasters, while others have committed
-                  groups of local enthusiasts.
-                  </p>
-
-                  <p>The early OpenStreetMap project was focused on the United
-                  Kingdom, with most of the rest of the data in a few places
-                  in Europe. The map is comparatively tiny in North America,
-                  except for some areas of detail in Wisconsin and around the
-                  Chesapeake Bay. The relative prominence of Antarctica shows
-                  how little map data there was for most parts of the world.</p>
-
-                  <p>Although active mapping continued in Europe, and other
-                  areas of the world began to be filled in, the OpenStreetMap
-                  globe was massively reshaped in late 2007 and early 2008 by
-                  the months-long import of the U.S. Census Bureau's TIGER/Line
-                  map data for the United States.</p>
-
-                  <p>With the United States map filled in, the bulk of mapping
-                  activity moved back to Europe, where by mid-2009, the
-                  work put into mapping Germany made it visually dominate the cartogram.</p>
-
-                  <p>2010 and 2011 saw great increases in mapping in Canada,
-                  France, and Japan, as well as continued additions and
-                  corrections in large US cities.</p>
-
-                  <p>The most recent available OSM history file, from February,
-                  2013, shows some recent mapping in New Zealand, and that the
-                  map in Canada and Russia has continued to improve. It also
-                  highlights, though, how disproportionately well mapped Europe
-                  and the United States continue to be compared to the rest
-                  of the world, in spite of some recent work in Africa
-                  and South America.</p>
+        <div class='col2 margin1 cf'>
+            <div class='pad1 tab fillL center'>
+                <a href='#users'>Users</a>
             </div>
-            <div class='col5 margin1 pad1'>
-                <div class='cartogram'>
-                      <span>2005</span>
-                      <span>2007</span>
-                      <span>2009</span>
-                      <span>2010</span>
-                      <span>2013</span>
-                    <div class='cartogram-image'></div>
-                </div>
+            <div class='pad1 tab fillL center'>
+                <a href='#data'>Data</a>
             </div>
-          </div>
-          <div class='col10 margin1 pad4'>
-              <h2 id='highlights'>Highlights</h2>
-              <p>
-              The explosive growth of OpenStreetMap has required multiple
-              large reinventions: rewriting and redacting history, introducing
-              new, better APIs, and more.
-              </p>
-          </div>
-          <div class='col10 margin1'>
-              <div class='notice'>click to show city after import</div>
-              <div class='chicagos'>
-                  <div id='chicago'></div>
-              </div>
-              <div class='pad2 col6 margin3'>
-                  <p>
-                  In Chicago, Ian Dees led an import of building data
-                  from the city government that both improved addressing
-                  to locations in the city and made the map more useful.
-                  </p>
-          </div>
-      </div>
-          <div class='col10 margin1'>
-                <img src='images/bot-mode.gif' style='max-width: 100%;min-width:100%;' />
-              <div class='pad2 col6 margin3'>
-                  <p>
-                  The <code>bot-mode</code> automated editor swept of the
-                  US in late 2012 and early 2013 to expand imported, shortened
-                  road names into their full versions.
-                  </p>
-          </div>
-      </div>
-  </div>
+            <div class='pad1 tab fillL center'>
+                <a href='#regions'>Regions</a>
+            </div>
+            <div class='pad1 tab fillL center'>
+                <a href='#highlights'>Highlights</a>
+            </div>
+        </div>
     </div>
-    <script src='js/underscore-min.js'></script>
-    <script src='js/d3.v3.min.js'></script>
-    <script src='js/site.js'></script>
-    <script src='js/inequality.js'></script>
-  </body>
+
+    <div class='dark col12 fl'>
+        <img src='images/bot-mode.gif' class='full-size' />
+        <div class='pad2 col6 margin3'>
+            <p>
+            The <code>bot-mode</code> automated editor swept through the
+            United States in late 2012 and early 2013 to expand imported, shortened
+            road names into their full versions.
+            </p>
+        </div>
+    </div>
+
+    <div class='light col12 fl'>
+        <div class='chicagos'>
+            <div class='layer' id='chicago-after'></div>
+            <div class='layer' id='chicago-before'></div>
+        </div>
+        <div class='pad2 col6 margin3'>
+            <p>
+            In Chicago, <a href='https://twitter.com/iandees'>Ian Dees</a> led an import of building data
+            from the city government that both improved addressing
+            to locations in the city and made the map more useful.
+            </p>
+        </div>
+    </div>
+
+    <div class='dark col12 fl'>
+        <div class='diagram'>
+            <canvas id='c'></canvas>
+            <div id='handle'></div>
+        </div>
+        <div class='pad2 col6 margin3'>
+            <p>
+            On January 6, 2013, OpenStreetMap crossed
+            the 1 million users mark, and continued to grow, both
+            in terms of data and active userbase.
+            </p>
+            <p>
+            Like most internet projects, a majority of users
+            are casual or inactive, with a small minority contributing
+            the majority of additions and corrections to the map.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
+<script src='js/underscore-min.js'></script>
+<script src='js/d3.v3.min.js'></script>
+<script src='js/site.js'></script>
+<script src='js/inequality.js'></script>
+</body>
 </html>

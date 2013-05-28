@@ -1,19 +1,43 @@
+body {
+    font: 18px/1.5 'Open Sans', sans-serif;
+}
+
 .fillL {
-    background-color:#ccddc4;
+    background-color:#72999b;
 }
 
 .fillD {
-    background-color:#44664a;
+    background-color:#3f4548;
     color:#fff;
 }
 
 .tab {
-    border-right:1px solid #fff;
-    font-size:18px;
+    font-size:16px;
+    margin-bottom:1px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.full-size {
+    max-width:100%;
+    min-width:100%;
 }
 
 .tab a {
-    text-shadow: 0 0 2px #fff;
+    color:#eee;
+}
+
+.osm-logo {
+    background-image: url(osmlab_light.png);
+    background-size: auto 100%;
+    background-repeat:no-repeat;
+    height:180px;
+}
+
+.sprite {
+    display:block;
+    overflow:hidden;
+    text-indent:-1000px;
 }
 
 div .tab:last-child {
@@ -52,14 +76,30 @@ a {
 
 .chicagos {
     position:relative;
+    overflow:hidden;
+    height:450px;
 }
 
-#chicago {
+.chicagos .layer {
+    height:450px;
+}
+
+#chicago-before {
     max-width:100%;
-    height:500px;
+    min-width:100%;
+    position:absolute;
     background:url(../images/before.png);
+    background-position:0 -25%;
     background-size:100% auto;
-    border:1px solid #b5d0d0;
+}
+
+#chicago-after {
+    max-width:100%;
+    min-width:100%;
+    position:absolute;
+    background:url(../images/after.png);
+    background-position:0 -25%;
+    background-size:100% auto;
 }
 
 .notice {
@@ -70,4 +110,33 @@ a {
 
 .hide {
     display:none;
+}
+
+.dark {
+    background:#000;
+    color:#eee;
+}
+
+.dark code {
+    background:#111;
+}
+
+.light {
+    background:#fff;
+}
+
+.diagram {
+    position:relative;
+    height:400px;
+}
+
+.diagram #c {
+    position:absolute;
+}
+
+#handle {
+    position:absolute;
+    padding-top:5px;
+    top:100px;
+    background:#fff;
 }

@@ -59,8 +59,8 @@ d3.json("js/sampled.json", function(error, root) {
 
     (function() {
         var width = canvas_width - 100;
-        var height = 50;
-        var margin = {top: 10, right: 50, bottom: 60, left: 50};
+        var height = 20;
+        var margin = {top: 10, right: 50, bottom: 10, left: 50};
 
         var x = d3.scale.linear()
             .range([0, width]);
