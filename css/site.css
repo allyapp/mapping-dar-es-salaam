@@ -117,6 +117,11 @@ a {
     color:#eee;
 }
 
+.mild {
+    background:#3f4548;
+    color:#eee;
+}
+
 .dark code {
     background:#111;
 }
@@ -210,4 +215,26 @@ h1.precursor {
 
 .share-buttons .sprite.facebook {
     background-position:-25px 0;
+}
+
+.permalink {
+    width:25px;
+    height:25px;
+    display:inline-block;
+    background-image:url(sprite.png);
+    background-size:250px 100px;
+    background-position:-50px 0;
+}
+
+.permalink-link {
+    z-index:999;
+    display:inline-block;
+    position:absolute;
+    padding:10px;
+    background:#000;
+    transition:background 200ms ease-in;
+}
+
+.permalink-link:hover {
+    background:#222;
 }
