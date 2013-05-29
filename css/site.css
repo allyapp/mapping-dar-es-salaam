@@ -238,3 +238,19 @@ h1.precursor {
 .permalink-link:hover {
     background:#222;
 }
+
+.density {
+    position:relative;
+    line-height:0;
+}
+
+.density div.img {
+    display:inline-block;
+    position:relative;
+    border:1px solid #fff;
+    width:20%;
+}
+
+.density img {
+    width:100%;
+}
