@@ -24,6 +24,7 @@ var divs = d3.select('.density')
     .enter()
     .append('a')
     .attr('class', 'img')
+    .attr('target', '_blank')
     .attr('href', function(d) {
         var loc = sph.ll([d[1] * 256, d[2] * 256], 16);
         return 'http://openstreetmap.org/?lat=' + loc[1] + '&lon=' + loc[0] + '&zoom=14';
