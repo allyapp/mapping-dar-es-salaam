@@ -11,17 +11,23 @@ var places = [
     ['France métropolitaine',33184,22536,'Madeleine, 8e Arrondissement, Paris, Île-de-France, 75008']
 ];
 
+var sph = new SphericalMercator();
+
 function up(x, y) {
     return [14, ~~(Math.pow(2, -2) * x), ~~(Math.pow(2, -2) * y)];
 }
 
 var divs = d3.select('.density')
     .append('div')
-    .selectAll('div.img')
+    .selectAll('a.img')
     .data(places)
     .enter()
-    .append('div')
-    .attr('class', 'img');
+    .append('a')
+    .attr('class', 'img')
+    .attr('href', function(d) {
+        var loc = sph.ll([d[1] * 256, d[2] * 256], 16);
+        return 'http://openstreetmap.org/?lat=' + loc[1] + '&lon=' + loc[0] + '&zoom=14';
+    });
 
 divs.append('img')
     .attr('src', function(d) {

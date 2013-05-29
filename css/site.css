@@ -244,7 +244,7 @@ h1.precursor {
     line-height:0;
 }
 
-.density div.img {
+.density a.img {
     display:inline-block;
     position:relative;
     border:1px solid #fff;
