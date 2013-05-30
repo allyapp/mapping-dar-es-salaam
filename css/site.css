@@ -308,3 +308,14 @@ ul.colophon li {
         width:50%;
     }
 }
+
+.mb-link img {
+    width:64px;
+    height:64px;
+    opacity:0.7;
+    transition:opacity 100ms linear;
+}
+
+.mb-link:hover img {
+    opacity:1;
+}
