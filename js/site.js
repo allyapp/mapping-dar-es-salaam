@@ -70,11 +70,24 @@ function run() {
     return true;
 }
 
-d3.select('.share-buttons .twitter').on('click', function(d, i) {
+d3.select('a[href="#twitter-phrase"]').on('click', function(d, i) {
+    d3.event.preventDefault();
     window.open('https://twitter.com/intent/tweet?source=webclient&text=' +
         '.@OpenStreetMap has ' +
         d3.select('.miles-phrase .show').text() + ' of road data ' +
         encodeURIComponent('' + location.href));
+});
+
+d3.select('a[href="#twitter"]').on('click', function(d, i) {
+    d3.event.preventDefault();
+    window.open('https://twitter.com/intent/tweet?source=webclient&text=' +
+        'Read the 2012 @OpenStreetMap Data Report: ' +
+        encodeURIComponent('' + location.href));
+});
+
+d3.select('a[href="#facebook"]').on('click', function(d, i) {
+    d3.event.preventDefault();
+    window.open('https://facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href));
 });
 
 run();
