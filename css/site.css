@@ -11,6 +11,10 @@ body {
     color:#fff;
 }
 
+.fillE {
+    background-color:#eee;
+}
+
 .tab {
     font-size:16px;
     margin-bottom:1px;
@@ -44,9 +48,15 @@ div .tab:last-child {
     border-right:none;
 }
 
-a {
+p a {
     text-decoration:none;
-    color:#222;
+    color:#d93d22;
+    border-bottom:1px solid #E9A89D;
+    transition:border 100ms linear;
+}
+
+p a:hover {
+    border-bottom:1px solid #d93d22;
 }
 
 .rel {
@@ -253,4 +263,48 @@ h1.precursor {
 
 .density img {
     width:100%;
+}
+
+ul.colophon li {
+    padding:5px 0;
+}
+
+.deemphasize a {
+    color:#666;
+    transition:color 100ms linear;
+}
+
+.deemphasize a:hover {
+    color:#444;
+}
+
+.button {
+    background:#eb6f67;
+    color:#fff;
+    text-align:center;
+    text-decoration:none;
+    border:none;
+    border-radius:5px;
+    font-weight:normal;
+    border-bottom:1px solid #A53931;
+    transition:background 100ms linear;
+}
+
+.button:hover {
+    background:#EB8C85;
+}
+
+.huge {
+    padding:20px 40px;
+    font-size:30px;
+}
+
+.drop {
+    margin-top:80px;
+}
+
+@media only screen and (max-width:770px) {
+    .density a.img {
+        width:50%;
+    }
 }
