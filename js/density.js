@@ -1,21 +1,84 @@
-var places = [
-    ['Cameroun',34856,32064,'Yaoundé III, Mfoundi, Centre, 11852'],
-    ['Cameroun',34864,32056,'Yaoundé V, Mfoundi, Centre, 215'],
-    ['Cameroun',34864,32064,'Yaoundé III, Mfoundi, Centre, 11852'],
-    ['Cameroun',34856,32056,'Mfoundi, Centre'],
-    ['Martinique',21648,30072,'Fort-de-France'],
-    ['France métropolitaine',32656,23608,'Lafon Féline, Le Bouscat, Bordeaux, Gironde, Aquitaine, 33110'],
-    ['Brasil',25424,36536,'Mesorregião Central Espírito-Santense, Espírito Santo'],
-    ['France métropolitaine',32656,23616,'Centre ville, Bordeaux, Gironde, Aquitaine, 33000'],
-    ['Cameroun',34864,32048,'Lekié, Centre'],
-    ['France métropolitaine',33184,22536,'Madeleine, 8e Arrondissement, Paris, Île-de-France, 75008']
+var places = [{
+    "name": "Cameroun: Yaoundé III, Mfoundi, Centre, 11852",
+    "ll": [
+      11.4697265625,
+      3.8642546157214084
+    ],
+    "tile": "14/8714/8016"
+  },
+  {
+    "name": "Cameroun: Yaoundé V, Mfoundi, Centre, 215",
+    "ll": [
+      11.513671875,
+      3.908098881894123
+    ],
+    "tile": "14/8716/8014"
+  },
+  {
+    "name": "Cameroun: Yaoundé III, Mfoundi, Centre, 11852",
+    "ll": [
+      11.513671875,
+      3.8642546157214084
+    ],
+    "tile": "14/8716/8016"
+  },
+  {
+    "name": "Cameroun: Mfoundi, Centre",
+    "ll": [
+      11.4697265625,
+      3.908098881894123
+    ],
+    "tile": "14/8714/8014"
+  },
+  {
+    "name": "Martinique: Fort-de-France",
+    "ll": [
+      -61.083984375,
+      14.647368383896632
+    ],
+    "tile": "14/5412/7518"
+  },
+  {
+    "name": "France métropolitaine: Lafon Féline, Le Bouscat, Bordeaux, Gironde, Aquitaine, 33110",
+    "ll": [
+      -0.615234375,
+      44.87144275016589
+    ],
+    "tile": "14/8164/5902"
+  },
+  {
+    "name": "Brasil: Mesorregião Central Espírito-Santense, Espírito Santo",
+    "ll": [
+      -40.341796875,
+      -20.26219712424652
+    ],
+    "tile": "14/6356/9134"
+  },
+  {
+    "name": "France métropolitaine: Centre ville, Bordeaux, Gironde, Aquitaine, 33000",
+    "ll": [
+      -0.615234375,
+      44.84029065139799
+    ],
+    "tile": "14/8164/5904"
+  },
+  {
+    "name": "Cameroun: Lekié, Centre",
+    "ll": [
+      11.513671875,
+      3.9519408561575946
+    ],
+    "tile": "14/8716/8012"
+  },
+  {
+    "name": "France métropolitaine: Madeleine, 8e Arrondissement, Paris, Île-de-France, 75008",
+    "ll": [
+      2.28515625,
+      48.8936153614802
+    ],
+    "tile": "14/8296/5634"
+  }
 ];
-
-var sph = new SphericalMercator();
-
-function up(x, y) {
-    return [14, ~~(Math.pow(2, -2) * x), ~~(Math.pow(2, -2) * y)];
-}
 
 var divs = d3.select('.density')
     .append('div')
@@ -26,14 +89,13 @@ var divs = d3.select('.density')
     .attr('class', 'img')
     .attr('target', '_blank')
     .attr('href', function(d) {
-        var loc = sph.ll([d[1] * 256, d[2] * 256], 16);
-        return 'http://openstreetmap.org/?lat=' + loc[1] + '&lon=' + loc[0] + '&zoom=14';
+        return 'http://openstreetmap.org/?lat=' + d.ll[1] + '&lon=' + d.ll[0] + '&zoom=14';
     });
 
 divs.append('img')
     .attr('src', function(d) {
-        return 'http://a.tile.openstreetmap.org/' + up(d[1], d[2]).join('/') + '.png';
+        return 'http://a.tile.openstreetmap.org/' + d.tile + '.png';
     })
     .attr('title', function(d) {
-        return d[0] + ': ' + d[3];
+        return d.name;
     });
