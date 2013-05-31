@@ -111,6 +111,15 @@ p a:hover {
     color:#eee;
 }
 
+.dark p a {
+    color:#00fefe;
+    border-bottom:1px solid #328080;
+}
+
+.dark p a:hover {
+    border-bottom:1px solid #00fefe;
+}
+
 .dark code {
     background:#111;
 }
@@ -206,7 +215,8 @@ h1.precursor {
     text-decoration:none;
 }
 
-.share-buttons .sprite:hover {
+.share-buttons .sprite:hover,
+.share-buttons a:hover .sprite {
     opacity:1;
 }
 
