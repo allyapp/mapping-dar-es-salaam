@@ -63,51 +63,31 @@ p a:hover {
     position:relative;
 }
 
+/* chicago visualization */
 .chicagos {
     position:relative;
     overflow:hidden;
-    height:450px;
 }
-
-.chicagos .layer {
-    height:450px;
+.chicagos, .chicagos .layer {
+    height:500px;
 }
-
 #chicago-before {
     max-width:100%;
     min-width:100%;
     position:absolute;
-    background:url(../images/before.png);
-    background-position:0 -25%;
+    background:url(../images/before-crop.png);
     background-size:100% auto;
 }
-
 #chicago-after {
     max-width:100%;
     min-width:100%;
     position:absolute;
-    background:url(../images/after.png);
-    background-position:0 -25%;
+    background:url(../images/after-crop.png);
     background-size:100% auto;
-}
-
-.notice {
-    background:#fff;
-    padding:10px;
-    text-align:center;
-}
-
-.hide {
-    display:none;
 }
 
 .dark {
     background:#000;
-    color:#eee;
-}
-
-.mild {
-    background:#3f4548;
     color:#eee;
 }
 
@@ -303,6 +283,10 @@ ul.colophon li {
 @media only screen and (max-width:770px) {
     .density a.img {
         width:50%;
+    }
+
+    .chicagos, .chicagos .layer {
+        height:200px;
     }
 }
 
