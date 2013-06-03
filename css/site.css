@@ -151,20 +151,20 @@ div .tab:last-child {
     overflow:hidden;
 }
 .chicagos, .chicagos .layer {
-    height:500px;
+    height: 700px;
 }
 #chicago-before {
     max-width:100%;
     min-width:100%;
     position:absolute;
-    background:url(../images/before-crop.png);
+    background:url(../images/before-crop.jpg);
     background-size:100% auto;
 }
 #chicago-after {
     max-width:100%;
     min-width:100%;
     position:absolute;
-    background:url(../images/after-crop.png);
+    background:url(../images/after-crop.jpg);
     background-size:100% auto;
 }
 
@@ -354,8 +354,17 @@ ul.colophon li {
 }
 
 #intro .photo h1 {
+    text-shadow: 0px 0em 3em #6D4E6A, 1px 1px 0px #1B0C32;
+    line-height: 2em;
+}
+#intro .photo h1 small {
+    display: block;
+    font-size: 50px;
+}
+#intro .photo h1 span {
+    border-top: 3px solid white;
+    display: inline-block;
     font-size: 80px;
-    text-shadow: 0px 0em 3em #341D16;
 }
 
 #intro .illo {
