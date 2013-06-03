@@ -7,7 +7,7 @@
     <link rel='stylesheet' type='text/css' href='css/site.css' />
     <link rel='stylesheet' type='text/css' href='css/inequality.css' />
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Open+Sans+Condensed:700|Bree+Serif' rel='stylesheet' type='text/css'>
 
     <meta http-equiv='content-type' content='text/html; charset=utf-8' />
     <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0' />
@@ -36,204 +36,217 @@
         </div> -->
 
 
-<div class='container'>
 
-    <div id="intro" class='col12 clearfix'>
-        <div class="illo col2 margin5">
-            <img src="images/map-osmupdates.jpg" />
-        </div>
-        <div class='col6 margin3 el'>
-            <h1>OpenStreetMap <span>Data Report</span></h1>
-
-            <p class="big">
-                This year for State of the Map we look at the last eight years of OpenStreetMap's growth and change.
-            </p>
-
-            <p class="big">
-                Founded in 2004, OpenStreetMap has grown from a local project to a worldwide map with widespread use and high data quality.
-            </p>
-        </div>
+<div id="intro" class='col12 clearfix'>
+    <div class="photo">
+        <h1>OpenStreetMap <span>Data Report</span></h1>
     </div>
-
-    <div class='dark col12 fl'>
-        <a name='freshness' href='#freshness' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-
-        <div class='pad2 textblock'>
-            <h1>Update frequency</h1>
-            <p>
-            All roads in the continental United States, shaded by
-            how recently they've been updated by users.
-            Older <a href='http://archive09.linux.com/feature/125344' target='_blank'>imports to North America</a>
-            are in green and blue, while
-            cities with strong and active communities and the effect of
-            recent <a href='#bot-mode'>automated editing</a> makes areas
-            glow red.
-            </p>
-        </div>
-
-        <iframe src="http://99.162.154.51/world-edit-static.html" width="100%" frameborder="0"></iframe>
+    <div class="illo">
+        <div class="filler">&nbsp;</div>
     </div>
+    <div class='textblock'>
 
+        <p class="big">
+            This year for State of the Map we look at the last eight years of OpenStreetMap's growth and change.
+        </p>
 
-
-    <div class='light col12 fl'>
-        <a name='chicago' href='#chicago' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-
-        <div class='pad2 textblock'>
-            <h1>Improvements to Chicago, Illinois</h1>
-            <p>
-            In Chicago, <a target='_blank' href='https://twitter.com/iandees'>Ian Dees</a> led an
-            <a target='_blank' href='http://www.openstreetmap.org/user/chicago-buildings'>import</a>
-            of building data
-            from the city government that both improved addressing
-            to locations in the city and made the map more useful.
-            See <a target='_blank' href='http://osm.org/go/ZUfI300u--'>OpenStreetMap's excellent new coverage in Chicago.</a>
-            </p>
-        </div>
-
-        <div class='chicagos col12'>
-            <div class='layer' id='chicago-after'></div>
-            <div class='layer' id='chicago-before'></div>
-        </div>
-    </div>
-
-    <div class='dark col12 fl'>
-        <a name='bot-mode' href='#bot-mode' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-        <div class='pad2 textblock'>
-            <h1>United States Road Updates</h1>
-            <p>
-            The <code>bot-mode</code> automated editor swept through the
-            United States in late 2012 and early 2013 to <a href='http://openstreetmap.us/2013/05/road-not-rd/' target='_blank'>expand imported, shortened road names into their full versions</a>.
-            </p>
-        </div>
-
-        <img alt='bot-mode' src='images/bot-mode.png' class='full-size' />
-    </div>
-
-    <div class='light col12 fl'>
-        <a name='inequality' href='#inequality' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-        <div class='pad2 textblock'>
-            <h1>Over 1,000,000 users</h1>
-            <p>
-            On January 6, 2013, OpenStreetMap crossed
-            the <a target='_blank' href='http://idealab.talkingpointsmemo.com/2013/01/openstreetmap-reaches-1-million-users-will-rival-google-maps-in-2-years.php'>1 million users mark</a>,
-            and continues to grow, both
-            in terms of data and active userbase.
-            </p>
-            <p>
-            Like most internet projects, a majority of users
-            are casual or inactive, with a small minority contributing
-            the majority of additions and corrections to the map.
-            </p>
-        </div>
-
-        <div class='diagram cell12'>
-            <canvas class="cell12" id='c' width="100%"></canvas>
-            <div class="cell12" id='handle'></div>
-        </div>
-    </div>
-
-    <div class='dark col12 fl'>
-        <a name='miles' href='#miles' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-
-        <div class='pad2 textblock'>
-            <p>
-            OpenStreetMap's dataset has grown to unprecedented size, thanks
-            to volunteers at home, imports, and targeted efforts to improve
-            data quality in important areas. The database now contains
-            over 21 million miles of road data and
-            78 million <a href='http://taginfo.openstreetmap.org/tags/building=yes' target='_blank'>buildings</a>.
-            </p>
-        </div>
-
-        <br />
-        <div class='diagram miles-diagram col8 margin2 pad2 center'>
-            <div class='miles-phrase'>
-                <h1 class='precursor'>OpenStreetMap has</h1>
-
-                <h1 class='big'>21,107,196 <span class='unit'>miles</span></h1>
-                <h1 class='big'>33,968,739 <span class='unit'>km</span></h1>
-                <h1 class='big'>93.17 <span class='unit'>trips to the moon</span></h1>
-                <h1 class='big'>847.63 <span class='unit'>times around the world</span></h1>
-                <h1 class='big'>40.13 <span class='unit'>years driving at 60mph</span></h1>
-
-                <h1 class='postcursor'> worth of road data</h1>
-            </div>
-
-            <div class='share-buttons'>
-                <a href='#twitter-phrase' class='sprite twitter'></a>
-            </div>
-
-            <div class='points'>
-                <a></a>
-                <a></a>
-                <a></a>
-                <a></a>
-                <a></a>
-            </div>
-        </div>
-    </div>
-
-    <div class='light col12 fl'>
-        <a name='density' href='#density' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-        <div class='pad2 textblock'>
-            <p>
-            Some areas of OpenStreetMap reach incredible points of data density,
-            including every tree, precise details about houses and alleys,
-            and much more. <a target='_blank' href='https://wiki.openstreetmap.org/wiki/User:Frederik_Ramm'>Frederick Ramm</a>
-            compiled <a target='_blank' href='http://fred.dev.openstreetmap.org/density/'>a list of the top 208 most densely mapped areas of the world</a>,
-                which are often in France, the US, and Cameroon.
-            </p>
-        </div>
-
-        <div class='density'>
-        </div>
-    </div>
-
-    <div class='light col12 fl drop'>
-        <a name='start' href='#start' class='permalink-link'>
-            <span class='permalink'></span>
-        </a>
-        <iframe class='hide-mobile' src='http://mapbox.com/show-me-the-way/'></iframe>
-        <div class='pad2 textblock'>
-            <p>OpenStreetMap changes every minute, and more than 1,000 new mappers
-            contribute every day.</p>
-            <p>All of this from a project that started from scratch in <a target='_blank' href='https://en.wikipedia.org/wiki/OpenStreetMap#History'>2004</a>.
-            Want to make it even better?</p>
-            <div class='pad2 center'>
-                <a href='http://osmlab.github.io/welcome-osm/' class='button huge'>Start Mapping</a>
-            </div>
-        </div>
-    </div>
-
-    <div class='col12 fl fillE clearfix'>
-        <div class='pad2 col6 margin3'>
-            <div class='center pad2'>
-                <a class='mb-link' title='MapBox loves OpenStreetMap' href='http://mapbox.com'><img alt='MapBox' src='css/mapbox-logo-reversed-128.png' /></a>
-            </div>
-            <small>
-                <ul class='colophon deemphasize'>
-                    <li>All OpenStreetMap Maps &copy; OpenStreetMap contributors
-                    <li>bot-mode authored by <a href='http://www.tux.org/~serge/'>Serge Wroclawski</a>, visualized with <a href='https://github.com/tmcw/sometimemachine'>sometimemachine</a>
-                    <li>Density Analysis by <a href='https://wiki.openstreetmap.org/wiki/User:Frederik_Ramm'>Frederick Ramm</a>
-                </ul>
-            </small>
-        </div>
+        <p class="big">
+            Founded in 2004, OpenStreetMap has grown from a local project to a worldwide map with widespread use and high data quality.
+        </p>
     </div>
 </div>
 
+<div id="content">
+
+    <div class="nav">
+        NAV HERE
+    </div>
+
+    <div class='container'>
+
+        <!-- OSM Road Updates -->
+
+        <div class="item col12">
+
+            <div class="textblock clearfix">
+                <div class="col3 illo">
+                    <img src="images/map-osmupdates.jpg" />
+                </div>
+                <div class="col8 margin1">
+
+                    <h1>Visualizing road updates</h1>
+
+                    <p>
+                        All roads in the continental United States, shaded by how recently they've been updated by users. Older <a href='http://archive09.linux.com/feature/125344' target='_blank'>imports to North America</a> are in green and blue, while cities with strong and active communities and the effect of recent <a href='#bot-mode'>automated editing</a> makes areas glow red.
+                    </p>
+                </div>
+            </div>
+            <div class="feature">
+                <iframe src="http://99.162.154.51/world-edit-static.html" width="100%" frameborder="0"></iframe>
+            </div>
+
+        </div>
+
+        <!-- Chicago updates -->
+
+
+        <div class="item light col12">
+
+            <div class="textblock clearfix">
+                <div class="col3 illo">
+                    <img src="images/pixel.png" />
+                </div>
+                <div class="col8 margin1">
+
+                    <h1>Chicago, Illinois gets buildings</h1>
+
+                    <p>
+                        In Chicago, <a target='_blank' href='https://twitter.com/iandees'>Ian Dees</a> led an <a target='_blank' href='http://www.openstreetmap.org/user/chicago-buildings'>import</a> of building data from the city government that both improved addressing to locations in the city and made the map more useful. See <a target='_blank' href='http://osm.org/go/ZUfI300u--'>OpenStreetMap's excellent new coverage in Chicago.</a>
+                    </p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class='chicagos col12'>
+                    <div class='layer' id='chicago-after'></div>
+                    <div class='layer' id='chicago-before'></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class='dark col12 fl'>
+            <a name='bot-mode' href='#bot-mode' class='permalink-link'>
+                <span class='permalink'></span>
+            </a>
+            <div class='pad2 textblock'>
+                <h1>United States Road Updates</h1>
+                <p>
+                The <code>bot-mode</code> automated editor swept through the
+                United States in late 2012 and early 2013 to <a href='http://openstreetmap.us/2013/05/road-not-rd/' target='_blank'>expand imported, shortened road names into their full versions</a>.
+                </p>
+            </div>
+
+            <img alt='bot-mode' src='images/bot-mode.png' class='full-size' />
+        </div>
+
+        <div class='light col12 fl'>
+            <a name='inequality' href='#inequality' class='permalink-link'>
+                <span class='permalink'></span>
+            </a>
+            <div class='pad2 textblock'>
+                <h1>Over 1,000,000 users</h1>
+                <p>
+                On January 6, 2013, OpenStreetMap crossed
+                the <a target='_blank' href='http://idealab.talkingpointsmemo.com/2013/01/openstreetmap-reaches-1-million-users-will-rival-google-maps-in-2-years.php'>1 million users mark</a>,
+                and continues to grow, both
+                in terms of data and active userbase.
+                </p>
+                <p>
+                Like most internet projects, a majority of users
+                are casual or inactive, with a small minority contributing
+                the majority of additions and corrections to the map.
+                </p>
+            </div>
+
+            <div class='diagram cell12'>
+                <canvas class="cell12" id='c' width="100%"></canvas>
+                <div class="cell12" id='handle'></div>
+            </div>
+        </div>
+
+        <div class='dark col12 fl'>
+            <a name='miles' href='#miles' class='permalink-link'>
+                <span class='permalink'></span>
+            </a>
+
+            <div class='pad2 textblock'>
+                <p>
+                OpenStreetMap's dataset has grown to unprecedented size, thanks
+                to volunteers at home, imports, and targeted efforts to improve
+                data quality in important areas. The database now contains
+                over 21 million miles of road data and
+                78 million <a href='http://taginfo.openstreetmap.org/tags/building=yes' target='_blank'>buildings</a>.
+                </p>
+            </div>
+
+            <br />
+            <div class='diagram miles-diagram col8 margin2 pad2 center'>
+                <div class='miles-phrase'>
+                    <h1 class='precursor'>OpenStreetMap has</h1>
+
+                    <h1 class='big'>21,107,196 <span class='unit'>miles</span></h1>
+                    <h1 class='big'>33,968,739 <span class='unit'>km</span></h1>
+                    <h1 class='big'>93.17 <span class='unit'>trips to the moon</span></h1>
+                    <h1 class='big'>847.63 <span class='unit'>times around the world</span></h1>
+                    <h1 class='big'>40.13 <span class='unit'>years driving at 60mph</span></h1>
+
+                    <h1 class='postcursor'> worth of road data</h1>
+                </div>
+
+                <div class='share-buttons'>
+                    <a href='#twitter-phrase' class='sprite twitter'></a>
+                </div>
+
+                <div class='points'>
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                </div>
+            </div>
+        </div>
+
+        <div class='light col12 fl'>
+            <a name='density' href='#density' class='permalink-link'>
+                <span class='permalink'></span>
+            </a>
+            <div class='pad2 textblock'>
+                <p>
+                Some areas of OpenStreetMap reach incredible points of data density,
+                including every tree, precise details about houses and alleys,
+                and much more. <a target='_blank' href='https://wiki.openstreetmap.org/wiki/User:Frederik_Ramm'>Frederick Ramm</a>
+                compiled <a target='_blank' href='http://fred.dev.openstreetmap.org/density/'>a list of the top 208 most densely mapped areas of the world</a>,
+                    which are often in France, the US, and Cameroon.
+                </p>
+            </div>
+
+            <div class='density'>
+            </div>
+        </div>
+
+        <div class='light col12 fl drop'>
+            <a name='start' href='#start' class='permalink-link'>
+                <span class='permalink'></span>
+            </a>
+            <iframe class='hide-mobile' src='http://mapbox.com/show-me-the-way/'></iframe>
+            <div class='pad2 textblock'>
+                <p>OpenStreetMap changes every minute, and more than 1,000 new mappers
+                contribute every day.</p>
+                <p>All of this from a project that started from scratch in <a target='_blank' href='https://en.wikipedia.org/wiki/OpenStreetMap#History'>2004</a>.
+                Want to make it even better?</p>
+                <div class='pad2 center'>
+                    <a href='http://osmlab.github.io/welcome-osm/' class='button huge'>Start Mapping</a>
+                </div>
+            </div>
+        </div>
+
+        <div class='col12 fl fillE clearfix'>
+            <div class='pad2 col6 margin3'>
+                <div class='center pad2'>
+                    <a class='mb-link' title='MapBox loves OpenStreetMap' href='http://mapbox.com'><img alt='MapBox' src='css/mapbox-logo-reversed-128.png' /></a>
+                </div>
+                <small>
+                    <ul class='colophon deemphasize'>
+                        <li>All OpenStreetMap Maps &copy; OpenStreetMap contributors
+                        <li>bot-mode authored by <a href='http://www.tux.org/~serge/'>Serge Wroclawski</a>, visualized with <a href='https://github.com/tmcw/sometimemachine'>sometimemachine</a>
+                        <li>Density Analysis by <a href='https://wiki.openstreetmap.org/wiki/User:Frederik_Ramm'>Frederick Ramm</a>
+                    </ul>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
 <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
 
 <script src='js/lib/underscore-min.js'></script>
