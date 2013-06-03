@@ -37,6 +37,7 @@ d3.select('.chicagos')
         var pos = d3.mouse(this);
         d3.timer.flush();
         d3.timer(function() {
+            d3.select('.separator').style("left", pos[0] + 'px');
             beforeLayer.style.clip = 'rect(0px ' + pos[0] + 'px 9999999px 0px)';
             return true;
         }, 0);

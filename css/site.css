@@ -147,12 +147,46 @@ div .tab:last-child {
 
 /* chicago visualization */
 .chicagos {
+    cursor:url(../images/resize-arrow.png),url(../images/resize-arrow.cur),auto;
     position:relative;
     overflow:hidden;
 }
-.chicagos, .chicagos .layer {
+.chicagos, .chicagos .layer,
+.chicagos .separator {
     height: 700px;
 }
+.chicagos .separator {
+    background: #605643;
+    border-left: 1px solid #D42F8F;
+    border-right: 1px solid #fff;
+    left: 0px;
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    z-index: 10;
+}
+.chicagos .separator div {
+    background: #D42F8F;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 0;
+    position: absolute;
+    left: 0px;
+    top: 150px;
+    text-align: center;
+    width: 100px;
+}
+.chicagos .separator div.before {
+    left: -100px;
+}
+.chicagos .separator div.and {
+    color: #F993D2;
+    left: -10px;
+    width: 20px;
+}
+
+
 #chicago-before {
     max-width:100%;
     min-width:100%;
