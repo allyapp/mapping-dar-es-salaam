@@ -1,5 +1,45 @@
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
 body {
+    background: #000;
     font: 18px/1.5 'Open Sans', sans-serif;
+}
+
+h1,h2,h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h1 {
+    color: #fff;
+    font-size: 40px;
+    line-height: 1.4em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.light h1 {
+    color: #000;
+}
+
+.container {
+    background: transparent url(../images/dot-bg.png) center top repeat-y;
+}
+
+.el {
+    background: rgba(0,0,0,0.9);
+    color: white;
+    border: 4px double white;
+    /*border-left: none;*/
+    /*border-right: none;*/
+    padding: 50px;
+}
+
+p.big {
+    font-size: 20px;
+    line-height: 1.8em;
 }
 
 .fillL {
@@ -13,6 +53,22 @@ body {
 
 .fillE {
     background-color:#eee;
+}
+
+
+.textblock {
+    padding: 15% 0;
+}
+
+.illo {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.illo img {
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 100%;
 }
 
 .tab {
@@ -280,7 +336,17 @@ ul.colophon li {
     margin-top:80px;
 }
 
+/* Section-specific */
+#intro {
+    padding-bottom: 10%;
+}
+
+
+
 @media only screen and (max-width:770px) {
+    .illo img {
+        border-radius: 0;
+    }
     .density a.img {
         width:50%;
     }
