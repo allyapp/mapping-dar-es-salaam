@@ -449,6 +449,13 @@ ul.colophon li {
     padding: 10% 20%;
 }
 
+#dense-data .image .el {
+
+}
+#dense-data .image img {
+    width: 100%;
+}
+
 @media only screen and (max-width:770px) {
     h1 {
         font-size: 30px !important;
