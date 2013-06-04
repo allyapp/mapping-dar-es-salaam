@@ -37,14 +37,12 @@ p.big {
     margin-bottom: 30px;
 }
 
-
 .nav {
 
 }
 
 .container {
 }
-
 
 .fillL {
     background-color:#72999b;
@@ -73,14 +71,27 @@ p.big {
     color: #333;
 }
 
-
-.item .feature {
-    height: 80%;
+.dark code {
+    background: #333;
+    border-color: #97EBFF;
+    color: #97EBFF;
 }
 
-.item .feature iframe {
-    height: 100%;
+.item .feature {
+    min-height: 700px;
+    position: relative;
+}
+
+.item .feature iframe,
+.item .feature .map {
+    background: #000;
     width: 100%;
+}
+
+.map {
+    position:absolute;
+    top:0;
+    bottom:0;
 }
 
 
@@ -217,7 +228,7 @@ div .tab:last-child {
     position:absolute;
     padding-top:5px;
     bottom:0px;
-    background:#fff;
+    background:#F2EFE9;
 }
 
 h1.big {
@@ -412,6 +423,10 @@ ul.colophon li {
 
 #intro .textblock {
     padding-top: 0;
+}
+
+#osm-edits .feature {
+    height: 80%;
 }
 
 

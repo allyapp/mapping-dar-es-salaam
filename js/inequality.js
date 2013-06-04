@@ -7,7 +7,7 @@ var sample_coeff = 1 / 0.100303569986;
 var sample_sum = 275065462;
 var sample_count = 30797;
 
-var colors = ['#476674', '#3887be', '#28353d', '#b5d378'];
+var colors = ['#604D96', '#D42F8F', '#55BB8C', '#30BCDF'];
 
 function color(i) {
     return colors[i % colors.length];
@@ -39,14 +39,14 @@ d3.json("js/sampled.json", function(error, root) {
     var text_summary = d3.select("#handle").append('div').attr('class', 'summary');
 
     function draw() {
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#F2EFE9';
         ctx.fillRect(0, 0, canvas_width, canvas_height);
         function position(d, i) {
           if (d.x / canvas_width < limit || d.x / canvas_width > limitmax) return;
           if (d.children) return;
           total_sum += +d.value;
           total_count++;
-          ctx.fillStyle = (d.children) ? '#fff' : color(i);
+          ctx.fillStyle = (d.children) ? '#F2EFE9' : color(i);
           ctx.fillRect(~~d.x, ~~d.y,
               ~~Math.max(0, d.dx) - 1,
               ~~Math.max(0, d.dy) - 1);
@@ -102,10 +102,18 @@ d3.json("js/sampled.json", function(error, root) {
         brushg.selectAll("rect")
             .attr("height", height);
 
+
+        d3.select("#c")
+            .on('mousemove', function() {
+                var pos = d3.mouse(this);
+                draw();
+            });
+
         brushstart();
         brushmove();
 
         function brushstart() {
+            console.log('starting');
           svg.classed("selecting", true);
         }
 

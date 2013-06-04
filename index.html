@@ -68,8 +68,7 @@
     <div class='container'>
 
         <!-- OSM Road Updates -->
-
-        <div class="item col12">
+        <div id="osm-edits" class="item col12">
 
             <div class="textblock clearfix">
                 <div class="col3 illo">
@@ -85,23 +84,21 @@
                 </div>
             </div>
             <div class="feature">
-                <iframe src="http://99.162.154.51/world-edit-static.html" width="100%" frameborder="0"></iframe>
+                <div id="osm-edit-map" class="map"></div>
+
             </div>
 
         </div>
 
         <!-- Chicago updates -->
-
-
-        <div class="item light col12">
-
+        <div id="chicago" class="item light col12">
             <div class="textblock clearfix">
                 <div class="col3 illo">
                     <img src="images/pixel.png" />
                 </div>
                 <div class="col8 margin1">
 
-                    <h1>Chicago, Illinois gets buildings</h1>
+                    <h1>Adding buildings to Chicago, Illinois</h1>
 
                     <p>
                         In Chicago, <a target='_blank' href='https://twitter.com/iandees'>Ian Dees</a> led an <a target='_blank' href='http://www.openstreetmap.org/user/chicago-buildings'>import</a> of building data from the city government that both improved addressing to locations in the city and made the map more useful. See <a target='_blank' href='http://osm.org/go/ZUfI300u--'>OpenStreetMap's excellent new coverage in Chicago.</a>
@@ -118,46 +115,50 @@
                     <div class='layer' id='chicago-before'></div>
                 </div>
             </div>
-
         </div>
 
-        <div class='dark col12 fl'>
-            <a name='bot-mode' href='#bot-mode' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
-            <div class='pad2 textblock'>
-                <h1>United States Road Updates</h1>
-                <p>
-                The <code>bot-mode</code> automated editor swept through the
-                United States in late 2012 and early 2013 to <a href='http://openstreetmap.us/2013/05/road-not-rd/' target='_blank'>expand imported, shortened road names into their full versions</a>.
-                </p>
-            </div>
+        <!-- Bot mode -->
+        <div class="item dark col12">
+            <div class="textblock clearfix">
+                <div class="col3 illo">
+                    <img src="images/pixel.png" />
+                </div>
+                <div class="col8 margin1">
 
-            <img alt='bot-mode' src='images/bot-mode.png' class='full-size' />
+                    <h1>United States Road Updates</h1>
+
+                    <p>
+                        The <code>bot-mode</code> automated editor swept through the United States in late 2012 and early 2013 to <a href='http://openstreetmap.us/2013/05/road-not-rd/' target='_blank'>expand imported, shortened road names into their full versions</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="feature">
+                <img alt='bot-mode' src='images/bot-mode.png' class='full-size' />
+            </div>
         </div>
 
-        <div class='light col12 fl'>
-            <a name='inequality' href='#inequality' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
-            <div class='pad2 textblock'>
-                <h1>Over 1,000,000 users</h1>
-                <p>
-                On January 6, 2013, OpenStreetMap crossed
-                the <a target='_blank' href='http://idealab.talkingpointsmemo.com/2013/01/openstreetmap-reaches-1-million-users-will-rival-google-maps-in-2-years.php'>1 million users mark</a>,
-                and continues to grow, both
-                in terms of data and active userbase.
-                </p>
-                <p>
-                Like most internet projects, a majority of users
-                are casual or inactive, with a small minority contributing
-                the majority of additions and corrections to the map.
-                </p>
-            </div>
+        <!-- One million users -->
+        <div class="item light col12">
+            <div class="textblock clearfix">
+                <div class="col3 illo">
+                    <img src="images/pixel.png" />
+                </div>
+                <div class="col8 margin1">
 
-            <div class='diagram cell12'>
-                <canvas class="cell12" id='c' width="100%"></canvas>
-                <div class="cell12" id='handle'></div>
+                    <h1>Over 1,000,000 users</h1>
+                    <p>
+                        On January 6, 2013, OpenStreetMap crossed the <a target='_blank' href='http://idealab.talkingpointsmemo.com/2013/01/openstreetmap-reaches-1-million-users-will-rival-google-maps-in-2-years.php'>1 million users mark</a>, and continues to grow, both in terms of data and active userbase.
+                    </p>
+                    <p>
+                        Like most internet projects, a majority of users are casual or inactive, with a small minority contributing the majority of additions and corrections to the map.
+                    </p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class='diagram cell12'>
+                    <canvas class="cell12" id='c' width="100%"></canvas>
+                    <div class="cell12" id='handle'></div>
+                </div>
             </div>
         </div>
 
