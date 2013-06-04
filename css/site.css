@@ -445,9 +445,13 @@ ul.colophon li {
 #one-million .diagram {
 }
 
+#dense-data .textblock {
+    padding: 10% 20%;
+}
+
 @media only screen and (max-width:770px) {
     h1 {
-        font-size: 30px;
+        font-size: 30px !important;
     }
     p.big {
         font-size: 18px;
@@ -455,8 +459,16 @@ ul.colophon li {
     p {
         font-size: 16px;
     }
+    .item .feature {
+        min-height: 0px;
+        padding: 20px;
+    }
     .illo {
-        padding: 20px 100px;
+        padding: 20px;
+    }
+    .illo img {
+        margin: 0;
+        width: 100%;
     }
     .textblock {
         padding: 20px !important;
