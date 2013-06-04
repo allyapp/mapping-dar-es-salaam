@@ -57,16 +57,16 @@ d3.json("js/sampled.json", function(error, root) {
 
         map.forEach(position);
 
-        text_summary.text(
-            (100 * total_sum / sample_sum).toFixed(2) + '% of changes are submitted by ' +
-            (100 * total_count / sample_count).toFixed(2) + '% of users');
+        text_summary.html(
+            '<span>' + (100 * total_sum / sample_sum).toFixed(2) + '%</span> of changes are submitted by <span>' +
+            (100 * total_count / sample_count).toFixed(2) + '%</span> of users');
     }
 
 
     (function() {
-        var width = canvas_width - 100;
+        var width = canvas_width - 20;
         var height = 20;
-        var margin = {top: 10, right: 50, bottom: 10, left: 50};
+        var margin = {top: 0, right: 20, bottom: 0, left: 0};
 
         var x = d3.scale.linear()
             .range([0, width]);
@@ -74,10 +74,10 @@ d3.json("js/sampled.json", function(error, root) {
         var y = d3.random.normal(height / 2, height / 8);
 
         var svg = d3.select("#handle").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var brush = d3.svg.brush()
             .x(x)
@@ -90,30 +90,25 @@ d3.json("js/sampled.json", function(error, root) {
             .attr("class", "brush")
             .call(brush);
 
-        var arc = d3.svg.arc()
-            .outerRadius(height / 2)
-            .startAngle(0)
-            .endAngle(function(d, i) { return i ? -Math.PI : Math.PI; });
+        // var arc = d3.svg.circle()
+        //     .outerRadius(height / 2)
+        //     .startAngle(0)
+        //     .endAngle(function(d, i) { return i ? -Math.PI : ; });
 
-        brushg.selectAll(".resize").append("path")
-            .attr("transform", "translate(0," +  height / 2 + ")")
-            .attr("d", arc);
+        brushg.selectAll(".resize").append("rect")
+            // .attr("transform", "translate(0," +  height / 2 + ")")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("height", height)
+            .attr("width", height);
 
         brushg.selectAll("rect")
             .attr("height", height);
-
-
-        d3.select("#c")
-            .on('mousemove', function() {
-                var pos = d3.mouse(this);
-                draw();
-            });
 
         brushstart();
         brushmove();
 
         function brushstart() {
-            console.log('starting');
           svg.classed("selecting", true);
         }
 
