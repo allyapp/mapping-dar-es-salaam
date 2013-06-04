@@ -1,5 +1,5 @@
 #c {
-    min-width:100%;
+    min-width: 100%;
 }
 
 circle {
@@ -15,10 +15,15 @@ circle {
 }
 
 .summary {
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 24px;
     text-align:center;
     padding:10px;
-    background:#fff;
     color:#222;
+}
+
+.summary span {
+    color: #D42F8F;
 }
 
 .resize path {
