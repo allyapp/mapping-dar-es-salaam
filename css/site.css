@@ -147,43 +147,45 @@ div .tab:last-child {
 
 /* chicago visualization */
 .chicagos {
-    cursor:url(../images/resize-arrow.png),url(../images/resize-arrow.cur),auto;
+    cursor: move;
     position:relative;
-    overflow:hidden;
+    overflow:visible;
 }
-.chicagos, .chicagos .layer,
-.chicagos .separator {
+.chicagos, .chicagos .layer {
     height: 700px;
 }
 .chicagos .separator {
-    background: #605643;
-    border-left: 1px solid #D42F8F;
-    border-right: 1px solid #fff;
-    left: 0px;
+    border-left: 1px solid rgba(97,78,153,1);
+    border-right: 1px solid rgba(97,78,153,1);
+    height: 730px;
+    left: -1px;
+    line-height: 30px;
     overflow: visible;
     position: absolute;
+    top: -30px;
     width: 2px;
     z-index: 10;
 }
 .chicagos .separator div {
-    background: #D42F8F;
-    color: #fff;
+    background: rgba(97,78,153,0.6);
+    border-left: 1px solid rgba(97,78,153,1);
+    color: #F2EFE9;
+    font-family: 'Bree Serif', sans-serif;
     font-weight: bold;
     font-size: 14px;
-    padding: 5px 0;
+    line-height: 30px;
     position: absolute;
     left: 0px;
-    top: 150px;
+    top: 0px;
     text-align: center;
+    text-shadow: 0px -1px 0px rgba(97,78,153,1);
     width: 100px;
+    z-index: 9;
 }
 .chicagos .separator div.before {
     left: -100px;
-}
-.chicagos .separator div.and {
-    color: #F993D2;
-    left: -10px;
-    width: 20px;
+    border-left: none;
+    border-right: 1px solid rgba(97,78,153,1);
 }
 
 
