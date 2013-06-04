@@ -416,6 +416,28 @@ ul.colophon li {
 
 
 @media only screen and (max-width:770px) {
+    h1 {
+        font-size: 30px;
+    }
+    p.big {
+        font-size: 18px;
+    }
+    p {
+        font-size: 16px;
+    }
+    .illo {
+        padding: 20px 100px;
+    }
+    .textblock {
+        padding: 20px;
+    }
+    #intro .photo h1 small {
+        font-size: 30px;
+    }
+    #intro .photo h1 span {
+        font-size: 50px;
+    }
+
     .density a.img {
         width:50%;
     }
