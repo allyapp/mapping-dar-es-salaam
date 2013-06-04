@@ -87,7 +87,6 @@ p.big {
 
 .item .feature {
     min-height: 700px;
-    margin-bottom: 5%;
     position: relative;
 }
 
@@ -108,6 +107,10 @@ p.big {
     background: url (../images/pixel.png) 0 0 repeat-y;
     color: #ddd;
     padding: 10% 20% 5%;
+}
+
+.extrapad {
+    padding-bottom: 15%;
 }
 
 .illo img {
