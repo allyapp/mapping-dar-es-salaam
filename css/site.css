@@ -381,7 +381,9 @@ ul.colophon li {
     background: #604D96;
 }
 #intro .photo {
-    background: transparent url(../images/intro-splash.jpg) center center no-repeat;
+    background: transparent url(../images/intro-splash.jpg) bottom center no-repeat;
+    /*background: transparent url(../images/intro-splash2.jpg) bottom center no-repeat;*/
+    /*background: transparent url(../images/intro-splash3.jpg) center center no-repeat;*/
     background-size: cover;
     padding: 30% 0 10%;
     text-align: center;
