@@ -37,7 +37,7 @@
 
 
 
-<div id="intro" class='col12 clearfix'>
+<div id="intro" class='col12'>
     <div class="photo">
         <h1>
             <small>2013</small>
@@ -60,17 +60,13 @@
 
 <div id="content">
 
-    <div class="nav">
-        NAV HERE
-    </div>
-
     <div class='container'>
 
         <!-- OSM Road Updates -->
         <div id="osm-edits" class="item col12">
-            <a name='visualize' href='#visualize' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='visualize' href='#visualize'><span class='permalink'></span></a>
+            </div>
             <div class="textblock clearfix">
                 <div class="illo col8 margin2">
                     <img src="images/frequency.jpg" />
@@ -115,9 +111,9 @@
 
         <!-- Chicago updates -->
         <div id="chicago" class="item light col12">
-            <a name='chicago' href='#chicago' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='chicago' href='#chicago'><span class='permalink'></span></a>
+            </div>
             <div class="textblock extrapad clearfix">
                 <div class="illo col10 margin1">
                     <img src="images/chicago.png" />
@@ -150,9 +146,9 @@
 
         <!-- Bot mode -->
         <div id="us-road-bot" class="item dark col12">
-            <a name='botmode' href='#botmode' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='botmode' href='#botmode'><span class='permalink'></span></a>
+            </div>
             <div class="textblock extrapad clearfix">
                 <div class="illo">
                     <img src="images/robot.png" />
@@ -173,9 +169,9 @@
 
         <!-- One million users -->
         <div id="one-million" class="item light col12">
-            <a name='million' href='#million' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='million' href='#million'><span class='permalink'></span></a>
+            </div>
             <div class="illo">
                 <h1 class="big">Over <span>1,000,000</span> users</h1>
                 <img src="images/graph.png" />
@@ -204,9 +200,9 @@
 
         <!-- Data density -->
         <div id="data-amounts" class="item dark col12">
-            <a name='density' href='#density' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='stats' href='#stats'><span class='permalink'></span></a>
+            </div>
             <div class="textblock clearfix">
                 <div class="col8 margin2">
                     <h1>Abundance of data</h1>
@@ -230,7 +226,7 @@
                 <div class="el" style="background-image: url(images/stat-earth.jpg)">
                     <span class="number">847.63</span> times around the world...
                 </div>
-                <div class="el" style="background-image: url(images/stat-beard.jpg)">
+                <div class="el" style="background-image: url(images/beard.gif)">
                     or <span class="number" style="color: #49BC8D">40.13</span> years driving at 60mph.
                 </div>
 
@@ -239,9 +235,9 @@
 
         <!-- Data density -->
         <div id="density" class="item light col12">
-            <a name='density' href='#density' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='density' href='#density'><span class='permalink'></span></a>
+            </div>
             <div class="textblock extrapad clearfix">
                 <div class="illo col8 margin2">
                     <img src="images/data-density.png" />
@@ -262,9 +258,9 @@
 
         <!-- Show me the way -->
         <div id="show-me-the-way" class="item dark col12 hide-mobile">
-            <a name='live' href='#live' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
+            <div class='permalink-link'>
+                <a name='live' href='#live'><span class='permalink'></span></a>
+            </div>
             <div class="textblock clearfix">
                 <div class="illo col12">
                     <img src="images/showmetheway.png" />
@@ -279,21 +275,28 @@
                 </div>
             </div>
             <div class="feature">
-                <iframe src='http://mapbox.com/show-me-the-way/'></iframe>
+                <iframe src='http://mapbox.com/show-me-the-way/' height="700"></iframe>
             </div>
         </div>
 
-        <div class='light col12 fl drop'>
-            <a name='start' href='#start' class='permalink-link'>
-                <span class='permalink'></span>
-            </a>
-            <div class='pad2 textblock'>
-                <p>OpenStreetMap changes every minute, and more than 1,000 new mappers
-                contribute every day.</p>
-                <p>All of this from a project that started from scratch in <a target='_blank' href='https://en.wikipedia.org/wiki/OpenStreetMap#History'>2004</a>.
-                Want to make it even better?</p>
-                <div class='pad2 center'>
-                    <a href='http://osmlab.github.io/welcome-osm/' class='button huge'>Start Mapping</a>
+        <!-- Get started -->
+        <div id="get-started" class="item light col12 hide-mobile">
+            <div class='permalink-link'>
+                <a name='start' href='#start'><span class='permalink'></span></a>
+            </div>
+            <div class="textblock clearfix">
+                <div class="illo col12">
+
+                </div>
+                <div class="col8 margin2">
+
+                    <p>OpenStreetMap changes every minute, and more than 1,000 new mappers contribute every day.</p>
+
+                    <p>All of this from a project that started from scratch in <a target='_blank' href='https://en.wikipedia.org/wiki/OpenStreetMap#History'>2004</a>. Want to make it even better?</p>
+
+                    <div class='pad2 center'>
+                        <a href='http://osmlab.github.io/welcome-osm/' class='button huge'>Start Mapping</a>
+                    </div>
                 </div>
             </div>
         </div>

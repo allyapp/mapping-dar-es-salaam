@@ -43,6 +43,7 @@ h1.headline span {
 a {
     color: #D42F8F;
     text-decoration: none;
+    transition:background 200ms ease-in;
 }
 a:hover {
     color: #FF55BE;
@@ -78,6 +79,10 @@ p.big {
 }
 
 /* Main content item */
+
+.item {
+    position: relative;
+}
 
 .light {
     background:#F2EFE9;
@@ -348,29 +353,52 @@ div .tab:last-child {
     background-position:-25px 0;
 }
 
+.permalink-link {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+}
+
+.permalink-link a {
+    background: #222;
+    display: inline-block;
+    padding: 10px;
+    height: 50px;
+    width: 50px;
+}
+
+.permalink-link a:hover {
+    background-color: #444;
+}
+
+.light .permalink-link a {
+    background: #d6cfc1;
+}
+
+.light .permalink-link a:hover {
+    background: #c3b9a5;
+}
+
 .permalink {
-    width:25px;
-    height:25px;
+    width: 25px;
+    height: 25px;
     display:inline-block;
     background-image:url(sprite.png);
     background-size:250px 100px;
-    background-position:-50px 0;
+    background-position:-50px 0px;
 }
 
-.permalink-link {
-
-    z-index:999;
-    /*display:inline-block;*/
-    display: none;
-    position:absolute;
-    padding:10px;
-    background:#000;
-    transition:background 200ms ease-in;
+.dark .permalink {
+    opacity: 0.5;
+    transition:opacity 200ms ease-in;
 }
 
-.permalink-link:hover {
-    background:#222;
+
+.dark .permalink-link a:hover .permalink {
+    opacity: 1.0;
 }
+
 
 .density {
     position:relative;
@@ -594,6 +622,6 @@ ul.colophon li {
 }
 
 iframe {
-    height:600px;
+    margin-bottom: -10px;
     width:100%;
 }
