@@ -108,7 +108,8 @@ p.big {
 }
 
 .item .feature iframe,
-.item .feature .map {
+.item .feature .map,
+.item .feature img {
     background: #000;
     width: 100%;
 }
@@ -124,7 +125,8 @@ p.big {
     right: 0px;
     top: 20px;
     height: 100%;
-    width: 15%;
+    max-width: 270px;
+    width: 25%;
 }
 
 .map-navigation .icon {
@@ -430,19 +432,26 @@ ul.colophon li {
 }
 
 .button {
-    background:#eb6f67;
+    background:#60519b;
     color:#fff;
     text-align:center;
     text-decoration:none;
     border:none;
     border-radius:5px;
     font-weight:normal;
-    border-bottom:1px solid #A53931;
+    border-bottom: 2px solid #251a50;
     transition:background 100ms linear;
 }
 
 .button:hover {
-    background:#EB8C85;
+    background:#7c6cb9;
+    color: #fff;
+}
+
+.button:active {
+    background:#60519b;
+    border-bottom: none;
+    border-top: 2px solid #251a50;
 }
 
 .huge {
@@ -563,14 +572,17 @@ ul.colophon li {
     }
     .item .feature {
         min-height: 0px;
-        padding: 20px;
+        padding: 20px 0 !important;
+    }
+    .item .permalink-link {
+        display: none;
     }
     .illo {
         padding: 20px;
     }
     .illo img {
-        margin: 0;
-        width: 100%;
+        margin: 20px auto;
+        width: 60%;
     }
     .textblock {
         padding: 40px 20px !important;

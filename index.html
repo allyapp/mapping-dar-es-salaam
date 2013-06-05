@@ -80,7 +80,7 @@
                     </p>
                 </div>
             </div>
-            <div class="feature">
+            <div class="feature hide-mobile">
                 <div id="osm-edit-map" class="map"></div>
 
                 <div id='osm-edit-map-navigation' class="map-navigation">
@@ -105,6 +105,9 @@
                         Sydney
                     </a>
                 </div>
+            </div>
+            <div class="feature show-mobile hide">
+                <img src="images/roadupdates-mobile.jpg" />
             </div>
 
         </div>
@@ -280,19 +283,19 @@
         </div>
 
         <!-- Get started -->
-        <div id="get-started" class="item light col12 hide-mobile">
+        <div id="get-started" class="item light col12">
             <div class='permalink-link'>
                 <a name='start' href='#start'><span class='permalink'></span></a>
             </div>
             <div class="textblock clearfix">
-                <div class="illo col12">
-
+                <div class="illo col2 pad2 margin5">
+                    <img src="images/compass.png" />
                 </div>
                 <div class="col8 margin2">
 
                     <p>OpenStreetMap changes every minute, and more than 1,000 new mappers contribute every day.</p>
 
-                    <p>All of this from a project that started from scratch in <a target='_blank' href='https://en.wikipedia.org/wiki/OpenStreetMap#History'>2004</a>. Want to make it even better?</p>
+                    <p class="extrapad">All of this from a project that started from scratch in <a target='_blank' href='https://en.wikipedia.org/wiki/OpenStreetMap#History'>2004</a>. Want to make it even better?</p>
 
                     <div class='pad2 center'>
                         <a href='http://osmlab.github.io/welcome-osm/' class='button huge'>Start Mapping</a>
@@ -301,8 +304,8 @@
             </div>
         </div>
 
-        <div class='col12 light clearfix'>
-            <div class='pad2 col6 margin3'>
+        <div class='item col12 light clearfix'>
+            <div class='pad2 col6 margin3 center'>
                 <div class='center pad2'>
                     <a class='mb-link' title='MapBox loves OpenStreetMap' href='http://mapbox.com'><img alt='MapBox' src='css/mapbox-logo-reversed-128.png' /></a>
                 </div>
