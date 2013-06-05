@@ -432,8 +432,6 @@ ul.colophon li {
 }
 #intro .photo {
     background: transparent url(../images/intro-splash.jpg) bottom center no-repeat;
-    /*background: transparent url(../images/intro-splash2.jpg) bottom center no-repeat;*/
-    /*background: transparent url(../images/intro-splash3.jpg) center center no-repeat;*/
     background-size: cover;
     padding: 30% 0 10%;
     text-align: center;
@@ -454,8 +452,11 @@ ul.colophon li {
 }
 
 #intro .illo {
-    margin: -7% auto 7%;
-    width: 15%;
+    margin: -10% auto 7%;
+    width: 20%;
+}
+
+#intro .illo img {
 }
 
 #intro .textblock {
