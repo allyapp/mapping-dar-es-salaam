@@ -1,7 +1,7 @@
 var c = document.getElementById('c');
 
 var canvas_width = c.offsetWidth,
-    canvas_height = 400;
+    canvas_height = 300;
 
 var sample_coeff = 1 / 0.100303569986;
 var sample_sum = 275065462;
@@ -36,20 +36,22 @@ d3.json("js/sampled.json", function(error, root) {
     var n = root.length;
     var limit = 0;
     var limitmax = 1;
-    var text_summary = d3.select("#handle").append('div').attr('class', 'summary');
+    var text_summary = d3.select('.diagram-summary')
+        .append('div')
+        .attr('class', 'summary');
 
     function draw() {
         ctx.fillStyle = '#F2EFE9';
         ctx.fillRect(0, 0, canvas_width, canvas_height);
         function position(d, i) {
-          if (d.x / canvas_width < limit || d.x / canvas_width > limitmax) return;
+          if ((d.x / canvas_width) < limit || ((d.x + d.dx) / canvas_width) > limitmax) return;
           if (d.children) return;
           total_sum += +d.value;
           total_count++;
           ctx.fillStyle = (d.children) ? '#F2EFE9' : color(i);
           ctx.fillRect(~~d.x, ~~d.y,
-              ~~Math.max(0, d.dx) - 1,
-              ~~Math.max(0, d.dy) - 1);
+              ~~Math.max(0, d.dx),
+              ~~Math.max(0, d.dy));
         }
 
         var total_sum = 0;
@@ -64,18 +66,17 @@ d3.json("js/sampled.json", function(error, root) {
 
 
     (function() {
-        var width = canvas_width - 10;
-        var height = 10;
-        var margin = {top: 0, right: 10, bottom: 20, left: 0};
+        var width = canvas_width;
+        var height = 300;
+        var margin = {top: 0, right: 0, bottom: 0, left: 0};
 
         var x = d3.scale.linear()
-            .range([0, width]);
-
-        var y = d3.random.normal(height / 2, height / 8);
+            .range([0, width - 20]);
 
         var svg = d3.select("#handle").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
+                .style('position', 'absolute')
+                .attr("width", width)
+                .attr("height", height)
             .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -90,37 +91,30 @@ d3.json("js/sampled.json", function(error, root) {
             .attr("class", "brush")
             .call(brush);
 
-        // var arc = d3.svg.circle()
-        //     .outerRadius(height / 2)
-        //     .startAngle(0)
-        //     .endAngle(function(d, i) { return i ? -Math.PI : ; });
-
-        brushg.selectAll(".resize").append("rect")
-            // .attr("transform", "translate(0," +  height / 2 + ")")
-            .attr("x", 0)
-            .attr("y", 0)
+        brushg.selectAll('.resize')
+            .append('image')
+            .attr('xlink:href', function(d, i) {
+                return i ? 'images/handle.png' : 'images/handle-right.png';
+            })
             .attr("height", height)
-            .attr("width", height);
-
-        brushg.selectAll("rect")
-            .attr("height", height);
+            .attr("width", 20);
 
         brushstart();
         brushmove();
 
         function brushstart() {
-          svg.classed("selecting", true);
+            svg.classed("selecting", true);
         }
 
         function brushmove() {
-          var s = brush.extent();
-          limit = s[0];
-          limitmax = s[1];
-          draw();
+            var s = brush.extent();
+            limit = s[0];
+            limitmax = s[1];
+            draw();
         }
 
         function brushend() {
-          svg.classed("selecting", !d3.event.target.empty());
+            svg.classed("selecting", !d3.event.target.empty());
         }
     })();
 

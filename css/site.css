@@ -234,10 +234,10 @@ div .tab:last-child {
 }
 
 .diagram .wrapper {
-    height: 310px;
+    height: 300px;
     overflow: hidden;
     position: absolute;
-    top: 80px;
+    top: 0;
     width: 100%;
 }
 
