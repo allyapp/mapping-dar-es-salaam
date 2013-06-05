@@ -484,9 +484,6 @@ ul.colophon li {
     width: 20%;
 }
 
-#intro .illo img {
-}
-
 #intro .textblock {
     padding-top: 0;
 }
@@ -586,6 +583,11 @@ ul.colophon li {
     }
     #intro .photo h1 span {
         font-size: 50px;
+    }
+
+    #intro .illo {
+        margin: -15% auto 0;
+        width: 40%;
     }
 
     .density a.img {
