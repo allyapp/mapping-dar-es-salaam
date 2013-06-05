@@ -152,6 +152,18 @@ p.big {
     background: rgba(213,45,144,1);
 }
 
+.map-navigation .key {
+    background: rgba(0,0,0,0.85);
+    /*border: 2px solid #000;*/
+    padding: 10px 2px;
+    margin-right: 20px;
+}
+
+.map-navigation .key img {
+    background: transparent;
+    width: 100%;
+}
+
 .textblock {
     background: url (../images/pixel.png) 0 0 repeat-y;
     color: #ddd;
