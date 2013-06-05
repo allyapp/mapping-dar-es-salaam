@@ -487,16 +487,16 @@ ul.colophon li {
 #one-million .diagram {
 }
 
-#dense-data .textblock {
+#data-amounts .textblock {
     padding: 20% 20%;
 }
 
-#dense-data .feature {
+#data-amounts .feature {
     position: relative;
     min-height: 0px;
 }
 
-#dense-data .el {
+#data-amounts .el {
     background-size: 50%;
     background-position: center left;
     background-repeat: no-repeat;
@@ -506,20 +506,20 @@ ul.colophon li {
     font-size: 40px;
 }
 
-#dense-data .el:first-child {
+#data-amounts .el:first-child {
     background-position: 0 30%;
     padding-top: 25%;
 }
 
-#dense-data .el .number {
+#data-amounts .el .number {
     color: #D42F8F;
 }
 
-#dense-data .el .note {
+#data-amounts .el .note {
     opacity: 0.5;
 }
 
-#dense-data .feature h1 {
+#data-amounts .feature h1 {
     font-size: 50px;
     text-align: center;
     width: 100%;
@@ -566,17 +566,17 @@ ul.colophon li {
     .chicagos, .chicagos .layer {
         height:200px;
     }
-    #dense-data .feature .el {
+    #data-amounts .feature .el {
         background-position: top center;
         background-size: 70%;
         font-size: 24px !important;
         padding: 70.5% 20px 30%;
         text-align: center;
     }
-    #dense-data .feature .el .note {
+    #data-amounts .feature .el .note {
         display: block;
     }
-    #dense-data .feature .el br {
+    #data-amounts .feature .el br {
         display: none;
     }
 }
