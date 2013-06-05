@@ -28,6 +28,18 @@ h1.big span {
     color: #D91892;
 }
 
+h1.headline {
+    background: transparent url(../images/header-line.png) center center no-repeat;
+    background-size: 100%;
+    vertical-align: top;
+}
+
+h1.headline span {
+    background: #000;
+    display: inline-block;
+    padding: 20px 40px 0;
+}
+
 a {
     color: #D42F8F;
     text-decoration: none;
@@ -446,7 +458,7 @@ ul.colophon li {
 }
 
 #dense-data .textblock {
-    padding: 10% 20%;
+    padding: 20% 20%;
 }
 
 #dense-data .feature {
