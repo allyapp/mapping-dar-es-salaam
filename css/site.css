@@ -8,7 +8,7 @@ body {
     font: 18px/1.5 'Open Sans', sans-serif;
 }
 
-h1,h2,h3 {
+h1,h2,h3, .big {
     font-family: 'Bree Serif', serif;
     font-weight: normal;
 }
@@ -449,10 +449,37 @@ ul.colophon li {
     padding: 10% 20%;
 }
 
-#dense-data .image .el {
-
+#dense-data .feature {
+    position: relative;
+    min-height: 0px;
 }
-#dense-data .image img {
+
+#dense-data .el {
+    background-size: 50%;
+    background-position: center left;
+    background-repeat: no-repeat;
+    color: #ddd;
+    font-family: 'Bree Serif', sans-serif;
+    padding: 40% 0 40% 55%;
+    font-size: 40px;
+}
+
+#dense-data .el:first-child {
+    background-position: 0 30%;
+    padding-top: 25%;
+}
+
+#dense-data .el .number {
+    color: #D42F8F;
+}
+
+#dense-data .el .note {
+    opacity: 0.5;
+}
+
+#dense-data .feature h1 {
+    font-size: 50px;
+    text-align: center;
     width: 100%;
 }
 
@@ -493,6 +520,19 @@ ul.colophon li {
 
     .chicagos, .chicagos .layer {
         height:200px;
+    }
+    #dense-data .feature .el {
+        background-position: top center;
+        background-size: 70%;
+        font-size: 24px !important;
+        padding: 70.5% 20px 30%;
+        text-align: center;
+    }
+    #dense-data .feature .el .note {
+        display: block;
+    }
+    #dense-data .feature .el br {
+        display: none;
     }
 }
 
