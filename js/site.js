@@ -94,6 +94,18 @@ d3.select('a[href="#facebook"]').on('click', function(d, i) {
 run();
 
 // Init maps
-var osmEditMap = L.mapbox.map('osm-edit-map', 'enf.osm-edit-date')
-    .setView([45, -35], 4)
-    .scrollWheelZoom.disable();
+var osmEditMap = L.mapbox.map('osm-edit-map', 'enf.osm-edit-date');
+
+osmEditMap.setView([45, -35], 4)
+osmEditMap.scrollWheelZoom.disable();
+
+console.log(osmEditMap);
+
+document.getElementById('osm-edit-map-navigation').onclick = function(e) {
+    var pos = e.target.getAttribute('data-position');
+    if (pos) {
+        var loc = pos.split(',');
+        osmEditMap.setView(loc, 11);
+        return false;
+    }
+}

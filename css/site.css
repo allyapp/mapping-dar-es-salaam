@@ -114,6 +114,36 @@ p.big {
     bottom:0;
 }
 
+.map-navigation {
+    position: absolute;
+    right: 0px;
+    top: 20px;
+    height: 100%;
+    width: 15%;
+}
+
+.map-navigation .icon {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.map-navigation a {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(213,45,144,1);
+    border-radius: 2px;
+    /*D2358E*/
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin: 0 20px 15px 0;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.map-navigation a:hover {
+    background: rgba(213,45,144,1);
+}
 
 .textblock {
     background: url (../images/pixel.png) 0 0 repeat-y;

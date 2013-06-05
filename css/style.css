@@ -278,12 +278,113 @@ table {
   }
 
 .icon {
-  background:transparent url(img/sprite.png) no-repeat 0 0;
+  background:transparent url(../images/sprite@2x.png) no-repeat 0 0;
+  background-size: 900px 300px;
   display:block;
-  width:30px;
-  height:30px;
+  width:20px;
+  height:20px;
   text-indent:-999em;
   }
+
+.icon.edit          { background-position:0px -120px; }
+.icon.close         { background-position:-20px -120px; }
+.icon.plus          { background-position:-40px -120px; }
+.icon.add           { background-position:-40px -120px; }
+.icon.minus         { background-position:-60px -120px; }
+.icon.admin         { background-position:-80px -120px; }
+.icon.info          { background-position:-100px -120px; }
+.icon.download      { background-position:-120px -120px; }
+.icon.account       { background-position:-140px -120px; }
+.icon.stats         { background-position:-160px -120px; }
+.icon.statistics    { background-position:-160px -120px; }
+.icon.embed         { background-position:-180px -120px; }
+.icon.layers        { background-position:-200px -120px; }
+.icon.tileset       { background-position:-220px -120px; }
+.icon.upload        { background-position:-240px -120px; }
+.icon.home          { background-position:-260px -120px; }
+.icon.lock          { background-position:-280px -120px; }
+.icon.sun           { background-position:-300px -120px; }
+.icon.en            { background-position:-320px -120px; }
+.icon.billing       { background-position:-340px -120px; }
+.icon.star          { background-position:-360px -120px; }
+.icon.tx            { background-position:-380px -120px; }
+.icon.markers       { background-position:-400px -120px; }
+.icon.save          { background-position:-420px -120px; }
+.icon.delete        { background-position:-440px -120px; }
+.icon.purge         { background-position:-440px -120px; }
+.icon.tooltip       { background-position:-460px -120px; }
+.icon.style         { background-position:-480px -120px; }
+.icon.mt            { background-position:-500px -120px; }
+.icon.help          { background-position:-520px -120px; }
+.icon.logout        { background-position:-540px -120px; }
+.icon.dropdown      { background-position:-560px -120px; }
+.icon.prev          { background-position:-580px -120px; }
+.icon.next          { background-position:-600px -120px; }
+.icon.mail          { background-position:-620px -120px; }
+.icon.twitter       { background-position:-640px -120px; }
+.icon.return        { background-position:-660px -120px; }
+.icon.contact       { background-position:-680px -120px; }
+.icon.search        { background-position:-700px -120px; }
+.icon.link          { background-position:-720px -120px; }
+.icon.github        { background-position:-740px -120px; }
+.icon.mobile        { background-position:-760px -120px; }
+.icon.fullscreen    { background-position:-780px -120px; }
+.icon.alert         { background-position:-800px -120px; }
+.icon.video         { background-position:-820px -120px; }
+.icon.streets       { background-position:-840px -120px; }
+.icon.satellite     { background-position:-860px -120px; }
+.icon.presets       { background-position:-880px -120px; }
+.icon.rss           { background-position:0px -220px; }
+
+.reverse.edit       { background-position:0px -140px; }
+.reverse.close      { background-position:-20px -140px; }
+.reverse.plus       { background-position:-40px -140px; }
+.reverse.add        { background-position:-40px -140px; }
+.reverse.minus      { background-position:-60px -140px; }
+.reverse.admin      { background-position:-80px -140px; }
+.reverse.info       { background-position:-100px -140px; }
+.reverse.download   { background-position:-120px -140px; }
+.reverse.account    { background-position:-140px -140px; }
+.reverse.stats      { background-position:-160px -140px; }
+.reverse.statistics { background-position:-160px -140px; }
+.reverse.embed      { background-position:-180px -140px; }
+.reverse.layers     { background-position:-200px -140px; }
+.reverse.tileset    { background-position:-220px -140px; }
+.reverse.upload     { background-position:-240px -140px; }
+.reverse.home       { background-position:-260px -140px; }
+.reverse.lock       { background-position:-280px -140px; }
+.reverse.sun        { background-position:-300px -140px; }
+.reverse.en         { background-position:-320px -140px; }
+.reverse.billing    { background-position:-340px -140px; }
+.reverse.star       { background-position:-360px -140px; }
+.reverse.tx         { background-position:-380px -140px; }
+.reverse.markers    { background-position:-400px -140px; }
+.reverse.save       { background-position:-420px -140px; }
+.reverse.delete     { background-position:-440px -140px; }
+.reverse.purge      { background-position:-440px -140px; }
+.reverse.tooltip    { background-position:-460px -140px; }
+.reverse.style      { background-position:-480px -140px; }
+.reverse.mt         { background-position:-500px -140px; }
+.reverse.help       { background-position:-520px -140px; }
+.reverse.logout     { background-position:-540px -140px; }
+.reverse.dropdown   { background-position:-560px -140px; }
+.reverse.prev       { background-position:-580px -140px; }
+.reverse.next       { background-position:-600px -140px; }
+.reverse.mail       { background-position:-620px -140px; }
+.reverse.twitter    { background-position:-640px -140px; }
+.reverse.return     { background-position:-660px -140px; }
+.reverse.contact    { background-position:-680px -140px; }
+.reverse.search     { background-position:-700px -140px; }
+.reverse.link       { background-position:-720px -140px; }
+.reverse.github     { background-position:-740px -140px; }
+.reverse.mobile     { background-position:-760px -140px; }
+.reverse.fullscreen { background-position:-780px -140px; }
+.reverse.alert      { background-position:-800px -140px; }
+.reverse.video      { background-position:-820px -140px; }
+.reverse.streets    { background-position:-840px -140px; }
+.reverse.satellite  { background-position:-860px -140px; }
+.reverse.presets    { background-position:-880px -140px; }
+.reverse.rss           { background-position:0px -240px; }
 
 /* Layout
 ------------------------------------------------------- */
