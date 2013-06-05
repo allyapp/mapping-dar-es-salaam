@@ -99,8 +99,6 @@ var osmEditMap = L.mapbox.map('osm-edit-map', 'enf.osm-edit-date');
 osmEditMap.setView([45, -35], 4)
 osmEditMap.scrollWheelZoom.disable();
 
-console.log(osmEditMap);
-
 document.getElementById('osm-edit-map-navigation').onclick = function(e) {
     var pos = e.target.getAttribute('data-position');
     if (pos) {
