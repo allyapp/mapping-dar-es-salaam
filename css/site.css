@@ -576,6 +576,9 @@ ul.colophon li {
     h1 {
         font-size: 30px !important;
     }
+    h1.headline {
+        background: none;
+    }
     p.big {
         font-size: 18px;
     }
@@ -594,7 +597,7 @@ ul.colophon li {
     }
     .illo img {
         margin: 20px auto;
-        width: 60%;
+        width: 80%;
     }
     .textblock {
         padding: 40px 20px !important;
@@ -608,7 +611,6 @@ ul.colophon li {
     #intro .photo h1 span {
         font-size: 50px;
     }
-
     #intro .illo {
         margin: -15% auto 0;
         width: 40%;
@@ -636,15 +638,49 @@ ul.colophon li {
     }
 }
 
-.mb-link img {
-    width:64px;
-    height:64px;
-    opacity:0.7;
-    transition:opacity 100ms linear;
-}
+@media only screen and (max-width:480px) {
+    #intro .photo {
+        background: none;
+        padding: 20px;
+    }
+    #intro .photo h1 {
+        padding: 0;
+        line-height: 40px;
+    }
+    #intro .photo h1 span {
+        font-size: 30px;
+    }
+    #intro .photo h1 small {
+        font-size: 18px;
+    }
+    #intro .illo {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    #intro .textblock {
+        color: white;
+    }
+    .textblock {
+        padding: 20px;
+    }
+    .dark .textblock {
+        color: white;
+    }
+    #data-amounts .feature .el {
+        font-size: 18px !important;
+        padding: 65% 20px 80px;
+    }
+    #get-started .pad2 {
+        padding: 0;
+    }
+    .huge {
+        display: block;
+        padding: 10px 20px;
+        font-size:24px;
+        width: 100%;
+    }
 
-.mb-link:hover img {
-    opacity:1;
 }
 
 iframe {
