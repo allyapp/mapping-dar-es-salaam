@@ -41,7 +41,7 @@ d3.json("js/sampled.json", function(error, root) {
         .attr('class', 'summary');
 
     function draw() {
-        ctx.fillStyle = '#F2EFE9';
+        ctx.fillStyle = '#e6e0d5';
         ctx.fillRect(0, 0, canvas_width, canvas_height);
         function position(d, i) {
           if ((d.x / canvas_width) < limit || ((d.x + d.dx) / canvas_width) > limitmax) return;
