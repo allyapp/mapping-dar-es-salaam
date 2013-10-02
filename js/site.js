@@ -94,7 +94,7 @@ d3.select('a[href="#facebook"]').on('click', function(d, i) {
 run();
 
 // Init maps
-var osmEditMap = L.mapbox.map('osm-edit-map', 'enf.osm-edit-date');
+var osmEditMap = L.mapbox.map('osm-edit-map', 'https://a.tiles.mapbox.com/v3/enf.osm-edit-date.jsonp?secure');
 
 osmEditMap.setView([45, -35], 4)
 osmEditMap.scrollWheelZoom.disable();
