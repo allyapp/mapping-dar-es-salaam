@@ -2,18 +2,35 @@
 <html>
   <head>
     <meta charset=utf-8 />
-    <title>OSM data report | MapBox</title>
+    <title>2015 OSM data report | MapBox</title>
     <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0'>
     <link rel='shortcut icon' href='https://mapbox.com/img/favicon.ico' type='image/x-icon' />
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
-    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+    <link href='base.css' rel='stylesheet' />
     <link href='site.css' rel='stylesheet' />
-    <script>
-      var analytics=analytics||[];(function(){var e=['identify','track','trackLink','trackForm','trackClick','trackSubmit','page','pageview','ab','alias','ready','group'],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement('script');t.type='text/javascript',t.async=!0,t.src=('https:'===document.location.protocol?'https://':"http://")+'d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/'+e+'/analytics.min.js';var n=document.getElementsByTagName('script')[0];n.parentNode.insertBefore(t,n)};
-      analytics.load(window.location.hostname.indexOf('mapbox.com') !== -1 ? 'fl0c8p240n' : '0biiejpgfj');
-    </script>
   </head>
   <body>
-    Content here.
+
+  <header>
+    <div class='inline icon osm title-icon'></div>
+    <h1>OpenStreetMap 2015 data report</h1>
+  </header>
+
+  <section>
+    <div class='folds col12 clearfix'>
+      <div class='fold col2 odd'></div>
+      <div class='fold col2 even'></div>
+      <div class='fold col2 odd'></div>
+      <div class='fold col2 even'></div>
+      <div class='fold col2 odd'></div>
+      <div class='fold col2 even'></div>
+    </div>
+  </section>
+
+  <script>
+    var analytics=analytics||[];(function(){var e=['identify','track','trackLink','trackForm','trackClick','trackSubmit','page','pageview','ab','alias','ready','group'],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement('script');t.type='text/javascript',t.async=!0,t.src=('https:'===document.location.protocol?'https://':"http://")+'d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/'+e+'/analytics.min.js';var n=document.getElementsByTagName('script')[0];n.parentNode.insertBefore(t,n)};
+    analytics.load(window.location.hostname.indexOf('mapbox.com') !== -1 ? 'fl0c8p240n' : '0biiejpgfj');
+  </script>
   </body>
 </html>
