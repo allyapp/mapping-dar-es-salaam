@@ -37,7 +37,7 @@
 strong.gothic .strong.gothic {
   font-family:'News Gothic Bold';
   }
-.gothic,.gothic-headline, label {
+.gothic,.gothic-headline {
   font-family:'News Gothic';
   }
 pre, code { font-family:'Anonymous Pro'; }
@@ -75,11 +75,11 @@ button,
   }
 input[type=range] {
   vertical-align:inherit;
-  background-color:rgba(0,0,0,0.5);
+  background-color:rgba(0,0,0,0.75);
   }
-  input[type=range]::-webkit-slider-thumb { position:relative; background-color:#fff; box-shadow:#505050 -1200px 0 0 1200px; }
-  input[type=range]::-moz-range-thumb     { background-color:#fff; box-shadow:#505050 -1200px 0 0 1200px; }
-  input[type=range]::-ms-thumb            { background-color:#fff; box-shadow:#505050 -1200px 0 0 1200px; }
+  input[type=range]::-webkit-slider-thumb { position:relative; background-color:#fff; box-shadow:rgba(255,255,255,0.20) -1200px 0 0 1200px; }
+  input[type=range]::-moz-range-thumb     { background-color:#fff; box-shadow:rgba(255,255,255,0.20) -1200px 0 0 1200px; }
+  input[type=range]::-ms-thumb            { background-color:#fff; box-shadow:rgba(255,255,255,0.20) -1200px 0 0 1200px; }
 
 /* Icons
 ---------------------- */
@@ -113,6 +113,9 @@ input[type=range] {
 .rcon.fullscreen:after,
 .icon.fullscreen:before   { content:'\e604'; }
 
+.dot .icon:before,
+.dot .rcon:after { color:#fff; }
+
 /* Map
 ---------------------- */
 .map.leaflet-container { background:transparent; }
@@ -134,7 +137,7 @@ input[type=range] {
 .fill-blue    { background-color:#3c74b4; }
 .color-blue   { color:#3c74b4; }
 
-.fill-darkblue { background-color:#000044; }
+.fill-darkblue { background-color:#0d0d27; }
 
 .fill-darken  { background-color:rgba(0,0,0,0.5); }
 .fill-dark    { background-color:#404040; }
@@ -358,4 +361,25 @@ a.fullscreen-link:hover { opacity:1; color:#fff; }
   top:0;
   bottom:0;
   width:100%;
+  }
+.leaflet-container.dark .leaflet-bar {
+  background-color:rgba(0,0,0,0.5);
+  }
+.leaflet-container.dark .leaflet-bar a:last-child {
+  border-bottom:none;
+  }
+.leaflet-container.dark .leaflet-bar a:hover {
+  background-color:rgba(255,255,255,0.20);
+  }
+.range-tooltip {
+  background-color:rgba(0,0,0,0.5);
+  position:absolute;
+  bottom:50px;
+  width:100px;
+  text-align:center;
+  margin-left:-20px;
+  -webkit-transition:background-color 150ms linear;
+     -moz-transition:background-color 150ms linear;
+       -o-transition:background-color 150ms linear;
+          transition:background-color 150ms linear;
   }

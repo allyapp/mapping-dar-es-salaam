@@ -12,28 +12,21 @@
   <body class='fill-darkblue'>
 
   <section class='contain full-height'>
-
-    <!--
-    <header class='pintop z1000 fill-dark pad4 dark'>
-      <div class='inline icon osm title-icon'></div>
-      <h1 class='inline'><strong>2014</strong> OpenStreetMap Data Report </h1>
-    </header>
-    -->
-
     <div class='pin-topleft z1000 pad1 dark location-control'>
-      <a href='#next' class='button fill-dark col12 js-next' id='next'>
-        <span class='icon refresh js-location-text'>Navigate</span>
+      <a href='#next' class='button fill-darken col12 js-next' id='next'>
+        <span class='icon refresh js-location-text'>Explore</span>
       </a>
-    </div>
-
-    <div class='pin-topright z1000 pad2y pad4x dark'>
-      <h3 class='js-emblem emblem'></h3>
     </div>
 
     <div id='map' class='map dark'></div>
 
-    <div class='pin-bottom z1000 pad1x pad4y'>
-      <div id='controls' class='fill-dark pad2x pad1y round'></div>
+    <div class='pin-bottom z1000 pad1x pad4y clearfix col12'>
+      <div id='controls' class='col6 margin3 fill-darken pad2x pad1y round contain'>
+        <div class='js-range-tooltip range-tooltip pad1y dark round'>
+          <span class='dot inline pad0 animate'></span>
+          <label class='strong'></label>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -54,8 +47,11 @@
           </a>
         </div>
 
-        <h1>10 Years of OpenStreetMap</h1>
-        <p>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Take a look at the map below to explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
+        <h1>
+          <span class='inline icon osm title-icon'></span>
+          10 Years of OpenStreetMap
+        </h1>
+        <p class='quiet'>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Take a look at the map below to explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
       </div>
     </div>
 

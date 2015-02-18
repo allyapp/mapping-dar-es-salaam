@@ -12,30 +12,33 @@ var map = L.mapbox.map('map', null, {
   zoomControl: false,
   attributionControl: false,
   maxBounds: bounds
-}).setView([34.60,4.39], 2);
+});
 
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 map.scrollWheelZoom.disable();
+map.fitBounds(bounds);
+map.setZoom(2);
 
 var layers = [
-  { title: '2006', layer: 'enf.8e514fd2', },
-  { title: '2007', layer: 'enf.c3e70751', },
-  { title: '2008', layer: 'enf.2c15d8a9', },
-  { title: '2009', layer: 'enf.5191a4b9', },
-  { title: '2010', layer: 'enf.23382699', },
-  { title: '2011', layer: 'enf.1e5a6ba8', },
-  { title: '2012', layer: 'enf.a10eb892', },
-  { title: '2013', layer: 'enf.8989964d', },
-  { title: '2014', layer: 'enf.ab651705', },
-  { title: '2015', layer: 'enf.c2ce7160'  }
+  { title: '2006', fill: '#0000ff', layer: 'enf.8e514fd2', },
+  { title: '2007', fill: '#4400cc', layer: 'enf.c3e70751', },
+  { title: '2008', fill: '#880088', layer: 'enf.2c15d8a9', },
+  { title: '2009', fill: '#cc0044', layer: 'enf.5191a4b9', },
+  { title: '2010', fill: '#ff0000', layer: 'enf.23382699', },
+  { title: '2011', fill: '#ff4400', layer: 'enf.1e5a6ba8', },
+  { title: '2012', fill: '#ff8800', layer: 'enf.a10eb892', },
+  { title: '2013', fill: '#ffcc00', layer: 'enf.8989964d', },
+  { title: '2014', fill: '#ffff00', layer: 'enf.ab651705', },
+  { title: '2015', fill: '#ffff00', layer: 'enf.c2ce7160'  }
 ].map(function(l, i) {
   l.layer = L.mapbox.tileLayer(l.layer, {noWrap:true}).addTo(map);
   if (i !== 0) l.layer.getContainer().style.opacity = 0;
   return l;
 });
 
-var emblem = d3.select('.js-emblem');
+var tooltip = d3.select('.js-range-tooltip');
 var controls = d3.select('#controls');
+var isDragging;
 var tally = 0;
 
 controls.append('input')
@@ -45,30 +48,69 @@ controls.append('input')
   .attr('value', 0)
   .attr('step', 1)
   .attr('max', layers.length * 100)
+  .on('mousedown', function() { isDragging = true; })
+  .on('mouseup', function() { isDragging = false; })
   .on('input', function() {
+
+    // Adjust the position of the range
+    // input tooltip to follow the thumbtrack.
+    if (isDragging) {
+
+      var width = this.clientWidth;
+      var max = this.getAttribute('max');
+      var posPerc = (this.value / max) * 100;
+      var pixPos = (posPerc / 100) * width;
+      pixPos += this.offsetLeft;
+
+      var bounds = this.getBoundingClientRect();
+
+      // If the tooltip's right position
+      // equals the right position of the range slider
+      if ((pixPos + 40) > width) {
+        // pixPos = width;
+        tooltip.style({
+          'left': 'auto',
+          'right': '0px'
+        });
+      } else {
+        tooltip.style({
+          'right': 'auto',
+          'left': pixPos+'px'
+        });
+      }
+    }
+
     // Find the current index
     var index = Math.floor(this.value / 100) + 1;
     // Opacity should be the decimal place of this.value/100
     var opacity = (this.value/100 % 1).toFixed(2);
 
-    if (index !== tally) {
-      // When the index updates, make sure layer before the 
+    if (layers[index] && index !== tally) {
+      // When the index updates, make sure layer before the
       // current are set to full opacity and future ones are at 0.
       layers.forEach(function(l, i) {
         if (i > index) layers[i].layer.getContainer().style.opacity = 0;
         if (i < index) layers[i].layer.getContainer().style.opacity = 1;
       });
+
+      // Update tooltip contents
+      tooltip.select('.dot')
+        .style('background', layers[index].fill);
+      tooltip.select('label')
+        .text(layers[index].title);
     }
 
     if (layers[index]) {
       layers[index].layer.getContainer().style.opacity = opacity;
-      emblem.text(layers[index - 1].title);
       tally = index;
     }
   });
 
-// Set title as the first layer.
-emblem.text(layers[0].title);
+// Set tooltip as the first layer.
+tooltip.select('label')
+  .text(layers[0].title);
+tooltip.select('.dot')
+  .style('background', layers[0].fill);
 
 // Location navigation
 var locations = [
@@ -95,7 +137,7 @@ var locations = [
 }, {
   lat: 50.8398,
   lon: 4.3274,
-  z: 14,
+  z: 12,
   description: 'Ayacucho, Peru'
 }, {
   lat: 41.3842,
