@@ -2,16 +2,27 @@
 <html>
   <head>
     <meta charset=utf-8 />
-    <title>2014 OSM data report | MapBox</title>
-    <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0'>
-    <link rel='shortcut icon' href='https://mapbox.com/img/favicon.ico' type='image/x-icon' />
+    <title>10 years of OpenStreetMap | MapBox</title>
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name='twitter:site' content='@mapbox' />
+    <meta property='og:site_name' content='10 years of OpenStreetMap' />
+    <meta name='twitter:url' content='https://mapbox.com/' />
+    <meta name='twitter:domain' content='https://mapbox.com/' />
+    <meta property='og:url' content='https://mapbox.com/' />
+    <meta name='twitter:title' content='10 years of OpenStreetMap' />
+    <meta property='og:title' content='10 years of OpenStreetMap' />
+    <meta name='twitter:description' content="OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Take a look at the map below to explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!" />
+    <meta property='og:description' content="OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Take a look at the map below to explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!" />
+
+    <link rel='shortcut icon' href='favicon.png' type='image/x-icon' />
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
     <link href='base.css' rel='stylesheet' />
     <link href='site.css' rel='stylesheet' />
   </head>
   <body class='fill-darkblue'>
 
-  <section class='contain full-height'>
+  <section class='contain map-container'>
     <div class='pin-topleft z1000 pad1 dark location-control'>
       <a href='#next' class='button fill-darken col12 js-next' id='next'>
         <span class='icon refresh js-location-text'>Explore</span>
@@ -35,23 +46,24 @@
     <div class='limiter clearfix'>
       <div class='pad2y center prose col6 margin3 dark'>
 
-        <div class='space-bottom2'>
-          <a href='https://www.facebook.com/sharer/sharer.php
+        <h1>
+          <span class='inline icon osm title-icon'></span>
+          10 years of OpenStreetMap
+        </h1>
+        <p class='quiet'>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Take a look at the map below to explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
+
+        <div class='space-bottom2 space'><!--
+          --><a href='https://www.facebook.com/sharer/sharer.php
                    ?u=https%3A%2F%2Fmapbox.com%2F'
              class='dot small-circle inline dark dark-hover pad0 animate fill-facebook js-share'>
             <span class='icon facebook'></span>
-          </a>
-          <a href='https://twitter.com/intent/tweet/?text=Ten%20years%20of%20OpenStreetMap&url=https%3A%2F%2Fmapbox.com%2F&via=mapbox&hashtags=OpenStreetMap, OSM'
+          </a><!--
+          --><a href='https://twitter.com/intent/tweet/?text=Ten%20years%20of%20OpenStreetMap&url=https%3A%2F%2Fmapbox.com%2F&via=mapbox&hashtags=OpenStreetMap, OSM'
              class='dot small-circle inline dark dark-hover pad0 animate fill-twitter js-share'>
             <span class='icon twitter'></span>
           </a>
         </div>
 
-        <h1>
-          <span class='inline icon osm title-icon'></span>
-          10 Years of OpenStreetMap
-        </h1>
-        <p class='quiet'>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Take a look at the map below to explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
       </div>
     </div>
 

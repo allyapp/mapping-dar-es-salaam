@@ -59,8 +59,8 @@ h3 {
   }
 
 .dark-hover:hover { color:#fff; }
-.small-circle { width:30px; height:30px; }
-.medium-circle { width:50px; height:50px; }
+.small-circle { width:40px; height:40px; }
+.small-circle .icon:before { font-size:24px; line-height:30px; }
 
 button,
 .button,
@@ -169,8 +169,8 @@ header h1 {
   line-height:24px;
   }
 .title-icon:before {
-  font-size:34px;
-  line-height:26px;
+  font-size:50px;
+  line-height:40px;
   }
 
 /* Components
@@ -293,68 +293,8 @@ header h1 {
 	100%  { opacity:1; transform:translateY(0); }
   }
 
-/* Browser frames
-------------------------------------------------------- */
-.browser,
-.browser-controls > .dot {
-  border:2px solid #ccc;
-  }
-.browser-controls {
-  line-height:0;
-  }
-.browser .keyline-bottom { border-width:2px; }
-.browser-content {
-  background-color:#eee;
-  max-height:400px;
-  }
-.browser-blue.browser-blue *, 
-.browser-blue {
-  border-color:#3c74b4;
-  }
-.browser-content.active {
-  position:fixed;
-  z-index:100000;
-  width:100%;
-  height:100%;
-  top:0;right:0;bottom:0;left:0;
-  }
-
-a.fullscreen-link { opacity:0; }
-a.fullscreen-link:hover code,
-a.fullscreen-link:hover { opacity:1; color:#fff; }
-.fullscreen-link > div {
-  position:absolute;
-  top:50%;
-  left:50%;
-  margin:-60px 0 0 -20px;
-  }
-.fullscreen-link div > code,
-.fullscreen-link div > span {
-  opacity:0;
-  }
-.fullscreen-link div > span {
-  -webkit-animation-duration:250ms;
-     -moz-animation-duration:250ms;
-       -o-animation-duration:250ms;
-          animation-duration:250ms;
-  }
-.fullscreen-link div > code {
-  -webkit-animation-duration:425ms;
-     -moz-animation-duration:425ms;
-       -o-animation-duration:425ms;
-          animation-duration:425ms;
-  }
-.fullscreen-link:hover div > code,
-.fullscreen-link:hover div > span {
-  opacity:1;
-  -webkit-animation-name:fadeInUp;
-     -moz-animation-name:fadeInUp;
-       -o-animation-name:fadeInUp;
-          animation-name:fadeInUp;
-  }
-.fullscreen-link .icon:before {
-  font-size:30px;
-  line-height:30px;
+.map-container {
+  height:580px;
   }
 .map {
   position:absolute;

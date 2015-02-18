@@ -12,13 +12,15 @@ var southWest = L.latLng(-90, -180),
 var map = L.mapbox.map('map', null, {
   zoomControl: false,
   attributionControl: false,
-  maxBounds: bounds
-});
+  noWrap: true
+}).setView([39, 14], 2);
 
+// Base layer
+L.mapbox.tileLayer('tristen.5467621e', {noWrap:true}).addTo(map);
+
+//map.on('moveend', function() { console.log(map.getCenter()); });
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 map.scrollWheelZoom.disable();
-map.fitBounds(bounds);
-map.setZoom(2);
 
 var layers = [
   { title: '2006', fill: '#0000ff', layer: 'enf.8e514fd2', },
@@ -116,10 +118,20 @@ tooltip.select('.dot')
 // Location navigation
 var locations = [
 {
+  lat: 51.5075,
+  lon: -0.1306,
+  z: 13,
+  description: 'London, UK'
+}, {
   lat: 48.8539,
   lon: 2.3497,
   z: 13,
   description: 'Paris, France'
+}, {
+  lat: 41.8802,
+  lon: -87.6374,
+  z: 13,
+  description: 'Chicago, USA'
 }, {
   lat: -37.8307,
   lon: 144.9086,
@@ -140,6 +152,11 @@ var locations = [
   lon: 4.3274,
   z: 12,
   description: 'Ayacucho, Peru'
+}, {
+  lat: 52.5121,
+  lon: 13.3865,
+  z: 13,
+  description: 'Berlin, Germany'
 }, {
   lat: 41.3842,
   lon: 2.1564,
