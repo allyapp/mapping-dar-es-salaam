@@ -68,7 +68,10 @@ button,
 [type=submit] {
   padding:5px 20px;
   line-height:20px;
-  height:35px;
+  height:40px;
+  line-height:30px;
+  color:#fff;
+  font-weight:700;
   }
 input[type=range] {
   vertical-align:inherit;
@@ -130,6 +133,8 @@ input[type=range] {
 .fill-blue-onhover:hover,
 .fill-blue    { background-color:#3c74b4; }
 .color-blue   { color:#3c74b4; }
+
+.fill-darkblue { background-color:#000044; }
 
 .fill-darken  { background-color:rgba(0,0,0,0.5); }
 .fill-dark    { background-color:#404040; }
