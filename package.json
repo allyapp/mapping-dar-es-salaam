@@ -1,5 +1,5 @@
 {
-  "name": "osm-data-report",
+  "name": "osm-ten-years",
   "version": "1.0.0",
   "description": "One page visualization of the last 10 years of OSM",
   "main": "index.js",

@@ -49,7 +49,7 @@ map.on('moveend', function() {
   reviseHash();
 });
 
-//map.scrollWheelZoom.disable();
+map.scrollWheelZoom.disable();
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 var layers = [
