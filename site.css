@@ -28,7 +28,7 @@ h3 {
 label {
   font-size:12px;
   }
-.dot { padding:4px; vertical-align:middle; }
+.legend-key { padding:4px; vertical-align:middle; }
 .dark-hover:hover { color:#fff; }
 .small-circle { width:40px; height:40px; }
 .small-circle .icon:before { font-size:24px; line-height:30px; }
@@ -185,10 +185,10 @@ input[type=range] {
   background:#fff;
   color:#1b1b1b;
   border-radius:3px;
-  bottom:40px;
+  bottom:50px;
   right:-50%;
   display:none;
-  padding:5px 10px;
+  padding:2px 15px;
   width:auto;
   text-align:center;
   font-size:12px;
@@ -202,7 +202,7 @@ input[type=range] {
 	border-top:5px solid #fff; 
   display:none;
   position:absolute;
-  bottom:35px;
+  bottom:45px;
   right:50%;
   margin-right:-5px;
   }
@@ -292,10 +292,12 @@ header {
 .title-link:hover,
 .title-link:before { color:#fff; }
 .title-link:before {
-  font-size:44px;
+  font-size:50px;
   line-height:1;
   font-weight:500;
   }
+header .title-link:before { font-size:38px; }
+
 .map {
   position:absolute;
   top:0;
