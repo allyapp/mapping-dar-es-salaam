@@ -171,6 +171,7 @@ input[type=range] {
 ---------------------- */
 .full-height    { height:100vh; }
 .space-bottom0  { margin-bottom:5px; }
+.dark-shadow { text-shadow:0 0 10px #000; }
 
 .z10     { z-index:10; }
 .z100    { z-index:100; }

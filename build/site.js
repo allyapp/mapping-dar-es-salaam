@@ -158,73 +158,75 @@ play.on('click', function() {
 
 var locations = [
 {
+  title: 'London, UK',
   lat: 51.5075,
   lon: -0.1306,
-  z: 13,
-  description: 'London, UK'
+  z: 13
 }, {
+  title: 'Paris, France',
   lat: 48.8539,
   lon: 2.3497,
-  z: 13,
-  description: 'Paris, France'
+  z: 13
 }, {
+  title: 'Chicago, USA',
   lat: 41.8802,
   lon: -87.6374,
-  z: 13,
-  description: 'Chicago, USA'
+  z: 13
 }, {
+  title: 'Melbourne, Australia',
   lat: -37.8307,
   lon: 144.9086,
-  z: 12,
-  description: 'Melbourne, Australia'
+  z: 12
 }, {
+  title: 'Japan',
   lat: 36.0891,
   lon: 136.0822,
-  z: 7,
-  description: 'Japan'
+  z: 7
 }, {
+  title: 'Sochi, Russia',
   lat: 43.5859,
   lon: 39.7235,
-  z: 15,
-  description: 'Sochi, Russia'
+  z: 15
 }, {
+  title: 'Ayacucho, Peru',
   lat: 50.8398,
   lon: 4.3274,
-  z: 12,
-  description: 'Ayacucho, Peru'
+  z: 12
 }, {
+  title: 'Berlin, Germany',
   lat: 52.5121,
   lon: 13.3865,
-  z: 13,
-  description: 'Berlin, Germany'
+  z: 13
 }, {
+  title: 'Barcelona, Spain',
   lat: 41.3842,
   lon: 2.1564,
-  z: 13,
-  description: 'Barcelona, Spain'
+  z: 13
 }, {
+  title: 'Washington DC, USA',
   lat: 38.9011,
   lon: -77.0406,
-  z: 13,
-  description: 'Washington DC, USA'
+  z: 13
 }, {
+  title: 'Netherlands',
   lat: 51.9603,
   lon: 5.1540,
-  z: 9,
-  description: 'Netherlands'
+  z: 9
 }];
 
 var locationIndex = 0;
-var locationText = d3.select('.js-location-text');
+var locationTitle = d3.select('.js-location-title');
 d3.select('.js-next').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
+
+  var location = locations[locationIndex];
   if (locationIndex === locations.length) locationIndex = 0;
-  map.setView([
-    locations[locationIndex].lat,
-    locations[locationIndex].lon
-  ],locations[locationIndex].z);
-  locationText.text(locations[locationIndex].description);
+  map.setView([location.lat, location.lon], location.z);
+
+  // Display for location name.
+  locationTitle.text(location.title);
+
   locationIndex++;
   if (playback) window.clearInterval(playback);
   var r = range.node();

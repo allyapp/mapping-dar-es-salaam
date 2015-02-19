@@ -25,7 +25,7 @@
   <!-- Opening Modal -->
   <section class='modal'>
     <div class='modal-content'>
-      <div class='limiter pad8y'>
+      <div class='limiter pad8y clearfix'>
         <div class='col8 margin2 dark pad4'>
           <div class='prose space-bottom2 center'>
             <h1>
@@ -62,7 +62,7 @@
   <section class='contain full-height'>
 
     <header class='pin-topleft z10 pad2 animate'>
-      <a href='#' class='js-about strong inline icon osm title-link'>10 years of OpenStreetMap</a>
+      <a href='#' class='js-about strong inline icon osm dark-shadow title-link'>10 years of OpenStreetMap</a>
     </header>
 
     <div id='map' class='map dark'></div>
@@ -76,13 +76,16 @@
             <label class='strong'></label>
           </a>
         </div>
-        <a href='#' data-tooltip='Zoom to a place' class='js-next button fill-darken pin-right round-right keyline-left interactive-control'>
+        <a href='#' data-tooltip='Jump to a place' class='js-next button fill-darken pin-right round-right keyline-left interactive-control'>
           <span class='icon marker'></span>
         </a>
+        <div class='col12 limiter pad1y center dark small'>
+          <strong class='js-location-title dark-shadow'>&nbsp;</strong>
+        </div>
       </div>
     </div>
 
-    <div class='pin-bottomright z1000 attribution pad1x pad0y dark small'>
+    <div class='pin-bottomright z1000 attribution pad1x pad0y dark small dark-shadow'>
       <span class='quiet'>&copy; OpenStreetMap contributors</span>
       <a href='https://www.facebook.com/sharer/sharer.php' class='icon facebook js-facebook animate'></a>
       <a href='https://twitter.com/intent/tweet/' class='icon twitter js-twitter animate'></a>
