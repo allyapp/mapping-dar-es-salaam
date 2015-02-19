@@ -1,13 +1,34 @@
 require('mapbox.js');
 L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJiUzBYOEJzIn0.VyXs9qNWgTfABLzSI3YcrQ';
 
+var Raven = require('raven-js');
 require('d3');
 require('./js/keybinding.js');
+
+// Sentry reporting
+Raven.config('https://24ed0428f5e848a9a804b1d03670ae8e@app.getsentry.com/38240', {
+  whitelistUrls: ['mapbox.com']
+}).install();
 
 // Restrict panning to one copy of the world
 var southWest = L.latLng(-90, -180),
     northEast = L.latLng(90, 180),
     bounds = L.latLngBounds(southWest, northEast);
+
+// Extract any coordinates from the URL
+var hash = document.location.hash ? document.location.hash.split('#') : [];
+var parts = (hash.length) ? hash[1].split('/') : [];
+
+parts = {
+  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0], 10).toFixed(6) : 14,
+  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1], 10).toFixed(6) : 39,
+  zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
+};
+
+function reviseHash() {
+  var url = parts.lng + '/' + parts.lat + '/' + parts.zoom;
+  window.location.hash = url;
+}
 
 var map = L.mapbox.map('map', null, {
   zoomControl: false,
@@ -15,12 +36,19 @@ var map = L.mapbox.map('map', null, {
   noWrap: true,
   minZoom: 2,
   maxBounds: bounds
-}).setView([39, 14], 2);
+}).setView([parts.lat, parts.lng], parts.zoom);
 
 // Base layer
 L.mapbox.tileLayer('tristen.5467621e', { noWrap:true }).addTo(map);
 
-//map.on('moveend', function() { console.log(map.getCenter()); });
+map.on('moveend', function() {
+  var center = map.getCenter();
+  parts.lat = center.lat.toFixed(6);
+  parts.lng = center.lng.toFixed(6);
+  parts.zoom = map.getZoom();
+  reviseHash();
+});
+
 //map.scrollWheelZoom.disable();
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
@@ -42,30 +70,8 @@ var layers = [
 });
 
 var tooltip = d3.select('.js-range-tooltip');
-var controls = d3.select('#controls');
+var scrubber = d3.select('#scrubber');
 var tally = 0; // The current index in the layers array we are showing.
-
-// Toggle the tooltip to just show the
-// current years layer and hide the others.
-/*
-tooltip.on('click', function() {
-  d3.event.preventDefault();
-  d3.event.stopPropagation();
-  var el = d3.select(this);
-  if (el.classed('active')) {
-    el.classed('active', false);
-    layers.forEach(function(l, i) {
-      if (i > tally) l.layer.getContainer().style.opacity = 0;
-      if (i < tally) l.layer.getContainer().style.opacity = 1;
-    });
-  } else {
-    el.classed('active', true);
-    layers.forEach(function(l, i) {
-      l.layer.getContainer().style.opacity = (i === tally) ? 1 : 0;
-    });
-  }
-});
-*/
 
 function rangeControl(el) {
   // Adjust the position of the range
@@ -119,7 +125,7 @@ function rangeControl(el) {
   }
 }
 
-var range = controls.append('input')
+var range = scrubber.append('input')
   .attr('class', 'col12')
   .attr('type', 'range')
   .attr('min', 0)
@@ -247,17 +253,32 @@ function windowPopup(url) {
 }
 
 // Social sharing links
-d3.selectAll('.js-share').on('click', function() {
+d3.selectAll('.js-twitter').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
-  windowPopup(this.href);
+  var href = this.href;
+  var url = window.encodeURIComponent(window.location.href);
+  var params = '?text=' + window.encodeURIComponent(document.title);
+      params += '&url=' + url;
+      params += '&via=mapbox';
+      params += '&hashtags=OpenStreetMap, OSM';
+  windowPopup(this.href + params);
+});
+
+d3.selectAll('.js-facebook').on('click', function() {
+  d3.event.preventDefault();
+  d3.event.stopPropagation();
+  var href = this.href;
+  var url = window.encodeURIComponent(window.location.href);
+  var params = '?u=' + url;
+  windowPopup(this.href + params);
 });
 
 // Social sharing links
 d3.selectAll('.js-explore').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
-  d3.select('.modal').classed('active', false);
+  d3.select('body').classed('intro', false);
   if (playback) window.clearInterval(playback);
   var r = range.node();
       r.value = 0;
@@ -274,7 +295,7 @@ d3.selectAll('.js-explore').on('click', function() {
 d3.selectAll('.js-about').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
-  d3.select('.modal').classed('active', true);
+  d3.select('body').classed('intro', true);
 });
 
 // play/pause control with the spacebar

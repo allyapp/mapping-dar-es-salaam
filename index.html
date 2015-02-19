@@ -23,36 +23,35 @@
   <body class='fill-darkblue intro'>
 
   <!-- Opening Modal -->
-  <section class='modal active'>
+  <section class='modal'>
     <div class='modal-content'>
       <div class='limiter pad8y'>
         <div class='col8 margin2 dark pad4'>
           <div class='prose space-bottom2 center'>
             <h1>
-              <span class='inline icon osm title-icon'></span>
+              <span class='inline icon osm title-link'></span>
               10 years of OpenStreetMap
             </h1>
             <p class='quiet'>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
           </div>
 
           <div class='col12 space-bottom4 clearfix center'>
-            <a href='#' class='col4 margin4 js-explore button button-keyline dark'>Explore</a>
+            <a href='#' class='col4 margin4 js-explore button button-keyline animate dark'>Explore</a>
           </div>
 
           <div class='space center space-bottom2 col12'><!--
-            --><a href='https://www.facebook.com/sharer/sharer.php
-                     ?u=https%3A%2F%2Fmapbox.com%2F'
-               class='dot small-circle inline dark dark-hover pad0 animate fill-facebook js-share'>
+            --><a href='https://www.facebook.com/sharer/sharer.php'
+               class='dot small-circle inline dark dark-hover animate fill-facebook js-facebook'>
               <span class='icon facebook'></span>
             </a><!--
-            --><a href='https://twitter.com/intent/tweet/?text=Ten%20years%20of%20OpenStreetMap&url=https%3A%2F%2Fmapbox.com%2F&via=mapbox&hashtags=OpenStreetMap, OSM'
-               class='dot small-circle inline dark dark-hover pad0 animate fill-twitter js-share'>
+            --><a href='https://twitter.com/intent/tweet/'
+               class='dot small-circle inline dark dark-hover pad0 animate fill-twitter js-twitter'>
               <span class='icon twitter'></span>
             </a>
           </div>
 
           <div class='small quiet center'>
-            A visualization by <a href='https://mapbox.com/'>Mapbox</a>.
+            A visualization by <a href='https://mapbox.com/' target='_blank'>Mapbox</a>.
           </div>
         </div>
       </div>
@@ -61,24 +60,34 @@
 
   <!-- Map visualization -->
   <section class='contain full-height'>
-    <div class='pin-topleft z1000 pad2 dark location-control'>
-      <a href='#' class='js-about inline icon osm title-icon'></a>
-    </div>
+
+    <header class='pin-topleft z10 pad2 animate'>
+      <a href='#' class='js-about strong inline icon osm title-link'>10 years of OpenStreetMap</a>
+    </header>
+
     <div id='map' class='map dark'></div>
-    <div class='pin-bottom z1000 pad4y clearfix col12'>
+
+    <div id='controls' class='pin-bottom z10 pad4y clearfix col12 animate'>
       <div class='col6 margin3 pad4x contain'>
-        <a href='#' class='js-play button fill-darken pin-left icon playback play-control round-left keyline-right'></a>
-        <div id='controls' class='fill-darken pad2x pad1y contain round-topright controls'>
+        <a href='#' class='js-play button fill-darken pin-left icon playback round-left keyline-right interactive-control'></a>
+        <div id='scrubber' class='fill-darken pad2x pad1y contain round-topright controls'>
           <a href='#' class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
             <span class='dot inline pad0 animate'></span>
             <label class='strong'></label>
           </a>
         </div>
-        <a href='#next' class='button round-bottom keyline-top fill-darken col12 js-next' id='next'>
-          <span class='icon refresh js-location-text icon marker'>Explore</span>
+        <a href='#' data-tooltip='Zoom to a place' class='js-next button fill-darken pin-right round-right keyline-left interactive-control'>
+          <span class='icon marker'></span>
         </a>
       </div>
     </div>
+
+    <div class='pin-bottomright z1000 attribution pad1x pad0y dark small'>
+      <span class='quiet'>&copy; OpenStreetMap contributors</span>
+      <a href='https://www.facebook.com/sharer/sharer.php' class='icon facebook js-facebook animate'></a>
+      <a href='https://twitter.com/intent/tweet/' class='icon twitter js-twitter animate'></a>
+    </div>
+
   </section>
 
   <script src='build/site.js'></script>
