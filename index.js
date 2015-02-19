@@ -1,7 +1,8 @@
 require('mapbox.js');
 L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJiUzBYOEJzIn0.VyXs9qNWgTfABLzSI3YcrQ';
 
-var d3 = require('d3');
+require('d3');
+require('./js/keybinding.js');
 
 // Restrict panning to one copy of the world
 var southWest = L.latLng(-90, -180),
@@ -11,15 +12,17 @@ var southWest = L.latLng(-90, -180),
 var map = L.mapbox.map('map', null, {
   zoomControl: false,
   attributionControl: false,
-  noWrap: true
+  noWrap: true,
+  minZoom: 2,
+  maxBounds: bounds
 }).setView([39, 14], 2);
 
 // Base layer
-L.mapbox.tileLayer('tristen.5467621e', {noWrap:true}).addTo(map);
+L.mapbox.tileLayer('tristen.5467621e', { noWrap:true }).addTo(map);
 
 //map.on('moveend', function() { console.log(map.getCenter()); });
+//map.scrollWheelZoom.disable();
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
-map.scrollWheelZoom.disable();
 
 var layers = [
   { title: '2006', fill: '#0000ff', layer: 'enf.8e514fd2', },
@@ -34,7 +37,7 @@ var layers = [
   { title: '2015', fill: '#ffff00', layer: 'enf.c2ce7160'  }
 ].map(function(l, i) {
   l.layer = L.mapbox.tileLayer(l.layer, {noWrap:true}).addTo(map);
-  if (i !== 0) l.layer.getContainer().style.opacity = 0;
+  l.layer.getContainer().style.opacity = 0;
   return l;
 });
 
@@ -120,16 +123,10 @@ var range = controls.append('input')
   .attr('class', 'col12')
   .attr('type', 'range')
   .attr('min', 0)
-  .attr('value', 0)
   .attr('step', 1)
   .attr('max', layers.length * 100)
+  .attr('value', layers.length * 100)
   .on('input', function() { rangeControl(this); });
-
-// Set tooltip as the first layer.
-tooltip.select('label')
-  .text(layers[0].title);
-tooltip.select('.dot')
-  .style('background', layers[0].fill);
 
 // Location navigation
 var playback;
@@ -255,3 +252,59 @@ d3.selectAll('.js-share').on('click', function() {
   d3.event.stopPropagation();
   windowPopup(this.href);
 });
+
+// Social sharing links
+d3.selectAll('.js-explore').on('click', function() {
+  d3.event.preventDefault();
+  d3.event.stopPropagation();
+  d3.select('.modal').classed('active', false);
+  if (playback) window.clearInterval(playback);
+  var r = range.node();
+      r.value = 0;
+
+  play.classed('playback', false).classed('pause', true);
+  playback = window.setInterval(function() {
+    r.value++;
+    if (r.value === r.getAttribute('max')) r.value = 0;
+    rangeControl(r);
+  }, 10);
+});
+
+// OSM link in top left corner
+d3.selectAll('.js-about').on('click', function() {
+  d3.event.preventDefault();
+  d3.event.stopPropagation();
+  d3.select('.modal').classed('active', true);
+});
+
+// play/pause control with the spacebar
+d3.select('body').call(d3.keybinding()
+  .on('space', function() {
+    if (playback) window.clearInterval(playback);
+    var r = range.node();
+    if (play.classed('playback')) {
+      play.classed('playback', false).classed('pause', true);
+      playback = window.setInterval(function() {
+        r.value++;
+        if (r.value === r.getAttribute('max')) r.value = 0;
+        rangeControl(r);
+      }, 10);
+    } else {
+      play.classed('playback', true).classed('pause', false);
+    }
+  })
+);
+
+// Initialization
+(function() {
+  // Initial layer to display
+  var target = layers[layers.length - 1];
+
+  // Set tooltip as the first layer.
+  tooltip.select('label').text(target.title);
+  tooltip.select('.dot').style('background', target.fill);
+
+  // Bring layer opacity up and call rangeControl
+  target.layer.getContainer().style.opacity = 1;
+  rangeControl(range.node());
+})();

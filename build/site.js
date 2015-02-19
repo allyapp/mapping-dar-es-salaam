@@ -2,7 +2,8 @@
 require('mapbox.js');
 L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJiUzBYOEJzIn0.VyXs9qNWgTfABLzSI3YcrQ';
 
-var d3 = require('d3');
+require('d3');
+require('./js/keybinding.js');
 
 // Restrict panning to one copy of the world
 var southWest = L.latLng(-90, -180),
@@ -12,15 +13,17 @@ var southWest = L.latLng(-90, -180),
 var map = L.mapbox.map('map', null, {
   zoomControl: false,
   attributionControl: false,
-  noWrap: true
+  noWrap: true,
+  minZoom: 2,
+  maxBounds: bounds
 }).setView([39, 14], 2);
 
 // Base layer
-L.mapbox.tileLayer('tristen.5467621e', {noWrap:true}).addTo(map);
+L.mapbox.tileLayer('tristen.5467621e', { noWrap:true }).addTo(map);
 
 //map.on('moveend', function() { console.log(map.getCenter()); });
+//map.scrollWheelZoom.disable();
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
-map.scrollWheelZoom.disable();
 
 var layers = [
   { title: '2006', fill: '#0000ff', layer: 'enf.8e514fd2', },
@@ -35,7 +38,7 @@ var layers = [
   { title: '2015', fill: '#ffff00', layer: 'enf.c2ce7160'  }
 ].map(function(l, i) {
   l.layer = L.mapbox.tileLayer(l.layer, {noWrap:true}).addTo(map);
-  if (i !== 0) l.layer.getContainer().style.opacity = 0;
+  l.layer.getContainer().style.opacity = 0;
   return l;
 });
 
@@ -121,16 +124,10 @@ var range = controls.append('input')
   .attr('class', 'col12')
   .attr('type', 'range')
   .attr('min', 0)
-  .attr('value', 0)
   .attr('step', 1)
   .attr('max', layers.length * 100)
+  .attr('value', layers.length * 100)
   .on('input', function() { rangeControl(this); });
-
-// Set tooltip as the first layer.
-tooltip.select('label')
-  .text(layers[0].title);
-tooltip.select('.dot')
-  .style('background', layers[0].fill);
 
 // Location navigation
 var playback;
@@ -257,7 +254,186 @@ d3.selectAll('.js-share').on('click', function() {
   windowPopup(this.href);
 });
 
-},{"d3":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js":[function(require,module,exports){
+// Social sharing links
+d3.selectAll('.js-explore').on('click', function() {
+  d3.event.preventDefault();
+  d3.event.stopPropagation();
+  d3.select('.modal').classed('active', false);
+  if (playback) window.clearInterval(playback);
+  var r = range.node();
+      r.value = 0;
+
+  play.classed('playback', false).classed('pause', true);
+  playback = window.setInterval(function() {
+    r.value++;
+    if (r.value === r.getAttribute('max')) r.value = 0;
+    rangeControl(r);
+  }, 10);
+});
+
+// OSM link in top left corner
+d3.selectAll('.js-about').on('click', function() {
+  d3.event.preventDefault();
+  d3.event.stopPropagation();
+  d3.select('.modal').classed('active', true);
+});
+
+// play/pause control with the spacebar
+d3.select('body').call(d3.keybinding()
+  .on('space', function() {
+    if (playback) window.clearInterval(playback);
+    var r = range.node();
+    if (play.classed('playback')) {
+      play.classed('playback', false).classed('pause', true);
+      playback = window.setInterval(function() {
+        r.value++;
+        if (r.value === r.getAttribute('max')) r.value = 0;
+        rangeControl(r);
+      }, 10);
+    } else {
+      play.classed('playback', true).classed('pause', false);
+    }
+  })
+);
+
+// Initialization
+(function() {
+  // Initial layer to display
+  var target = layers[layers.length - 1];
+
+  // Set tooltip as the first layer.
+  tooltip.select('label').text(target.title);
+  tooltip.select('.dot').style('background', target.fill);
+
+  // Bring layer opacity up and call rangeControl
+  target.layer.getContainer().style.opacity = 1;
+  rangeControl(range.node());
+})();
+
+},{"./js/keybinding.js":"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js","d3":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js":[function(require,module,exports){
+d3.keybinding = function() {
+    // via https://github.com/keithamus/jwerty/
+    // and https://github.com/madrobby/keymaster
+    var _keys = {
+        // MOD aka toggleable keys
+        mods: {
+            // Shift key, ⇧
+            '⇧': 16,
+            // CTRL key, on Mac: ⌃
+            '⌃': 17,
+            // ALT key, on Mac: ⌥ (Alt)
+            '⌥': 18,
+            // META, on Mac: ⌘ (CMD), on Windows (Win), on Linux (Super)
+            '⌘': 91
+        },
+        // Normal keys
+        keys: {
+            // Backspace key, on Mac: ⌫ (Backspace)
+            '⌫': 8, backspace: 8,
+            // Tab Key, on Mac: ⇥ (Tab), on Windows ⇥⇥
+            '⇥': 9, '⇆': 9, tab: 9,
+            // Return key, ↩
+            '↩': 13, 'return': 13, enter: 13, '⌅': 13,
+            // Pause/Break key
+            'pause': 19, 'pause-break': 19,
+            // Caps Lock key, ⇪
+            '⇪': 20, caps: 20, 'caps-lock': 20,
+            // Escape key, on Mac: ⎋, on Windows: Esc
+            '⎋': 27, escape: 27, esc: 27,
+            // Space key
+            space: 32,
+            // Page-Up key, or pgup, on Mac: ↖
+            '↖': 33, pgup: 33, 'page-up': 33,
+            // Page-Down key, or pgdown, on Mac: ↘
+            '↘': 34, pgdown: 34, 'page-down': 34,
+            // END key, on Mac: ⇟
+            '⇟': 35, end: 35,
+            // HOME key, on Mac: ⇞
+            '⇞': 36, home: 36,
+            // Insert key, or ins
+            ins: 45, insert: 45,
+            // Delete key, on Mac: ⌦ (Delete)
+            '⌦': 46, del: 46, 'delete': 46,
+            // Left Arrow Key, or ←
+            '←': 37, left: 37, 'arrow-left': 37,
+            // Up Arrow Key, or ↑
+            '↑': 38, up: 38, 'arrow-up': 38,
+            // Right Arrow Key, or →
+            '→': 39, right: 39, 'arrow-right': 39,
+            // Up Arrow Key, or ↓
+            '↓': 40, down: 40, 'arrow-down': 40,
+            // odities, printing characters that come out wrong:
+            // Num-Multiply, or *
+            '*': 106, star: 106, asterisk: 106, multiply: 106,
+            // Num-Plus or +
+            '+': 107, 'plus': 107,
+            // Num-Subtract, or -
+            '-': 109, subtract: 109,
+            // Semicolon
+            ';': 186, semicolon:186,
+            // = or equals
+            '=': 187, 'equals': 187,
+            // Comma, or ,
+            ',': 188, comma: 188,
+            //'-': 189, //???
+            // Period, or ., or full-stop
+            '.': 190, period: 190, 'full-stop': 190,
+            // Slash, or /, or forward-slash
+            '/': 191, slash: 191, 'forward-slash': 191,
+            // Tick, or `, or back-quote
+            '`': 192, tick: 192, 'back-quote': 192,
+            // Open bracket, or [
+            '[': 219, 'open-bracket': 219,
+            // Back slash, or \
+            '\\': 220, 'back-slash': 220,
+            // Close backet, or ]
+            ']': 221, 'close-bracket': 221,
+            // Apostraphe, or Quote, or '
+            '\'': 222, quote: 222, apostraphe: 222
+        }
+    };
+    // To minimise code bloat, add all of the NUMPAD 0-9 keys in a loop
+    var i = 95, n = 0;
+    while (++i < 106) _keys.keys['num-' + n] = i; ++n;
+    // To minimise code bloat, add all of the top row 0-9 keys in a loop
+    i = 47, n = 0;
+    while (++i < 58) _keys.keys[n] = i; ++n;
+    // To minimise code bloat, add all of the F1-F25 keys in a loop
+    i = 111, n = 1;
+    while (++i < 136) _keys.keys['f' + n] = i; ++n;
+    // To minimise code bloat, add all of the letters of the alphabet in a loop
+    i = 64;
+    while(++i < 91) _keys.keys[String.fromCharCode(i).toLowerCase()] = i;
+
+    var pairs = d3.entries(_keys.keys),
+        event = d3.dispatch.apply(d3, d3.keys(_keys.keys));
+
+    function keys(selection) {
+        selection.on('keydown', function () {
+            var tagName = d3.select(d3.event.target).node().tagName;
+            if (tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA') {
+                return;
+            }
+
+            var modifiers = '';
+            if (d3.event.shiftKey) modifiers += '⇧';
+            if (d3.event.ctrlKey) modifiers += '⌃';
+            if (d3.event.altKey) modifiers += '⌥';
+            if (d3.event.metaKey) modifiers += '⌘';
+
+            pairs.filter(function(d) {
+                return d.value === d3.event.keyCode;
+            }).forEach(function(d) {
+                event[d.key](d3.event, modifiers);
+            });
+        });
+    }
+
+    return d3.rebind(keys, event, 'on');
+};
+
+
+},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js":[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.5"

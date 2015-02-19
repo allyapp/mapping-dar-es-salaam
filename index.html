@@ -20,52 +20,63 @@
     <link href='base.css' rel='stylesheet' />
     <link href='site.css' rel='stylesheet' />
   </head>
-  <body class='fill-darkblue'>
+  <body class='fill-darkblue intro'>
 
-  <section class='contain map-container'>
-    <div class='pin-topleft z1000 pad1 dark location-control'>
-      <a href='#next' class='button fill-darken col12 js-next' id='next'>
-        <span class='icon refresh js-location-text icon marker'>Explore</span>
-      </a>
-    </div>
+  <!-- Opening Modal -->
+  <section class='modal active'>
+    <div class='modal-content'>
+      <div class='limiter pad8y'>
+        <div class='col8 margin2 dark pad4'>
+          <div class='prose space-bottom2 center'>
+            <h1>
+              <span class='inline icon osm title-icon'></span>
+              10 years of OpenStreetMap
+            </h1>
+            <p class='quiet'>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
+          </div>
 
-    <div id='map' class='map dark'></div>
+          <div class='col12 space-bottom4 clearfix center'>
+            <a href='#' class='col4 margin4 js-explore button button-keyline dark'>Explore</a>
+          </div>
 
-    <div class='pin-bottom z1000 pad4y clearfix col12'>
-      <div class='col6 margin3 pad4x contain'>
-        <a href='#' class='js-play button fill-darken pin-left icon playback play-control round-left keyline-right'></a>
-        <div id='controls' class='fill-darken pad2x pad1y contain round-right controls'>
-          <a href='#' class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
-            <span class='dot inline pad0 animate'></span>
-            <label class='strong'></label>
-          </a>
+          <div class='space center space-bottom2 col12'><!--
+            --><a href='https://www.facebook.com/sharer/sharer.php
+                     ?u=https%3A%2F%2Fmapbox.com%2F'
+               class='dot small-circle inline dark dark-hover pad0 animate fill-facebook js-share'>
+              <span class='icon facebook'></span>
+            </a><!--
+            --><a href='https://twitter.com/intent/tweet/?text=Ten%20years%20of%20OpenStreetMap&url=https%3A%2F%2Fmapbox.com%2F&via=mapbox&hashtags=OpenStreetMap, OSM'
+               class='dot small-circle inline dark dark-hover pad0 animate fill-twitter js-share'>
+              <span class='icon twitter'></span>
+            </a>
+          </div>
+
+          <div class='small quiet center'>
+            A visualization by <a href='https://mapbox.com/'>Mapbox</a>.
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class='limiter clearfix'>
-      <div class='pad4y center prose col8 margin2 dark'>
-
-        <h1>
-          <span class='inline icon osm title-icon'></span>
-          10 years of OpenStreetMap
-        </h1>
-        <p class='quiet'>OpenStreetMap is at the threshold of a new decade, the project has started as a seemingly impossible quest in 2004, and today it is critical infrastructure for many communities and organizations. Explore the amazing growth of the last ten years. Cheers OpenStreetMap, here's to winning with open data!</p>
-
-        <div class='space-bottom2 space'><!--
-          --><a href='https://www.facebook.com/sharer/sharer.php
-                   ?u=https%3A%2F%2Fmapbox.com%2F'
-             class='dot small-circle inline dark dark-hover pad0 animate fill-facebook js-share'>
-            <span class='icon facebook'></span>
-          </a><!--
-          --><a href='https://twitter.com/intent/tweet/?text=Ten%20years%20of%20OpenStreetMap&url=https%3A%2F%2Fmapbox.com%2F&via=mapbox&hashtags=OpenStreetMap, OSM'
-             class='dot small-circle inline dark dark-hover pad0 animate fill-twitter js-share'>
-            <span class='icon twitter'></span>
+  <!-- Map visualization -->
+  <section class='contain full-height'>
+    <div class='pin-topleft z1000 pad2 dark location-control'>
+      <a href='#' class='js-about inline icon osm title-icon'></a>
+    </div>
+    <div id='map' class='map dark'></div>
+    <div class='pin-bottom z1000 pad4y clearfix col12'>
+      <div class='col6 margin3 pad4x contain'>
+        <a href='#' class='js-play button fill-darken pin-left icon playback play-control round-left keyline-right'></a>
+        <div id='controls' class='fill-darken pad2x pad1y contain round-topright controls'>
+          <a href='#' class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
+            <span class='dot inline pad0 animate'></span>
+            <label class='strong'></label>
           </a>
         </div>
-
+        <a href='#next' class='button round-bottom keyline-top fill-darken col12 js-next' id='next'>
+          <span class='icon refresh js-location-text icon marker'>Explore</span>
+        </a>
       </div>
     </div>
   </section>
