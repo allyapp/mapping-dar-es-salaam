@@ -25,26 +25,28 @@
   <section class='contain map-container'>
     <div class='pin-topleft z1000 pad1 dark location-control'>
       <a href='#next' class='button fill-darken col12 js-next' id='next'>
-        <span class='icon refresh js-location-text'>Explore</span>
+        <span class='icon refresh js-location-text icon marker'>Explore</span>
       </a>
     </div>
 
     <div id='map' class='map dark'></div>
 
-    <div class='pin-bottom z1000 pad1x pad4y clearfix col12'>
-      <div id='controls' class='col6 margin3 fill-darken pad2x pad1y round contain'>
-        <div class='js-range-tooltip range-tooltip pad1y dark round'>
-          <span class='dot inline pad0 animate'></span>
-          <label class='strong'></label>
+    <div class='pin-bottom z1000 pad4y clearfix col12'>
+      <div class='col6 margin3 pad4x contain'>
+        <a href='#' class='js-play button fill-darken pin-left icon playback play-control round-left keyline-right'></a>
+        <div id='controls' class='fill-darken pad2x pad1y contain round-right controls'>
+          <a href='#' class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
+            <span class='dot inline pad0 animate'></span>
+            <label class='strong'></label>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <section>
-
     <div class='limiter clearfix'>
-      <div class='pad2y center prose col8 margin2 dark'>
+      <div class='pad4y center prose col8 margin2 dark'>
 
         <h1>
           <span class='inline icon osm title-icon'></span>
@@ -66,9 +68,7 @@
 
       </div>
     </div>
-
   </section>
-
 
   <script src='build/site.js'></script>
   <script>

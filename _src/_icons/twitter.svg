@@ -14,7 +14,7 @@
    id="svg5738"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="playback.svg">
+   sodipodi:docname="twitter.svg">
   <defs
      id="defs5740" />
   <sodipodi:namedview
@@ -24,16 +24,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="22.627417"
-     inkscape:cx="9.505443"
+     inkscape:zoom="16"
+     inkscape:cx="12.532409"
      inkscape:cy="8.2195076"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1282"
-     inkscape:window-height="764"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1033"
+     inkscape:window-height="755"
+     inkscape:window-x="20"
+     inkscape:window-y="20"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -41,11 +41,7 @@
        empspacing="5"
        visible="true"
        enabled="true"
-       snapvisiblegridlinesonly="true"
-       color="#000000"
-       opacity="0.0627451"
-       empcolor="#000000"
-       empopacity="0.1254902" />
+       snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
   <metadata
      id="metadata5743">
@@ -65,10 +61,12 @@
      id="layer1"
      transform="translate(0,-1032.3622)">
     <path
-       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-       d="m 9.071044,1037.3622 4.928952,3.9289 c 0.656209,0.5231 0.656154,1.6191 7e-6,2.1421 l -4.928951,3.929 c -0.6562022,0.5231 -1.5487552,0.5934 -2.1421239,0 l 7.1e-6,-10 c 0.5933687,-0.5934 1.4859006,-0.5231 2.1421088,0 z"
-       id="rect13332"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ssssccs" />
+       d="m 17,1038.4879 c -0.5151,0.2249 -1.0687,0.3769 -1.6497,0.4452 0.593,-0.3499 1.0484,-0.904 1.2629,-1.5643 -0.555,0.3241 -1.1697,0.5594 -1.824,0.6861 -0.5238,-0.5495 -1.2703,-0.8929 -2.0964,-0.8929 -1.5863,0 -2.8724,1.266 -2.8724,2.8275 0,0.2216 0.025,0.4375 0.075,0.6444 -2.3871,-0.1179 -4.5035,-1.2436 -5.9201,-2.9543 -0.2472,0.4176 -0.3889,0.9033 -0.3889,1.4215 0,0.981 0.507,1.8464 1.2777,2.3535 -0.4708,-0.015 -0.9137,-0.1419 -1.3009,-0.3536 -3e-4,0.012 -3e-4,0.024 -3e-4,0.035 0,1.3699 0.9901,2.5127 2.304,2.7725 -0.241,0.065 -0.4947,0.099 -0.7567,0.099 -0.1851,0 -0.365,-0.018 -0.5403,-0.051 0.3654,1.1233 1.4261,1.9408 2.683,1.9636 -0.983,0.7584 -2.2214,1.2105 -3.5672,1.2105 -0.2318,0 -0.4604,-0.013 -0.6851,-0.04 1.2711,0.8022 2.7809,1.2704 4.4029,1.2704 5.2832,0 8.1722,-4.3085 8.1722,-8.045 0,-0.1226 0,-0.2446 -0.01,-0.3658 0.5613,-0.3987 1.0482,-0.8966 1.4333,-1.4637"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;enable-background:accumulate"
+       id="path8212"
+       inkscape:export-filename="/Users/saman/Dropbox/mapbox-redesign/mockup.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
