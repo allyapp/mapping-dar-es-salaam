@@ -86,7 +86,6 @@ var layers = [
   { title: '2015', fill: '#ffff00', layer: 'enf.c2ce7160'  }
 ].map(function(l, i) {
   l.layer = L.mapbox.tileLayer(l.layer, {noWrap:true}).addTo(map);
-  l.layer.getContainer().style.opacity = 0;
   return l;
 });
 
@@ -147,6 +146,17 @@ function rangeControl(el) {
 }
 
 var playback;
+function setPlayback() {
+  if (playback) window.clearInterval(playback);
+  var r = range.node();
+  play.classed('playback', false).classed('pause', true);
+  playback = window.setInterval(function() {
+    r.value++;
+    if (r.value === r.getAttribute('max')) r.value = 0;
+    rangeControl(r);
+  }, 10);
+}
+
 var play = d3.select('.js-play');
 var range = scrubber.append('input')
   .attr('class', 'col12')
@@ -169,17 +179,10 @@ var range = scrubber.append('input')
 play.on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
-  if (playback) window.clearInterval(playback);
-  var el = d3.select(this);
   if (el.classed('playback')) {
-    el.classed('playback', false).classed('pause', true);
-    var r = range.node();
-    playback = window.setInterval(function() {
-      r.value++;
-      if (r.value === r.getAttribute('max')) r.value = 0;
-      rangeControl(r);
-    }, 10);
+    setPlayback();
   } else {
+    if (playback) window.clearInterval(playback);
     el.classed('pause', false).classed('playback', true);
   }
 });
@@ -256,18 +259,10 @@ d3.select('.js-next').on('click', function() {
   locationTitle.text(location.title);
 
   locationIndex++;
-  if (playback) window.clearInterval(playback);
   if (locatePlace) window.clearTimeout(locatePlace);
 
-  var r = range.node();
-      r.value = 0;
-
-  play.classed('playback', false).classed('pause', true);
-  playback = window.setInterval(function() {
-    r.value++;
-    if (r.value === r.getAttribute('max')) r.value = 0;
-    rangeControl(r);
-  }, 10);
+  range.node().value = 0;
+  setPlayback();
 });
 
 function windowPopup(url) {
@@ -312,21 +307,8 @@ d3.select('.js-explore').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
   d3.select('body').classed('intro', false);
-  if (playback) window.clearInterval(playback);
-  var r = range.node();
-      r.value = 0;
-
-  play.classed('playback', false).classed('pause', true);
-  playback = window.setInterval(function() {
-    r.value++;
-    if (r.value === r.getAttribute('max')) r.value = 0;
-    rangeControl(r);
-  }, 10);
-});
-
-d3.select('.js-range-tooltip').on('click', function() {
-  d3.event.preventDefault();
-  d3.event.stopPropagation();
+  range.node().value = 0;
+  setPlayback();
 });
 
 // OSM link in top left corner
@@ -341,16 +323,10 @@ d3.select('.js-about').on('click', function() {
 // play/pause control with the spacebar
 d3.select('body').call(d3.keybinding()
   .on('space', function() {
-    if (playback) window.clearInterval(playback);
-    var r = range.node();
-    if (play.classed('playback')) {
-      play.classed('playback', false).classed('pause', true);
-      playback = window.setInterval(function() {
-        r.value++;
-        if (r.value === r.getAttribute('max')) r.value = 0;
-        rangeControl(r);
-      }, 10);
+    if (play.classed('playback') && !d3.select('body').classed('intro')) {
+      setPlayback();
     } else {
+      if (playback) window.clearInterval(playback);
       play.classed('playback', true).classed('pause', false);
     }
   })
@@ -364,10 +340,10 @@ function reset() {
   tooltip.select('label').text(target.title);
   tooltip.select('.dot').style('background', target.fill);
 
-  // Bring layer opacity up and call rangeControl
-  target.layer.getContainer().style.opacity = 1;
+  // Bring all layer opacity up and call rangeControl
+  layers.forEach(function(l) { l.layer.getContainer().style.opacity = 1; });
   rangeControl(range.node());
-  locationTitle.text('');
+  locationTitle.html('&nbsp;');
 }
 
 // Initialization
