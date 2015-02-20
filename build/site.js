@@ -258,6 +258,8 @@ d3.select('.js-next').on('click', function() {
 
   locationIndex++;
   if (playback) window.clearInterval(playback);
+  if (locatePlace) window.clearTimeout(locatePlace);
+
   var r = range.node();
       r.value = 0;
 
