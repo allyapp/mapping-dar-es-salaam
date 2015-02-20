@@ -68,19 +68,21 @@
     <div id='map' class='map dark'></div>
 
     <div id='controls' class='pin-bottom z10 pad4y pad1x clearfix col12 animate'>
-      <div class='col6 margin3 control-padding contain'>
-        <a href='#' class='js-play button fill-darken pin-left icon playback round-left keyline-right interactive-control'></a>
-        <div id='scrubber' class='fill-darken pad2x pad1y contain round-topright controls'>
-          <div class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
-            <span class='dot legend-key inline pad0 animate'></span>
-            <label class='strong'></label>
+      <div class='limiter'>
+        <div class='col8 margin2 control-padding contain'>
+          <a href='#' class='js-play button fill-darken pin-left icon playback round-left keyline-right interactive-control'></a>
+          <div id='scrubber' class='fill-darken pad2x pad1y contain round-topright controls'>
+            <div class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
+              <span class='dot legend-key inline pad0 animate'></span>
+              <label class='strong'></label>
+            </div>
           </div>
-        </div>
-        <a href='#' class='js-next button fill-darken pin-right round-right keyline-left interactive-control center w80'>
-          <span class='icon globe'>&nbsp;Jump</span>
-        </a>
-        <div class='col12 pad1y center dark small'>
-          <strong class='js-location-title col12 truncate dark-shadow'>&nbsp;</strong>
+          <a href='#' class='js-next button fill-darken pin-right round-right keyline-left interactive-control center w80'>
+            <span class='icon globe'>&nbsp;Jump</span>
+          </a>
+          <div class='col12 pad1y center dark small'>
+            <strong class='js-location-title col12 truncate dark-shadow'>&nbsp;</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -91,6 +93,12 @@
       <a href='https://twitter.com/intent/tweet/' class='icon twitter js-twitter animate'></a>
     </div>
 
+  </section>
+
+  <section id='overview' class='hidden overview z1000 col12 animate clearfix'>
+    <div class='limiter'>
+      <div class='col8 margin2 fill-darken pad4'></div>
+    </div>
   </section>
 
   <script src='build/site.js'></script>

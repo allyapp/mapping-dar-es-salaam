@@ -827,6 +827,7 @@ h6.small {
 .pad1y { padding-top: 10px; padding-bottom: 10px;}
 .pad2y { padding-top: 20px; padding-bottom: 20px;}
 .pad4y { padding-top: 40px; padding-bottom: 40px;}
+.pad8y { padding-top:80px; padding-bottom:80px; }
 
 /* Keylines
 ------------------------------------------------------- */
@@ -971,6 +972,7 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .text-left                    { text-align:left; }
 .text-right                   { text-align:right; }
 .space > *                    { margin-right:5px; }
+.space-bottom0  { margin-bottom:5px; }
 .space-bottom1                { margin-bottom:10px; }
 .space-bottom2, .space-bottom { margin-bottom:20px; }
 .space-bottom4                { margin-bottom:40px; }
@@ -979,7 +981,20 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .show-mobile                  { display:none; }
 img.inline, .inline           { display:inline-block; }
 .sprite.block,.block          { display:block; }
+.z1      { z-index:1; }
+.z10     { z-index:10; }
+.z100    { z-index:100; }
+.z1000   { z-index:1000; }
+.z10000  { z-index:10000; }
 
+.full-height    { height:100vh; }
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform:translateY(-50%);
+      -ms-transform:translateY(-50%);
+          transform:translateY(-50%)
+  }
 .truncate {
   text-overflow:ellipsis;
   white-space:nowrap;

@@ -333,6 +333,16 @@ d3.select('body').call(d3.keybinding()
   })
 );
 
+/*
+var graphData = [
+  {}
+], done = 0;
+
+function gatherData(csvs, cb) {
+
+};
+*/
+
 function reset() {
   // Initial layer to display
   var target = layers[layers.length - 1];

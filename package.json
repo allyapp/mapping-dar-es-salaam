@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/mapbox/osm-data-report",
   "dependencies": {
-    "chroniton": "^1.1.0",
     "d3": "^3.5.5",
     "mapbox.js": "^2.1.5",
     "raven-js": "^1.1.11"
