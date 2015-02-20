@@ -179,6 +179,7 @@ var range = scrubber.append('input')
 play.on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
+  var el = d3.select(this);
   if (el.classed('playback')) {
     setPlayback();
   } else {
