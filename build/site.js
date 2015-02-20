@@ -27,7 +27,7 @@ parts = {
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
-var map = L.mapbox.map('map', null, {
+var map = L.mapbox.map('map', {'mapbox_logo': true}, {
   zoomControl: false,
   attributionControl: false,
   noWrap: true,

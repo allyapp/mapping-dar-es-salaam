@@ -378,3 +378,10 @@ header .title-link:before { font-size:38px; }
   opacity:1;
   bottom:0;
   }
+
+/* Mobile layout
+---------------------- */
+@media only screen and (max-width:640px) {
+  header { padding:10px; }
+  .pad8y { padding-top:20px; padding-bottom:20px; }
+}
