@@ -56,6 +56,7 @@ var locatePlace;
 map.on('locationfound', function(e) {
   map.fitBounds(e.bounds);
   map.setZoom(16);
+  d3.select('.leaflet-geolocate').classed('loading', false);
 }).on('movestart', function() {
   if (locatePlace) window.clearTimeout(locatePlace);
 }).on('moveend', function() {
@@ -376,11 +377,13 @@ function reset() {
   d3.select('.leaflet-right').append('div')
     .attr('class', 'leaflet-control leaflet-bar')
     .append('a')
-      .attr('class', 'icon geolocate dark leaflet-geolocate')
+      .attr('class', 'icon geolocate dark leaflet-geolocate animate')
+      .attr('title', 'Geolocate your location')
       .attr('href', '#')
       .on('click', function() {
         d3.event.preventDefault();
         d3.event.stopPropagation();
+        d3.select(this).classed('loading', true);
         map.locate();
       });
 })();
