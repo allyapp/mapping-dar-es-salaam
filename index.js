@@ -106,7 +106,7 @@ function rangeControl(el) {
 
   // If the tooltip's right position
   // equals the right position of the range slider
-  if ((pixPos + 15) > width) {
+  if ((pixPos + 10) > width) {
     // pixPos = width;
     tooltip.style({
       'left': 'auto',
@@ -333,15 +333,20 @@ d3.select('body').call(d3.keybinding()
   })
 );
 
-/*
 var graphData = [
-  {}
+  { 'label': 'Users', 'source': 'uids-per-month.csv' },
+  { 'label': 'Buildings', 'source': 'buildings-per-month.csv' }
 ], done = 0;
 
 function gatherData(csvs, cb) {
-
-};
-*/
+  if (done === csvs.length) return cb(csvs);
+  d3.csv('data/' + csvs[done].source, function(err, res) {
+    if (err) return console.error(err);
+    csvs[done].data = res;
+    done++;
+    return gatherData(csvs, cb);
+  });
+}
 
 function reset() {
   // Initial layer to display
@@ -375,4 +380,20 @@ function reset() {
         d3.select(this).classed('loading', true);
         map.locate();
       });
+
+  gatherData(graphData, function(data) {
+
+    var overviews = d3.select('.overview')
+      .selectAll('div')
+      .data(data)
+      .enter()
+        .append('div')
+        .attr('class', 'dark');
+
+    overviews.append('strong')
+      .text(function(d) {
+        return d.label;
+      });
+  });
+
 })();

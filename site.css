@@ -287,7 +287,7 @@ header .title-link:before { font-size:38px; }
   background-color:rgba(45,45,45,0.45);
   position:absolute;
   bottom:40px;
-  width:80px;
+  width:70px;
   border-color:#000;
   z-index:1;
   text-align:center;
@@ -327,9 +327,11 @@ header .title-link:before { font-size:38px; }
 
 /*Graph figures*/
 .overview {
-  position:absolute;
-  bottom:140px;
+  display:none;
   }
+  .overview {
+    display:block;
+    }
 
 /* Mobile layout
 ---------------------- */

@@ -962,6 +962,7 @@ Details: http://www.positioniseverything.net/easyclearing.html
 ------------------------------------------------------- */
 .fr                           { float:right; }
 .fl                           { float:left; }
+.clear                        { clear:both; }
 .dot                          { border-radius:50%; }
 .quiet                        { color:#7f7f7f; color: rgba(0,0,0,.5); }
 .dark .quiet                  { color: #7f7f7f; color: rgba(255,255,255,.5);}
