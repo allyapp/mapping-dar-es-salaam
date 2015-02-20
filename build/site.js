@@ -54,7 +54,10 @@ function findLocation() {
 }
 
 var locatePlace;
-map.on('movestart', function() {
+map.on('locationfound', function(e) {
+  map.fitBounds(e.bounds);
+  map.setZoom(16);
+}).on('movestart', function() {
   if (locatePlace) window.clearTimeout(locatePlace);
 }).on('moveend', function() {
   var center = map.getCenter();
@@ -369,6 +372,18 @@ function reset() {
 (function() {
   if (hash) findLocation();
   reset();
+
+  // Geolocate
+  d3.select('.leaflet-right').append('div')
+    .attr('class', 'leaflet-control leaflet-bar')
+    .append('a')
+      .attr('class', 'icon geolocate dark leaflet-geolocate')
+      .attr('href', '#')
+      .on('click', function() {
+        d3.event.preventDefault();
+        d3.event.stopPropagation();
+        map.locate();
+      });
 })();
 
 },{"./js/keybinding.js":"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js","d3":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js","raven-js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/src/raven.js"}],"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js":[function(require,module,exports){

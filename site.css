@@ -129,6 +129,8 @@ input[type=range] {
 .icon.facebook:before   { content:'\e602'; }
 .rcon.twitter:after,
 .icon.twitter:before    { content:'\e603'; }
+.rcon.geolocate:after,
+.icon.geolocate:before  { content:'\e604'; }
 .rcon.pause:after,
 .icon.pause:before      { content:'\e605'; }
 .rcon.marker:after,
@@ -317,6 +319,11 @@ header .title-link:before { font-size:38px; }
 .button.fill-darken:hover,
 .leaflet-container.dark .leaflet-bar a:hover {
   background-color:#333;
+  }
+.leaflet-geolocate:hover { border-radius:3px; }
+.leaflet-geolocate:before {
+  color:#fff;
+  padding:3px;
   }
 
 .attribution a { color:#fff; }
