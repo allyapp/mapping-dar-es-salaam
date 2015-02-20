@@ -1,5 +1,6 @@
 require('mapbox.js');
 L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJiUzBYOEJzIn0.VyXs9qNWgTfABLzSI3YcrQ';
+var geocoder = L.mapbox.geocoder('mapbox.places');
 
 var Raven = require('raven-js');
 require('d3');
@@ -25,11 +26,6 @@ parts = {
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
-function reviseHash() {
-  var url = parts.lng + '/' + parts.lat + '/' + parts.zoom;
-  window.location.hash = url;
-}
-
 var map = L.mapbox.map('map', null, {
   zoomControl: false,
   attributionControl: false,
@@ -41,12 +37,33 @@ var map = L.mapbox.map('map', null, {
 // Base layer
 L.mapbox.tileLayer('tristen.5467621e', { noWrap:true }).addTo(map);
 
-map.on('moveend', function() {
+function reviseHash() {
+  var url = parts.lng + '/' + parts.lat + '/' + parts.zoom;
+  window.location.hash = url;
+}
+
+function findLocation() {
+  if (map.getZoom() > 4) {
+    geocoder.reverseQuery([parseInt(parts.lng, 10), parseInt(parts.lat, 10)], function(err, res) {
+      if (res && res.features && res.features[0]) {
+        d3.select('.js-location-title').text(res.features[0].place_name);
+      }
+    });
+  }
+}
+
+var locatePlace;
+map.on('movestart', function() {
+  if (locatePlace) window.clearTimeout(locatePlace);
+}).on('moveend', function() {
   var center = map.getCenter();
   parts.lat = center.lat.toFixed(6);
   parts.lng = center.lng.toFixed(6);
   parts.zoom = map.getZoom();
   reviseHash();
+
+  // Geolocate if `movestart` hasnt triggered after 3s.
+  locatePlace = window.setTimeout(findLocation, 3000);
 });
 
 map.scrollWheelZoom.disable();
@@ -348,4 +365,7 @@ function reset() {
 }
 
 // Initialization
-(reset)();
+(function() {
+  if (hash) findLocation();
+  reset();
+})();

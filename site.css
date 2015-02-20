@@ -305,17 +305,22 @@ header .title-link:before { font-size:38px; }
   bottom:0;
   width:100%;
   }
+.leaflet-container.dark .leaflet-bar a.leaflet-disabled,
+.leaflet-container.dark .leaflet-control .mapbox-button.disabled,
 .leaflet-container.dark .leaflet-bar {
   background-color:rgba(45,45,45,0.75);
   }
 .leaflet-container.dark .leaflet-bar a:last-child {
   border-bottom:none;
+  border-radius:0 0 3px 3px;
   }
 .button.fill-darken:hover,
 .leaflet-container.dark .leaflet-bar a:hover {
   background-color:#333;
   }
+
 .attribution a { color:#fff; }
+.attribution a:hover { color:rgba(255,255,255,0.75); }
 .controls {
   height:40px;
   }

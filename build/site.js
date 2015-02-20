@@ -1,6 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/tristen/dev/mapbox/osm-data-report/index.js":[function(require,module,exports){
 require('mapbox.js');
 L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJiUzBYOEJzIn0.VyXs9qNWgTfABLzSI3YcrQ';
+var geocoder = L.mapbox.geocoder('mapbox.places');
 
 var Raven = require('raven-js');
 require('d3');
@@ -26,11 +27,6 @@ parts = {
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
-function reviseHash() {
-  var url = parts.lng + '/' + parts.lat + '/' + parts.zoom;
-  window.location.hash = url;
-}
-
 var map = L.mapbox.map('map', null, {
   zoomControl: false,
   attributionControl: false,
@@ -42,12 +38,33 @@ var map = L.mapbox.map('map', null, {
 // Base layer
 L.mapbox.tileLayer('tristen.5467621e', { noWrap:true }).addTo(map);
 
-map.on('moveend', function() {
+function reviseHash() {
+  var url = parts.lng + '/' + parts.lat + '/' + parts.zoom;
+  window.location.hash = url;
+}
+
+function findLocation() {
+  if (map.getZoom() > 4) {
+    geocoder.reverseQuery([parseInt(parts.lng, 10), parseInt(parts.lat, 10)], function(err, res) {
+      if (res && res.features && res.features[0]) {
+        d3.select('.js-location-title').text(res.features[0].place_name);
+      }
+    });
+  }
+}
+
+var locatePlace;
+map.on('movestart', function() {
+  if (locatePlace) window.clearTimeout(locatePlace);
+}).on('moveend', function() {
   var center = map.getCenter();
   parts.lat = center.lat.toFixed(6);
   parts.lng = center.lng.toFixed(6);
   parts.zoom = map.getZoom();
   reviseHash();
+
+  // Geolocate if `movestart` hasnt triggered after 3s.
+  locatePlace = window.setTimeout(findLocation, 3000);
 });
 
 map.scrollWheelZoom.disable();
@@ -349,7 +366,10 @@ function reset() {
 }
 
 // Initialization
-(reset)();
+(function() {
+  if (hash) findLocation();
+  reset();
+})();
 
 },{"./js/keybinding.js":"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js","d3":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js","raven-js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/src/raven.js"}],"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js":[function(require,module,exports){
 d3.keybinding = function() {
