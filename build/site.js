@@ -126,6 +126,8 @@ function rangeControl(el) {
   }
 }
 
+var playback;
+var play = d3.select('.js-play');
 var range = scrubber.append('input')
   .attr('class', 'col12')
   .attr('type', 'range')
@@ -133,11 +135,17 @@ var range = scrubber.append('input')
   .attr('step', 1)
   .attr('max', layers.length * 100)
   .attr('value', layers.length * 100)
-  .on('input', function() { rangeControl(this); });
+  .on('input', function() { rangeControl(this); })
+  .on('focus', function() {
+    // If playback is enabled, stop it.
+    // the user wants to scrub using the range slider.
+    if (playback) {
+      window.clearInterval(playback);
+      play.classed('pause', false).classed('playback', true);
+    }
+  });
 
 // Location navigation
-var playback;
-var play = d3.select('.js-play');
 play.on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
@@ -278,7 +286,7 @@ d3.selectAll('.js-facebook').on('click', function() {
 });
 
 // Social sharing links
-d3.selectAll('.js-explore').on('click', function() {
+d3.select('.js-explore').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
   d3.select('body').classed('intro', false);
@@ -294,8 +302,13 @@ d3.selectAll('.js-explore').on('click', function() {
   }, 10);
 });
 
+d3.select('.js-range-tooltip').on('click', function() {
+  d3.event.preventDefault();
+  d3.event.stopPropagation();
+});
+
 // OSM link in top left corner
-d3.selectAll('.js-about').on('click', function() {
+d3.select('.js-about').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
   d3.select('body').classed('intro', true);
