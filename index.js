@@ -367,6 +367,12 @@ function reset() {
   if (hash) findLocation();
   reset();
 
+  var width = 100;
+  var height = 25;
+  var x = d3.scale.linear().range([0, width]);
+  var y = d3.scale.linear().range([height, 0]);
+  var parseDate = d3.time.format('%Y-%m').parse;
+
   // Geolocate
   d3.select('.leaflet-right').append('div')
     .attr('class', 'leaflet-control leaflet-bar')
@@ -394,6 +400,39 @@ function reset() {
       .text(function(d) {
         return d.label;
       });
+
+    var line = d3.svg.line()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.value); });
+
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain(d3.extent(data, function(d) { return d.value; }));
+
+    var svg = overviews.append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
+      .attr('transform', 'translate(0, 2)');
+
+    svg.append('path')
+      .datum(function(d) {
+        return d.data.map(function(d) {
+          d.date = parseDate(d.date);
+          return d;
+        });
+      })
+      .attr('class', 'sparkline')
+      .attr('d', line);
+
+    // TODO This should correspond with the
+    // current position of the range slider.
+    /*
+    svg.append('circle')
+      .attr('class', 'sparkcircle')
+      .attr('cx', x(data[0].date))
+      .attr('cy', y(data[0].close))
+      .attr('r', 1.5);
+    */
   });
 
 })();

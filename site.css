@@ -333,6 +333,15 @@ header .title-link:before { font-size:38px; }
     display:block;
     }
 
+/* Sparkline styling */
+path {
+  stroke-width:2;
+  fill:none;
+  }
+line {
+  stroke:red;
+  }
+
 /* Mobile layout
 ---------------------- */
 @media only screen and (max-width:640px) {
