@@ -298,6 +298,8 @@ d3.selectAll('.js-about').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
   d3.select('body').classed('intro', true);
+  map.setView([14, 39], 2);
+  reset();
 });
 
 // play/pause control with the spacebar
@@ -318,8 +320,7 @@ d3.select('body').call(d3.keybinding()
   })
 );
 
-// Initialization
-(function() {
+function reset() {
   // Initial layer to display
   var target = layers[layers.length - 1];
 
@@ -330,4 +331,8 @@ d3.select('body').call(d3.keybinding()
   // Bring layer opacity up and call rangeControl
   target.layer.getContainer().style.opacity = 1;
   rangeControl(range.node());
-})();
+  locationTitle.text('');
+}
+
+// Initialization
+(reset)();

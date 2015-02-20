@@ -120,20 +120,19 @@ input[type=range] {
   }
 .rcon:empty:after,
 .icon:empty:before { margin:0; }
+
 .rcon.osm:after,
-.icon.osm:before   { content:'\e600'; }
-.rcon.bookmark:after,
-.icon.bookmark:before   { content:'\e601'; }
+.icon.osm:before        { content:'\e600'; }
+.rcon.globe:after,
+.icon.globe:before      { content:'\e601'; }
 .rcon.facebook:after,
 .icon.facebook:before   { content:'\e602'; }
 .rcon.twitter:after,
-.icon.twitter:before   { content:'\e603'; }
-.rcon.fullscreen:after,
-.icon.fullscreen:before   { content:'\e604'; }
+.icon.twitter:before    { content:'\e603'; }
 .rcon.pause:after,
-.icon.pause:before   { content:'\e605'; }
+.icon.pause:before      { content:'\e605'; }
 .rcon.marker:after,
-.icon.marker:before   { content:'\e606'; }
+.icon.marker:before     { content:'\e606'; }
 .rcon.playback:after,
 .icon.playback:before   { content:'\e607'; }
 
@@ -169,6 +168,7 @@ input[type=range] {
 
 /* Util classes
 ---------------------- */
+.w80 { width:80px; }
 .full-height    { height:100vh; }
 .space-bottom0  { margin-bottom:5px; }
 .dark-shadow { text-shadow:0 0 10px #000; }
@@ -319,6 +319,7 @@ header .title-link:before { font-size:38px; }
 .controls {
   height:40px;
   }
+.control-padding { padding:0 80px 0 40px; }
 .range-tooltip {
   background-color:rgba(45,45,45,0.45);
   position:absolute;

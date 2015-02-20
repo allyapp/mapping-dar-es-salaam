@@ -299,6 +299,8 @@ d3.selectAll('.js-about').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
   d3.select('body').classed('intro', true);
+  map.setView([14, 39], 2);
+  reset();
 });
 
 // play/pause control with the spacebar
@@ -319,8 +321,7 @@ d3.select('body').call(d3.keybinding()
   })
 );
 
-// Initialization
-(function() {
+function reset() {
   // Initial layer to display
   var target = layers[layers.length - 1];
 
@@ -331,7 +332,11 @@ d3.select('body').call(d3.keybinding()
   // Bring layer opacity up and call rangeControl
   target.layer.getContainer().style.opacity = 1;
   rangeControl(range.node());
-})();
+  locationTitle.text('');
+}
+
+// Initialization
+(reset)();
 
 },{"./js/keybinding.js":"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js","d3":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js","raven-js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/src/raven.js"}],"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js":[function(require,module,exports){
 d3.keybinding = function() {
