@@ -339,13 +339,13 @@ var graphData = [
   { 'label': 'Buildings', 'source': 'buildings-per-month.csv' }
 ], done = 0;
 
-function gatherData(csvs, cb) {
-  if (done === csvs.length) return cb(csvs);
-  d3.csv('data/' + csvs[done].source, function(err, res) {
+function gatherData(arr, cb) {
+  if (done === arr.length) return cb(arr);
+  d3.csv('data/' + arr[done].source, function(err, res) {
     if (err) return console.error(err);
-    csvs[done].data = res;
+    arr[done].data = res;
     done++;
-    return gatherData(csvs, cb);
+    return gatherData(arr, cb);
   });
 }
 
@@ -368,12 +368,6 @@ function reset() {
   if (hash) findLocation();
   reset();
 
-  var width = 100;
-  var height = 25;
-  var x = d3.scale.linear().range([0, width]);
-  var y = d3.scale.linear().range([height, 0]);
-  var parseDate = d3.time.format('%Y-%m').parse;
-
   // Geolocate
   d3.select('.leaflet-right').append('div')
     .attr('class', 'leaflet-control leaflet-bar')
@@ -390,50 +384,68 @@ function reset() {
 
   gatherData(graphData, function(data) {
 
-    var overviews = d3.select('.overview')
+    var overviews = d3.select('#overviews')
       .selectAll('div')
-      .data(data)
-      .enter()
-        .append('div')
-        .attr('class', 'dark');
+      .data(data);
 
-    overviews.append('strong')
-      .text(function(d) {
-        return d.label;
+    var overview = overviews.enter()
+      .append('div')
+      .attr('class', 'dark col6'); // `colN` should change based on n graphs.
+
+    // Margin is for padding so sparklines aren't weirdly cropped.
+    var margin = { top:5, right:5, bottom:5, left:5};
+    var width = (parseInt(overview.style('width'), 10));
+    var height = 40;
+    var x = d3.scale.linear().range([0, width - margin.right]);
+    var y = d3.scale.linear().range([height - (margin.top - margin.bottom), 0]);
+    var parseDate = d3.time.format('%Y-%m').parse;
+    var line = d3.svg.line()
+     .interpolate('basis')
+     .x(function(d) { return x(d.date); })
+     .y(function(d) { return y(d.value); });
+
+    overview.each(function(d) {
+      // Format d.data for sparklines. Also,
+      // parse date field as JavaScript date.
+      d.data = d.data.map(function(v) {
+        v.date = parseDate(v.date);
+        v.value = +v.value;
+        return v;
       });
 
-    var line = d3.svg.line()
-      .x(function(d) { return x(d.date); })
-      .y(function(d) { return y(d.value); });
+      var el = d3.select(this);
+      var svg = el.append('svg');
 
-    x.domain(d3.extent(data, function(d) { return d.date; }));
-    y.domain(d3.extent(data, function(d) { return d.value; }));
+      svg.attr('width', width)
+        .attr('height', height)
+        .attr('class', 'space-bottom1')
+        .append('g')
+        .attr('transform', 'translate(0, 2)');
 
-    var svg = overviews.append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .append('g')
-      .attr('transform', 'translate(0, 2)');
+      x.domain(d3.extent(d.data, function(v) { return v.date; }));
+      y.domain(d3.extent(d.data, function(v) { return v.value; }));
 
-    svg.append('path')
-      .datum(function(d) {
-        return d.data.map(function(d) {
-          d.date = parseDate(d.date);
-          return d;
-        });
-      })
-      .attr('class', 'sparkline')
-      .attr('d', line);
+      svg.append('path')
+        .datum(d.data)
+        .attr('class', 'sparkline')
+        .attr('d', line);
 
-    // TODO This should correspond with the
-    // current position of the range slider.
-    /*
-    svg.append('circle')
-      .attr('class', 'sparkcircle')
-      .attr('cx', x(data[0].date))
-      .attr('cy', y(data[0].close))
-      .attr('r', 1.5);
-    */
+      // TODO Correspond with the
+      // current position of the range slider.
+      /*
+      svg.append('circle')
+        .attr('class', 'sparkcircle')
+        .attr('cx', x(d[0].date))
+        .attr('cy', y(d[0].value))
+        .attr('r', 1.5);
+      */
+
+      // Populate overview content.
+      el.append('strong')
+        .attr('class', 'col12 small center')
+        .text(d.label);
+
+    });
   });
 
 })();
