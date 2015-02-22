@@ -27,6 +27,16 @@ parts = {
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
+// HTML Components
+var scrubber      = d3.select('#scrubber');
+var tooltip       = d3.select('.js-range-tooltip');
+var play          = d3.select('.js-play');
+var locationTitle = d3.select('.js-location-title');
+
+// Variables for populating graphs
+var margin, width, height, x, y, graphs;
+
+// Map initialization
 var map = L.mapbox.map('map', {'mapbox_logo': true}, {
   zoomControl: false,
   attributionControl: false,
@@ -69,6 +79,9 @@ map.on('locationfound', function(e) {
 
   // Geolocate if `movestart` hasnt triggered after 3s.
   locatePlace = window.setTimeout(findLocation, 3000);
+  // Display overview graph?
+  d3.select('#overviews')
+    .classed('active', (graphs && map.getZoom() < 4));
 });
 
 map.scrollWheelZoom.disable();
@@ -90,10 +103,7 @@ var layers = [
   return l;
 });
 
-var tooltip = d3.select('.js-range-tooltip');
-var scrubber = d3.select('#scrubber');
 var tally = 0; // The current index in the layers array we are showing.
-
 function rangeControl(el) {
   // Adjust the position of the range
   // input tooltip to follow the thumbtrack.
@@ -108,22 +118,29 @@ function rangeControl(el) {
   // If the tooltip's right position
   // equals the right position of the range slider
   if ((pixPos + 10) > width) {
-    // pixPos = width;
-    tooltip.style({
-      'left': 'auto',
-      'right': 0
-    });
+    tooltip.style({'left': 'auto', 'right': 0 });
   } else {
-    tooltip.style({
-      'right': 'auto',
-      'left': pixPos+'px'
-    });
+    tooltip.style({'right': 'auto', 'left': pixPos+'px' });
   }
 
   // Find the current index
   var index = Math.floor(el.value / 100) + 1;
   // Opacity should be the decimal place of el.value/100
   var opacity = (el.value/100 % 1).toFixed(2);
+
+  // Update graph marker on sparklines
+  if (graphs && layers[index]) {
+    d3.selectAll('.sparkcircle')
+      .style('fill', layers[index].fill)
+
+      //.attr('cx', function(d) {
+        //console.log(d);
+        //// Locate the array item we should currently be looking at.
+        //// index gives us the year we're in.
+      //});
+      // .attr('cy', y(last.value))
+      ;
+  }
 
   if (layers[index] && index !== tally) {
     // When the index updates, make sure layer before the
@@ -158,7 +175,6 @@ function setPlayback() {
   }, 10);
 }
 
-var play = d3.select('.js-play');
 var range = scrubber.append('input')
   .attr('class', 'col12')
   .attr('type', 'range')
@@ -248,7 +264,6 @@ var locations = [
 }];
 
 var locationIndex = 0;
-var locationTitle = d3.select('.js-location-title');
 d3.select('.js-next').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
@@ -383,21 +398,24 @@ function reset() {
       });
 
   gatherData(graphData, function(data) {
-
+    if (!data || !data.length) return;
+    graphs = true;
     var overviews = d3.select('#overviews')
+      .classed('active', (map.getZoom() < 4 && data))
       .selectAll('div')
       .data(data);
 
     var overview = overviews.enter()
       .append('div')
-      .attr('class', 'dark col6'); // `colN` should change based on n graphs.
+      .attr('class', 'dark col6 truncate'); // `colN` should change based on n graphs.
 
     // Margin is for padding so sparklines aren't weirdly cropped.
-    var margin = { top:5, right:5, bottom:5, left:5};
-    var width = (parseInt(overview.style('width'), 10));
-    var height = 40;
-    var x = d3.scale.linear().range([0, width - margin.right]);
-    var y = d3.scale.linear().range([height - (margin.top - margin.bottom), 0]);
+    margin = { top:5, right:5, bottom:5, left:5};
+    width = (parseInt(overview.style('width'), 10)) - margin.left - margin.right;
+    height = 40 - margin.top - margin.bottom;
+    x = d3.scale.linear().range([0, width]);
+    y = d3.scale.linear().range([height, 0]);
+
     var parseDate = d3.time.format('%Y-%m').parse;
     var line = d3.svg.line()
      .interpolate('basis')
@@ -416,9 +434,9 @@ function reset() {
       var el = d3.select(this);
       var svg = el.append('svg');
 
-      svg.attr('width', width)
-        .attr('height', height)
-        .attr('class', 'space-bottom1')
+     svg.attr('width', width + margin.right + margin.left)
+        .attr('height', height + margin.top + margin.bottom)
+        .attr('class', 'space-bottom0')
         .append('g')
         .attr('transform', 'translate(0, 2)');
 
@@ -430,21 +448,21 @@ function reset() {
         .attr('class', 'sparkline')
         .attr('d', line);
 
-      // TODO Correspond with the
-      // current position of the range slider.
-      /*
+      // Last data item
+      var last = d.data[d.data.length - 1];
+      var nFormat = d3.format(',');
+
       svg.append('circle')
-        .attr('class', 'sparkcircle')
-        .attr('cx', x(d[0].date))
-        .attr('cy', y(d[0].value))
-        .attr('r', 1.5);
-      */
+        .attr('class', 'sparkcircle animate')
+        .attr('cx', x(last.date))
+        .attr('cy', y(last.value))
+        .style('fill', layers[layers.length - 1].fill)
+        .attr('r', 4);
 
       // Populate overview content.
       el.append('strong')
         .attr('class', 'col12 small center')
-        .text(d.label);
-
+        .text(d.label + ': ' + nFormat(last.value));
     });
   });
 
