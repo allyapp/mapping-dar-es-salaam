@@ -79,8 +79,7 @@ map.on('locationfound', function(e) {
   // Geolocate if `movestart` hasnt triggered after 3s.
   locatePlace = window.setTimeout(findLocation, 3000);
   // Display overview graph?
-  d3.select('#overviews')
-    .classed('active', (graphs && map.getZoom() < 4));
+  d3.select('#overview').classed('active', (graphs && map.getZoom() < 4));
 });
 
 map.scrollWheelZoom.disable();
@@ -129,13 +128,24 @@ function rangeControl(el) {
 
   // Update graph marker on sparklines
   if (graphs && layers[index]) {
+    var pos;
     d3.selectAll('.sparkcircle')
       .each(function(d) {
-        var circle = d3.select(this);
-        var i = Math.ceil(el.value / (layers.length * 100) * d.data.length);
-        circle.style('fill', layers[index].fill)
-          .attr('cx', x(d.data[i].date))
-          .attr('cy', y(d.data[i].value));
+        x.domain(d3.extent(d.data, function(v) { return v.date; }));
+        y.domain(d3.extent(d.data, function(v) { return v.value; }));
+        pos = Math.ceil(el.value / (layers.length * 100) * d.data.length);
+        d3.select(this).style('fill', layers[index].fill)
+          .attr('cx', x(d.data[pos].date))
+          .attr('cy', y(d.data[pos].value));
+      });
+
+    d3.selectAll('.sparklabel')
+      .each(function(d) {
+        d3.select(this)
+          .text(function() {
+            var suffix = (d.suffix) ? d.suffix : '';
+            return d.label + ': ' + d3.format(',')(d.data[pos].value) + suffix;
+          });
       });
   }
 
@@ -347,8 +357,10 @@ d3.select('body').call(d3.keybinding()
 );
 
 var graphData = [
-  { 'label': 'Users', 'source': 'uids-per-month.csv' },
-  { 'label': 'Buildings', 'source': 'buildings-per-month.csv' }
+  { 'label': 'Users', 'source': 'highest-uid.csv' },
+  { 'label': 'Active editors', 'source': 'active-ever.csv' },
+  { 'label': 'Buildings', 'source': 'total-buildings.csv' },
+  { 'label': 'Major roads', 'source': 'major-roads.csv', 'suffix': 'ml' }
 ], done = 0;
 
 function gatherData(arr, cb) {
@@ -397,19 +409,23 @@ function reset() {
   gatherData(graphData, function(data) {
     if (!data || !data.length) return;
     graphs = true;
-    var overviews = d3.select('#overviews')
+    var charts = d3.select('#overview')
       .classed('active', (map.getZoom() < 4 && data))
+      .select('#charts')
       .selectAll('div')
       .data(data);
 
-    var overview = overviews.enter()
+    var overview = charts.enter()
       .append('div')
-      .attr('class', 'dark col6 truncate'); // `colN` should change based on n graphs.
+      .attr('class', 'col3 truncate pad0') // `colN` should change based on n graphs.
+        .append('div')
+        .attr('class', 'pad1y dark');
 
     // Margin is for padding so sparklines aren't weirdly cropped.
-    margin = { top:4, right:4, bottom:4, left:4};
+    margin = {top:4, right:8, bottom:8, left:4};
     width = (parseInt(overview.style('width'), 10)) - margin.left - margin.right;
-    height = 40 - margin.top - margin.bottom;
+    height = 60 - margin.top - margin.bottom;
+
     x = d3.scale.linear().range([0, width]);
     y = d3.scale.linear().range([height, 0]);
 
@@ -429,13 +445,12 @@ function reset() {
       });
 
       var el = d3.select(this);
-      var svg = el.append('svg');
-
-     svg.attr('width', width + margin.right + margin.left)
+     svg = el.append('svg')
+      .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
         .attr('class', 'space-bottom0')
-        .append('g')
-        .attr('transform', 'translate(0, 2)');
+      .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       x.domain(d3.extent(d.data, function(v) { return v.date; }));
       y.domain(d3.extent(d.data, function(v) { return v.value; }));
@@ -447,7 +462,6 @@ function reset() {
 
       // Last data item
       var last = d.data[d.data.length - 1];
-      var nFormat = d3.format(',');
 
       svg.append('circle')
         .attr('class', 'sparkcircle animate')
@@ -458,8 +472,11 @@ function reset() {
 
       // Populate overview content.
       el.append('strong')
-        .attr('class', 'col12 small center')
-        .text(d.label + ': ' + nFormat(last.value));
+        .attr('class', 'col12 small center text-shadow sparklabel')
+        .text(function() {
+          var suffix = (d.suffix) ? d.suffix : '';
+          return d.label + ': ' + d3.format(',')(last.value) + suffix;
+        });
     });
   });
 
