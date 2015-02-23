@@ -86,16 +86,16 @@ map.scrollWheelZoom.disable();
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 var layers = [
-  { title: '2006', fill: '#0000ff', layer: 'enf.8e514fd2', },
-  { title: '2007', fill: '#4400CC', layer: 'enf.c3e70751', },
-  { title: '2008', fill: '#880088', layer: 'enf.2c15d8a9', },
-  { title: '2009', fill: '#CC0044', layer: 'enf.5191a4b9', },
-  { title: '2010', fill: '#ff0000', layer: 'enf.23382699', },
-  { title: '2011', fill: '#ff4400', layer: 'enf.1e5a6ba8', },
-  { title: '2012', fill: '#ff8800', layer: 'enf.a10eb892', },
-  { title: '2013', fill: '#ffCC00', layer: 'enf.8989964d', },
-  { title: '2014', fill: '#ffff00', layer: 'enf.ab651705', },
-  { title: '2015', fill: '#ffff00', layer: 'enf.c2ce7160'  }
+  { title: '2006', fill: '#0000ff', layer: 'enf.54a636f6', },
+  { title: '2007', fill: '#4400CC', layer: 'enf.5d7acc8f', },
+  { title: '2008', fill: '#880088', layer: 'enf.2bf64eff', },
+  { title: '2009', fill: '#CC0044', layer: 'enf.2420e529', },
+  { title: '2010', fill: '#ff0000', layer: 'enf.4d565f14', },
+  { title: '2011', fill: '#ff4400', layer: 'enf.d99207ef', },
+  { title: '2012', fill: '#ff8800', layer: 'enf.4c528ba7', },
+  { title: '2013', fill: '#ffCC00', layer: 'enf.0fb6824e', },
+  { title: '2014', fill: '#ffff00', layer: 'enf.f188e436', },
+  { title: '2015', fill: '#ffff00', layer: 'enf.0576ad9c'  }
 ].map(function(l, i) {
   l.layer = L.mapbox.tileLayer(l.layer, {noWrap:true}).addTo(map);
   return l;
@@ -115,28 +115,38 @@ function rangeControl(el) {
 
   // If the tooltip's right position
   // equals the right position of the range slider
-  if ((pixPos + 10) > width) {
+  if ((pixPos + 6) > width) {
     tooltip.style({'left': 'auto', 'right': 0 });
   } else {
     tooltip.style({'right': 'auto', 'left': pixPos+'px' });
   }
 
   // Find the current index
-  var index = Math.floor(el.value / 100) + 1;
+  var index = Math.floor(el.value / 100);
+      index = (layers[index]) ? index : layers.length - 1;
+
   // Opacity should be the decimal place of el.value/100
-  var opacity = (el.value/100 % 1).toFixed(2);
+  var opacity = (index === (layers.length - 1)) ?
+    100 : (el.value/100 % 1).toFixed(2);
 
   // Update graph marker on sparklines
-  if (graphs && layers[index]) {
+  if (graphs) {
     var pos;
     d3.selectAll('.sparkcircle')
       .each(function(d) {
         x.domain(d3.extent(d.data, function(v) { return v.date; }));
         y.domain(d3.extent(d.data, function(v) { return v.value; }));
         pos = Math.ceil(el.value / (layers.length * 100) * d.data.length);
+
+        var xPos = (d.data[pos]) ?
+          x(d.data[pos].date) : x(d.data[d.data.length - 1].date);
+
+        var yPos = (d.data[pos]) ?
+          y(d.data[pos].value) : 0;
+
         d3.select(this).style('fill', layers[index].fill)
-          .attr('cx', x(d.data[pos].date))
-          .attr('cy', y(d.data[pos].value));
+          .attr('cx', xPos)
+          .attr('cy', yPos);
       });
 
     d3.selectAll('.sparklabel')
@@ -144,12 +154,15 @@ function rangeControl(el) {
         d3.select(this)
           .text(function() {
             var suffix = (d.suffix) ? d.suffix : '';
-            return d.label + ': ' + d3.format(',')(d.data[pos].value) + suffix;
+            var value = (d.data[pos]) ?
+              d.data[pos].value : d.data[d.data.length -1].value;
+
+            return d.label + ': ' + d3.format(',')(value) + suffix;
           });
       });
   }
 
-  if (layers[index] && index !== tally) {
+  if (index !== tally) {
     // When the index updates, make sure layer before the
     // current are set to full opacity and future ones are at 0.
     layers.forEach(function(l, i) {
@@ -164,10 +177,8 @@ function rangeControl(el) {
       .text(layers[index].title);
   }
 
-  if (layers[index]) {
-    layers[index].layer.getContainer().style.opacity = opacity;
-    tally = index;
-  }
+  layers[index].layer.getContainer().style.opacity = opacity;
+  tally = index;
 }
 
 var playback;
@@ -212,62 +223,39 @@ play.on('click', function() {
   }
 });
 
-var locations = [
-{
+var locations = [{
   title: 'London, UK',
-  lat: 51.5075,
-  lon: -0.1306,
-  z: 13
+  coords: [51.5075, -0.1306, 13]
 }, {
   title: 'Paris, France',
-  lat: 48.8539,
-  lon: 2.3497,
-  z: 13
+  coords: [48.8539, 2.3497, 13]
 }, {
   title: 'Chicago, USA',
-  lat: 41.8802,
-  lon: -87.6374,
-  z: 13
+  coords: [41.8802, -87.6374, 13]
 }, {
   title: 'Melbourne, Australia',
-  lat: -37.8307,
-  lon: 144.9086,
-  z: 12
+  coords: [-37.8307, 144.9086, 12]
 }, {
   title: 'Japan',
-  lat: 36.0891,
-  lon: 136.0822,
-  z: 7
+  coords: [36.0891, 136.0822, 7]
 }, {
   title: 'Sochi, Russia',
-  lat: 43.5859,
-  lon: 39.7235,
-  z: 15
+  coords: [43.5859, 39.7235, 14]
 }, {
   title: 'Ayacucho, Peru',
-  lat: 50.8398,
-  lon: 4.3274,
-  z: 12
+  coords: [50.8398, 4.3274, 12]
 }, {
   title: 'Berlin, Germany',
-  lat: 52.5121,
-  lon: 13.3865,
-  z: 13
+  coords: [52.5121, 13.3865, 13]
 }, {
   title: 'Barcelona, Spain',
-  lat: 41.3842,
-  lon: 2.1564,
-  z: 13
+  coords: [41.3842, 2.1564, 13]
 }, {
   title: 'Washington DC, USA',
-  lat: 38.9011,
-  lon: -77.0406,
-  z: 13
+  coords: [38.9011, -77.0406, 13]
 }, {
   title: 'Netherlands',
-  lat: 51.9603,
-  lon: 5.1540,
-  z: 9
+  coords: [51.9603, 5.1540, 9]
 }];
 
 var locationIndex = 0;
@@ -276,8 +264,9 @@ d3.select('.js-next').on('click', function() {
   d3.event.stopPropagation();
 
   var location = locations[locationIndex];
+  var coords = location.coords;
   if (locationIndex === locations.length) locationIndex = 0;
-  map.setView([location.lat, location.lon], location.z);
+  map.setView([coords[0], coords[1]], coords[2]);
 
   // Display for location name.
   locationTitle.text(location.title);
@@ -360,7 +349,7 @@ var graphData = [
   { 'label': 'Users', 'source': 'highest-uid.csv' },
   { 'label': 'Active editors', 'source': 'active-ever.csv' },
   { 'label': 'Buildings', 'source': 'total-buildings.csv' },
-  { 'label': 'Major roads', 'source': 'major-roads.csv', 'suffix': 'ml' }
+  { 'label': 'Major roads', 'source': 'major-roads.csv', 'suffix': ' miles' }
 ], done = 0;
 
 function gatherData(arr, cb) {
@@ -377,7 +366,10 @@ function reset() {
   // Initial layer to display
   var target = layers[layers.length - 1];
 
-  // Set tooltip as the first layer.
+  // Cancel playback if it is running
+  if (playback) window.clearInterval(playback);
+
+  // Set tooltip as the first layer
   tooltip.select('label').text(target.title);
   tooltip.select('.dot').style('background', target.fill);
 
@@ -444,7 +436,7 @@ function reset() {
         return v;
       });
 
-      var el = d3.select(this);
+     var el = d3.select(this);
      svg = el.append('svg')
       .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
@@ -472,7 +464,7 @@ function reset() {
 
       // Populate overview content.
       el.append('strong')
-        .attr('class', 'col12 small center text-shadow sparklabel')
+        .attr('class', 'col12 center text-shadow sparklabel')
         .text(function() {
           var suffix = (d.suffix) ? d.suffix : '';
           return d.label + ': ' + d3.format(',')(last.value) + suffix;
