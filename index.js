@@ -130,15 +130,13 @@ function rangeControl(el) {
   // Update graph marker on sparklines
   if (graphs && layers[index]) {
     d3.selectAll('.sparkcircle')
-      .style('fill', layers[index].fill)
-
-      //.attr('cx', function(d) {
-        //console.log(d);
-        //// Locate the array item we should currently be looking at.
-        //// index gives us the year we're in.
-      //});
-      // .attr('cy', y(last.value))
-      ;
+      .each(function(d) {
+        var circle = d3.select(this);
+        var i = Math.ceil(el.value / (layers.length * 100) * d.data.length);
+        circle.style('fill', layers[index].fill)
+          .attr('cx', x(d.data[i].date))
+          .attr('cy', y(d.data[i].value));
+      });
   }
 
   if (layers[index] && index !== tally) {
@@ -409,7 +407,7 @@ function reset() {
       .attr('class', 'dark col6 truncate'); // `colN` should change based on n graphs.
 
     // Margin is for padding so sparklines aren't weirdly cropped.
-    margin = { top:5, right:5, bottom:5, left:5};
+    margin = { top:4, right:4, bottom:4, left:4};
     width = (parseInt(overview.style('width'), 10)) - margin.left - margin.right;
     height = 40 - margin.top - margin.bottom;
     x = d3.scale.linear().range([0, width]);
