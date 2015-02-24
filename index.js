@@ -21,8 +21,8 @@ var hash = document.location.hash ? document.location.hash.split('#') : [];
 var parts = (hash.length) ? hash[1].split('/') : [];
 
 parts = {
-  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0], 10).toFixed(6) : 14,
-  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1], 10).toFixed(6) : 39,
+  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0], 10).toFixed(6) : -0,
+  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1], 10).toFixed(6) : 21,
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 

@@ -257,6 +257,7 @@ header .title-link:before { font-size:38px; }
   bottom:0;
   width:100%;
   }
+.mapbox-logo { opacity:0.5; }
 .leaflet-container.dark .leaflet-bar a.leaflet-disabled,
 .leaflet-container.dark .leaflet-control .mapbox-button.disabled,
 .leaflet-container.dark .leaflet-bar {
