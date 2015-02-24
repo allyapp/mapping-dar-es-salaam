@@ -1,7 +1,7 @@
 {
   "name": "osm-ten-years",
   "version": "1.0.0",
-  "description": "One page visualization of the last 10 years of OSM",
+  "description": "One page visualization showing the last 10 years of OSM contributions",
   "main": "index.js",
   "scripts": {
     "start": "watchify index.js -o build/site.js & serve",

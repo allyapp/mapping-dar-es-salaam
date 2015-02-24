@@ -251,10 +251,10 @@ var locationIndex = 0;
 d3.select('.js-next').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
+  if (locationIndex === locations.length) locationIndex = 0;
 
   var location = locations[locationIndex];
   var coords = location.coords;
-  if (locationIndex === locations.length) locationIndex = 0;
   map.setView([coords[0], coords[1]], coords[2]);
 
   // Display for location name.
