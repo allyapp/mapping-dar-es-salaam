@@ -333,6 +333,6 @@ header .title-link:before { font-size:38px; }
 ---------------------- */
 @media only screen and (max-width:640px) {
   header.pad2 { padding:10px; }
-  .pad8y { padding-top:20px; padding-bottom:20px; }
+  .pad8y { padding-top:0; padding-bottom:0; }
   .limiter { padding:0 10px; }
 }
