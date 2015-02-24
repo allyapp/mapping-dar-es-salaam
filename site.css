@@ -336,26 +336,8 @@ header .title-link:before { font-size:38px; }
   bottom:0;
   }
 
-/*Graph figures*/
-.overview {
-  opacity:0;
-  top:50%;
-  margin-top:-80px;
-  z-index:-1;
-  }
-  .overview.active {
-    opacity:1;
-    z-index:1001;
-    }
-
-.sparkline {
-  fill:none;
-  stroke:#fff;
-  stroke-width:1px;
-  }
-.sparkcircle {
-  stroke:none;
-  }
+.stats { display:none; }
+.stats.active { display:block; }
 
 /* Mobile layout
 ---------------------- */

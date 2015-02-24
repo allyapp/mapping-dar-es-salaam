@@ -27,13 +27,14 @@ parts = {
 };
 
 // HTML Components
-var scrubber      = d3.select('#scrubber');
-var tooltip       = d3.select('.js-range-tooltip');
-var play          = d3.select('.js-play');
-var locationTitle = d3.select('.js-location-title');
+var scrubber    = d3.select('#scrubber');
+var tooltip     = d3.select('.js-range-tooltip');
+var play        = d3.select('.js-play');
+var labelText   = d3.select('.js-label');
+var labelStats  = d3.select('.js-stats');
 
 // Variables for populating graphs
-var margin, width, height, x, y, graphs;
+var margin, width, height, x, y, stats;
 
 // Map initialization
 var map = L.mapbox.map('map', {'mapbox_logo': true}, {
@@ -53,10 +54,10 @@ function reviseHash() {
 }
 
 function findLocation() {
-  if (map.getZoom() > 4) {
+  if (map.getZoom() > 3) {
     geocoder.reverseQuery([parseInt(parts.lng, 10), parseInt(parts.lat, 10)], function(err, res) {
       if (res && res.features && res.features[0]) {
-        d3.select('.js-location-title').text(res.features[0].place_name);
+        labelText.text(res.features[0].place_name);
       }
     });
   }
@@ -76,10 +77,12 @@ map.on('locationfound', function(e) {
   parts.zoom = map.getZoom();
   reviseHash();
 
-  // Geolocate if `movestart` hasnt triggered after 3s.
+  // Display label stats?
+  labelStats.classed('active', (stats && map.getZoom() <= 3));
+  if (map.getZoom() <= 3) labelText.text('');
+
+  // Geolocate if timeout hasnt cleared after 3s.
   locatePlace = window.setTimeout(findLocation, 3000);
-  // Display overview graph?
-  d3.select('#overview').classed('active', (graphs && map.getZoom() < 4));
 });
 
 map.scrollWheelZoom.disable();
@@ -130,27 +133,10 @@ function rangeControl(el) {
     100 : (el.value/100 % 1).toFixed(2);
 
   // Update graph marker on sparklines
-  if (graphs) {
-    var pos;
-    d3.selectAll('.sparkcircle')
+  if (stats) {
+    d3.selectAll('.statistic')
       .each(function(d) {
-        x.domain(d3.extent(d.data, function(v) { return v.date; }));
-        y.domain(d3.extent(d.data, function(v) { return v.value; }));
-        pos = Math.ceil(el.value / (layers.length * 100) * d.data.length);
-
-        var xPos = (d.data[pos]) ?
-          x(d.data[pos].date) : x(d.data[d.data.length - 1].date);
-
-        var yPos = (d.data[pos]) ?
-          y(d.data[pos].value) : 0;
-
-        d3.select(this).style('fill', layers[index].fill)
-          .attr('cx', xPos)
-          .attr('cy', yPos);
-      });
-
-    d3.selectAll('.sparklabel')
-      .each(function(d) {
+        var pos = Math.ceil(el.value / (layers.length * 100) * d.data.length);
         d3.select(this)
           .text(function() {
             var suffix = (d.suffix) ? d.suffix : '';
@@ -272,7 +258,7 @@ d3.select('.js-next').on('click', function() {
   map.setView([coords[0], coords[1]], coords[2]);
 
   // Display for location name.
-  locationTitle.text(location.title);
+  labelText.text(location.title);
 
   locationIndex++;
   if (locatePlace) window.clearTimeout(locatePlace);
@@ -349,8 +335,8 @@ d3.select('body').call(d3.keybinding()
 );
 
 var graphData = [
-  { 'label': 'Users', 'source': 'highest-uid.csv' },
-  { 'label': 'Active users', 'source': 'active-ever.csv' },
+  { 'label': 'Registered users', 'source': 'highest-uid.csv' },
+  { 'label': 'Active users/month', 'source': 'active-ever.csv' },
   { 'label': 'Buildings', 'source': 'total-buildings.csv' },
   { 'label': 'Major roads', 'source': 'major-roads.csv', 'suffix': ' miles' }
 ], done = 0;
@@ -379,7 +365,7 @@ function reset() {
   // Bring all layer opacity up and call rangeControl
   layers.forEach(function(l) { l.layer.getContainer().style.opacity = 1; });
   rangeControl(range.node());
-  locationTitle.html('&nbsp;');
+  labelText.html('&nbsp;');
 }
 
 // Initialization
@@ -403,33 +389,18 @@ function reset() {
 
   gatherData(graphData, function(data) {
     if (!data || !data.length) return;
-    graphs = true;
-    var charts = d3.select('#overview')
-      .classed('active', (map.getZoom() < 4 && data))
-      .select('#charts')
+    stats = true;
+
+    var overviews = labelStats
+      .classed('active', (map.getZoom() <= 3))
       .selectAll('div')
       .data(data);
 
-    var overview = charts.enter()
+    var overview = overviews.enter()
       .append('div')
-      .attr('class', 'col3 truncate pad0') // `colN` should change based on n graphs.
-        .append('div')
-        .attr('class', 'pad1y dark');
-
-    // Margin is for padding so sparklines aren't weirdly cropped.
-    margin = {top:4, right:8, bottom:8, left:4};
-    width = (parseInt(overview.style('width'), 10)) - margin.left - margin.right;
-    height = 40 - margin.top - margin.bottom;
-
-    x = d3.scale.linear().range([0, width]);
-    y = d3.scale.linear().range([height, 0]);
+      .attr('class', 'inline');
 
     var parseDate = d3.time.format('%Y-%m').parse;
-    var line = d3.svg.line()
-     .interpolate('basis')
-     .x(function(d) { return x(d.date); })
-     .y(function(d) { return y(d.value); });
-
     overview.each(function(d) {
       // Format d.data for sparklines. Also,
       // parse date field as JavaScript date.
@@ -439,39 +410,13 @@ function reset() {
         return v;
       });
 
-     var el = d3.select(this);
-     svg = el.append('svg')
-      .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .attr('class', 'space-bottom0')
-      .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-      x.domain(d3.extent(d.data, function(v) { return v.date; }));
-      y.domain(d3.extent(d.data, function(v) { return v.value; }));
-
-      svg.append('path')
-        .datum(d.data)
-        .attr('class', 'sparkline')
-        .attr('d', line);
-
-      // Last data item
       var last = d.data[d.data.length - 1];
-
-      svg.append('circle')
-        .attr('class', 'sparkcircle animate')
-        .attr('cx', x(last.date))
-        .attr('cy', y(last.value))
-        .style('fill', layers[layers.length - 1].fill)
-        .attr('r', 4);
-
-      // Populate overview content.
-      el.append('strong')
-        .attr('class', 'col12 center text-shadow sparklabel')
+      d3.select(this).append('strong')
+        .attr('class', 'col12 center text-shadow statistic')
         .text(function() {
           var suffix = (d.suffix) ? d.suffix : '';
           return d.label + ': ' + d3.format(',')(last.value) + suffix;
-        });
+      });
     });
   });
 
