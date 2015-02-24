@@ -176,7 +176,6 @@ input[type=range] {
 .dark-shadow { text-shadow:0 0 10px #000; }
 
 .intro header,
-.intro #overview,
 .intro #controls {
   opacity:0;
   -webkit-animation-name:none;
@@ -191,19 +190,12 @@ header,
        -o-animation-duration:500ms;
           animation-duration:500ms;
   }
-#overview {
-  -webkit-animation-duration:750ms;
-     -moz-animation-duration:750ms;
-       -o-animation-duration:750ms;
-          animation-duration:750ms;
-  }
 header {
   -webkit-animation-name:fadeUpDown;
      -moz-animation-name:fadeUpDown;
        -o-animation-name:fadeUpDown;
           animation-name:fadeUpDown;
   }
-#overview,
 #controls {
   -webkit-animation-name:fadeDownUp;
      -moz-animation-name:fadeDownUp;
