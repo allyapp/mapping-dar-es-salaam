@@ -130,8 +130,8 @@ function rangeControl(el) {
       index = (layers[index]) ? index : layers.length - 1;
 
   // Opacity should be the decimal place of el.value/100
-  var opacity = (index === (layers.length - 1)) ?
-    100 : (el.value/100 % 1).toFixed(2);
+  var opacity = (el.value/100 % 1).toFixed(2);
+  if (el.value === max) opacity = '100';
 
   // Update graph marker on sparklines
   if (stats) {

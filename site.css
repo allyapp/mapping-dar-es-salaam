@@ -330,6 +330,19 @@ header .title-link:before { font-size:38px; }
 .stats { display:none; }
 .stats.active { display:block; }
 
+/*
+#controls,
+header,
+.leaflet-control-container,
+.mapbox-logo,
+.attribution {
+  opacity:0;
+  }
+#controls:hover {
+  opacity:1;
+  }
+*/
+
 /* Mobile layout
 ---------------------- */
 @media only screen and (max-width:640px) {
