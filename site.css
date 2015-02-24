@@ -20,10 +20,12 @@
         url('fonts/merriweather-bold.woff2') format('woff2'),
         url('fonts/merriweather-bold.woff') format('woff');
   }
-h3 {
-  font-size:25px;
-  line-height:42px;
-  margin-bottom:10px;
+body {
+  font:14px/22px 'Helvetica neue', Helvetica, sans-serif;
+  }
+h1 {
+  font-size:16px;
+  line-height:24px;
   }
 label {
   font-size:12px;
@@ -164,7 +166,9 @@ input[type=range] {
 
 .fill-darkblue { background-color:#0d0d27; }
 
+.fill-darken0 { background-color:rgba(45,45,45,0.45); }
 .fill-darken  { background-color:rgba(45,45,45,0.75); }
+.fill-dark0   { background-color:rgba(0,0,0,0.5); }
 .fill-dark    { background-color:rgba(0,0,0,0.75); }
 .fill-light   { background-color:#fff; }
 
@@ -174,6 +178,7 @@ input[type=range] {
 .dark-shadow { text-shadow:0 0 10px #000; }
 
 .intro header,
+.intro #overview,
 .intro #controls {
   opacity:0;
   -webkit-animation-name:none;
@@ -183,10 +188,16 @@ input[type=range] {
   }
 header,
 #controls {
-  -webkit-animation-duration:250ms;
-     -moz-animation-duration:250ms;
-       -o-animation-duration:250ms;
-          animation-duration:250ms;
+  -webkit-animation-duration:500ms;
+     -moz-animation-duration:500ms;
+       -o-animation-duration:500ms;
+          animation-duration:500ms;
+  }
+#overview {
+  -webkit-animation-duration:750ms;
+     -moz-animation-duration:750ms;
+       -o-animation-duration:750ms;
+          animation-duration:750ms;
   }
 header {
   -webkit-animation-name:fadeUpDown;
@@ -194,6 +205,7 @@ header {
        -o-animation-name:fadeUpDown;
           animation-name:fadeUpDown;
   }
+#overview,
 #controls {
   -webkit-animation-name:fadeDownUp;
      -moz-animation-name:fadeDownUp;
@@ -284,10 +296,9 @@ header .title-link:before { font-size:38px; }
   }
 .control-padding { padding:0 80px 0 40px; }
 .range-tooltip {
-  background-color:rgba(45,45,45,0.45);
   position:absolute;
   bottom:40px;
-  width:80px;
+  width:70px;
   border-color:#000;
   z-index:1;
   text-align:center;
@@ -327,8 +338,23 @@ header .title-link:before { font-size:38px; }
 
 /*Graph figures*/
 .overview {
-  position:absolute;
-  bottom:140px;
+  opacity:0;
+  top:50%;
+  margin-top:-80px;
+  z-index:-1;
+  }
+  .overview.active {
+    opacity:1;
+    z-index:1001;
+    }
+
+.sparkline {
+  fill:none;
+  stroke:#fff;
+  stroke-width:1px;
+  }
+.sparkcircle {
+  stroke:none;
   }
 
 /* Mobile layout

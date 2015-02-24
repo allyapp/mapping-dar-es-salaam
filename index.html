@@ -51,7 +51,7 @@
           </div>
 
           <div class='small quiet center'>
-            A visualization by <a href='https://mapbox.com/' target='_blank'>Mapbox</a>.
+            Visualization by <a href='https://mapbox.com/' target='_blank'>Mapbox</a>
           </div>
         </div>
       </div>
@@ -62,43 +62,45 @@
   <section class='contain full-height'>
 
     <header class='pin-topleft z10 pad2 animate'>
-      <a href='#' class='js-about strong inline icon osm dark-shadow title-link'>10 years of OpenStreetMap</a>
+      <h1><a href='#' class='js-about strong inline icon osm dark-shadow title-link'>10 years of OpenStreetMap</a></h1>
     </header>
 
     <div id='map' class='map dark'></div>
 
+    <div id='overview' class='overview animate pin-top hide-mobile z1000'>
+      <div class='limiter clearfix'>
+        <div class='col10 margin1 round pad1  dark fill-dark0 row3'>
+          <div id='charts' class='col12 clearfix'></div>
+        </div>
+      </div>
+    </div>
+
     <div id='controls' class='pin-bottom z10 pad4y pad1x clearfix col12 animate'>
       <div class='limiter'>
         <div class='col8 margin2 control-padding contain'>
-          <a href='#' class='js-play button fill-darken pin-left icon playback round-left keyline-right interactive-control'></a>
+          <a href='#' class='js-play button fill-darken pin-bottomleft icon playback round-left keyline-right interactive-control'></a>
           <div id='scrubber' class='fill-darken pad2x pad1y contain round-topright controls'>
-            <div class='js-range-tooltip range-tooltip block pad0y dark round-top keyline-bottom'>
+            <div class='js-range-tooltip range-tooltip fill-darken0 block dark round-top keyline-bottom'>
               <span class='dot legend-key inline pad0 animate'></span>
               <label class='strong'></label>
             </div>
           </div>
-          <a href='#' class='js-next button fill-darken pin-right round-right keyline-left interactive-control center w80'>
+          <a href='#' class='js-next button fill-darken pin-bottomright round-right keyline-left interactive-control center w80'>
             <span class='icon globe'>&nbsp;Jump</span>
           </a>
-          <div class='col12 pad1y center dark small'>
-            <strong class='js-location-title col12 truncate dark-shadow'>&nbsp;</strong>
-          </div>
+        </div>
+        <div class='col12 pad1y center dark small clear'>
+          <strong class='js-location-title col12 truncate dark-shadow'>&nbsp;</strong>
         </div>
       </div>
     </div>
 
     <div class='pin-bottomright z1000 attribution pad1x pad0y dark small dark-shadow animate'>
-      <span class='quiet'>Made by <a href='https://mapbox.com/'>Mapbox</a> &copy; OpenStreetMap contributors</span>
+      <span class='quiet'>Visualization by <a href='https://mapbox.com/'>Mapbox</a> &copy; OpenStreetMap contributors</span>
       <a href='https://www.facebook.com/sharer/sharer.php' class='icon facebook js-facebook animate'></a>
       <a href='https://twitter.com/intent/tweet/' class='icon twitter js-twitter animate'></a>
     </div>
 
-  </section>
-
-  <section id='overview' class='hidden overview z1000 col12 animate clearfix'>
-    <div class='limiter'>
-      <div class='col8 margin2 fill-darken pad4'></div>
-    </div>
   </section>
 
   <script src='build/site.js'></script>

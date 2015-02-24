@@ -26,6 +26,16 @@ parts = {
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
+// HTML Components
+var scrubber      = d3.select('#scrubber');
+var tooltip       = d3.select('.js-range-tooltip');
+var play          = d3.select('.js-play');
+var locationTitle = d3.select('.js-location-title');
+
+// Variables for populating graphs
+var margin, width, height, x, y, graphs;
+
+// Map initialization
 var map = L.mapbox.map('map', {'mapbox_logo': true}, {
   zoomControl: false,
   attributionControl: false,
@@ -68,31 +78,30 @@ map.on('locationfound', function(e) {
 
   // Geolocate if `movestart` hasnt triggered after 3s.
   locatePlace = window.setTimeout(findLocation, 3000);
+  // Display overview graph?
+  d3.select('#overview').classed('active', (graphs && map.getZoom() < 4));
 });
 
 map.scrollWheelZoom.disable();
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 var layers = [
-  { title: '2006', fill: '#0000ff', layer: 'enf.8e514fd2', },
-  { title: '2007', fill: '#4400CC', layer: 'enf.c3e70751', },
-  { title: '2008', fill: '#880088', layer: 'enf.2c15d8a9', },
-  { title: '2009', fill: '#CC0044', layer: 'enf.5191a4b9', },
-  { title: '2010', fill: '#ff0000', layer: 'enf.23382699', },
-  { title: '2011', fill: '#ff4400', layer: 'enf.1e5a6ba8', },
-  { title: '2012', fill: '#ff8800', layer: 'enf.a10eb892', },
-  { title: '2013', fill: '#ffCC00', layer: 'enf.8989964d', },
-  { title: '2014', fill: '#ffff00', layer: 'enf.ab651705', },
-  { title: '2015', fill: '#ffff00', layer: 'enf.c2ce7160'  }
+  { title: '2006', fill: '#0000ff', layer: 'enf.54a636f6', },
+  { title: '2007', fill: '#4400CC', layer: 'enf.5d7acc8f', },
+  { title: '2008', fill: '#880088', layer: 'enf.2bf64eff', },
+  { title: '2009', fill: '#CC0044', layer: 'enf.2420e529', },
+  { title: '2010', fill: '#ff0000', layer: 'enf.4d565f14', },
+  { title: '2011', fill: '#ff4400', layer: 'enf.d99207ef', },
+  { title: '2012', fill: '#ff8800', layer: 'enf.4c528ba7', },
+  { title: '2013', fill: '#ffCC00', layer: 'enf.0fb6824e', },
+  { title: '2014', fill: '#ffff00', layer: 'enf.f188e436', },
+  { title: '2015', fill: '#ffff00', layer: 'enf.0576ad9c'  }
 ].map(function(l, i) {
   l.layer = L.mapbox.tileLayer(l.layer, {noWrap:true}).addTo(map);
   return l;
 });
 
-var tooltip = d3.select('.js-range-tooltip');
-var scrubber = d3.select('#scrubber');
 var tally = 0; // The current index in the layers array we are showing.
-
 function rangeControl(el) {
   // Adjust the position of the range
   // input tooltip to follow the thumbtrack.
@@ -106,25 +115,54 @@ function rangeControl(el) {
 
   // If the tooltip's right position
   // equals the right position of the range slider
-  if ((pixPos + 15) > width) {
-    // pixPos = width;
-    tooltip.style({
-      'left': 'auto',
-      'right': 0
-    });
+  if ((pixPos + 6) > width) {
+    tooltip.style({'left': 'auto', 'right': 0 });
   } else {
-    tooltip.style({
-      'right': 'auto',
-      'left': pixPos+'px'
-    });
+    tooltip.style({'right': 'auto', 'left': pixPos+'px' });
   }
 
   // Find the current index
-  var index = Math.floor(el.value / 100) + 1;
-  // Opacity should be the decimal place of el.value/100
-  var opacity = (el.value/100 % 1).toFixed(2);
+  var index = Math.floor(el.value / 100);
+      index = (layers[index]) ? index : layers.length - 1;
 
-  if (layers[index] && index !== tally) {
+  // Opacity should be the decimal place of el.value/100
+  var opacity = (index === (layers.length - 1)) ?
+    100 : (el.value/100 % 1).toFixed(2);
+
+  // Update graph marker on sparklines
+  if (graphs) {
+    var pos;
+    d3.selectAll('.sparkcircle')
+      .each(function(d) {
+        x.domain(d3.extent(d.data, function(v) { return v.date; }));
+        y.domain(d3.extent(d.data, function(v) { return v.value; }));
+        pos = Math.ceil(el.value / (layers.length * 100) * d.data.length);
+
+        var xPos = (d.data[pos]) ?
+          x(d.data[pos].date) : x(d.data[d.data.length - 1].date);
+
+        var yPos = (d.data[pos]) ?
+          y(d.data[pos].value) : 0;
+
+        d3.select(this).style('fill', layers[index].fill)
+          .attr('cx', xPos)
+          .attr('cy', yPos);
+      });
+
+    d3.selectAll('.sparklabel')
+      .each(function(d) {
+        d3.select(this)
+          .text(function() {
+            var suffix = (d.suffix) ? d.suffix : '';
+            var value = (d.data[pos]) ?
+              d.data[pos].value : d.data[d.data.length -1].value;
+
+            return d.label + ': ' + d3.format(',')(value) + suffix;
+          });
+      });
+  }
+
+  if (index !== tally) {
     // When the index updates, make sure layer before the
     // current are set to full opacity and future ones are at 0.
     layers.forEach(function(l, i) {
@@ -139,10 +177,8 @@ function rangeControl(el) {
       .text(layers[index].title);
   }
 
-  if (layers[index]) {
-    layers[index].layer.getContainer().style.opacity = opacity;
-    tally = index;
-  }
+  layers[index].layer.getContainer().style.opacity = opacity;
+  tally = index;
 }
 
 var playback;
@@ -157,7 +193,6 @@ function setPlayback() {
   }, 10);
 }
 
-var play = d3.select('.js-play');
 var range = scrubber.append('input')
   .attr('class', 'col12')
   .attr('type', 'range')
@@ -188,73 +223,53 @@ play.on('click', function() {
   }
 });
 
-var locations = [
-{
+var locations = [{
   title: 'London, UK',
-  lat: 51.5075,
-  lon: -0.1306,
-  z: 13
+  coords: [51.5075, -0.1306, 13]
 }, {
   title: 'Paris, France',
-  lat: 48.8539,
-  lon: 2.3497,
-  z: 13
+  coords: [48.8539, 2.3497, 13]
 }, {
   title: 'Chicago, USA',
-  lat: 41.8802,
-  lon: -87.6374,
-  z: 13
+  coords: [41.8802, -87.6374, 13]
 }, {
   title: 'Melbourne, Australia',
-  lat: -37.8307,
-  lon: 144.9086,
-  z: 12
+  coords: [-37.8307, 144.9086, 12]
 }, {
   title: 'Japan',
-  lat: 36.0891,
-  lon: 136.0822,
-  z: 7
+  coords: [36.0891, 136.0822, 7]
 }, {
-  title: 'Sochi, Russia',
-  lat: 43.5859,
-  lon: 39.7235,
-  z: 15
+  title: 'Switzerland',
+  coords: [47.5151, 7.7343, 10]
+}, {
+  title: 'Los Angeles',
+  coords: [33.9829, -117.8860, 11]
 }, {
   title: 'Ayacucho, Peru',
-  lat: 50.8398,
-  lon: 4.3274,
-  z: 12
+  coords: [50.8398, 4.3274, 12]
 }, {
   title: 'Berlin, Germany',
-  lat: 52.5121,
-  lon: 13.3865,
-  z: 13
+  coords: [52.5121, 13.3865, 13]
 }, {
   title: 'Barcelona, Spain',
-  lat: 41.3842,
-  lon: 2.1564,
-  z: 13
+  coords: [41.3842, 2.1564, 13]
 }, {
   title: 'Washington DC, USA',
-  lat: 38.9011,
-  lon: -77.0406,
-  z: 13
+  coords: [38.9011, -77.0406, 13]
 }, {
-  title: 'Netherlands',
-  lat: 51.9603,
-  lon: 5.1540,
-  z: 9
+  title: 'Sochi, Russia',
+  coords: [43.5859, 39.7235, 14]
 }];
 
 var locationIndex = 0;
-var locationTitle = d3.select('.js-location-title');
 d3.select('.js-next').on('click', function() {
   d3.event.preventDefault();
   d3.event.stopPropagation();
 
   var location = locations[locationIndex];
+  var coords = location.coords;
   if (locationIndex === locations.length) locationIndex = 0;
-  map.setView([location.lat, location.lon], location.z);
+  map.setView([coords[0], coords[1]], coords[2]);
 
   // Display for location name.
   locationTitle.text(location.title);
@@ -333,21 +348,31 @@ d3.select('body').call(d3.keybinding()
   })
 );
 
-/*
 var graphData = [
-  {}
+  { 'label': 'Users', 'source': 'highest-uid.csv' },
+  { 'label': 'Active users', 'source': 'active-ever.csv' },
+  { 'label': 'Buildings', 'source': 'total-buildings.csv' },
+  { 'label': 'Major roads', 'source': 'major-roads.csv', 'suffix': ' miles' }
 ], done = 0;
 
-function gatherData(csvs, cb) {
-
-};
-*/
+function gatherData(arr, cb) {
+  if (done === arr.length) return cb(arr);
+  d3.csv('data/' + arr[done].source, function(err, res) {
+    if (err) return console.error(err);
+    arr[done].data = res;
+    done++;
+    return gatherData(arr, cb);
+  });
+}
 
 function reset() {
   // Initial layer to display
   var target = layers[layers.length - 1];
 
-  // Set tooltip as the first layer.
+  // Cancel playback if it is running
+  if (playback) window.clearInterval(playback);
+
+  // Set tooltip as the first layer
   tooltip.select('label').text(target.title);
   tooltip.select('.dot').style('background', target.fill);
 
@@ -375,4 +400,79 @@ function reset() {
         d3.select(this).classed('loading', true);
         map.locate();
       });
+
+  gatherData(graphData, function(data) {
+    if (!data || !data.length) return;
+    graphs = true;
+    var charts = d3.select('#overview')
+      .classed('active', (map.getZoom() < 4 && data))
+      .select('#charts')
+      .selectAll('div')
+      .data(data);
+
+    var overview = charts.enter()
+      .append('div')
+      .attr('class', 'col3 truncate pad0') // `colN` should change based on n graphs.
+        .append('div')
+        .attr('class', 'pad1y dark');
+
+    // Margin is for padding so sparklines aren't weirdly cropped.
+    margin = {top:4, right:8, bottom:8, left:4};
+    width = (parseInt(overview.style('width'), 10)) - margin.left - margin.right;
+    height = 40 - margin.top - margin.bottom;
+
+    x = d3.scale.linear().range([0, width]);
+    y = d3.scale.linear().range([height, 0]);
+
+    var parseDate = d3.time.format('%Y-%m').parse;
+    var line = d3.svg.line()
+     .interpolate('basis')
+     .x(function(d) { return x(d.date); })
+     .y(function(d) { return y(d.value); });
+
+    overview.each(function(d) {
+      // Format d.data for sparklines. Also,
+      // parse date field as JavaScript date.
+      d.data = d.data.map(function(v) {
+        v.date = parseDate(v.date);
+        v.value = +v.value;
+        return v;
+      });
+
+     var el = d3.select(this);
+     svg = el.append('svg')
+      .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .attr('class', 'space-bottom0')
+      .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+      x.domain(d3.extent(d.data, function(v) { return v.date; }));
+      y.domain(d3.extent(d.data, function(v) { return v.value; }));
+
+      svg.append('path')
+        .datum(d.data)
+        .attr('class', 'sparkline')
+        .attr('d', line);
+
+      // Last data item
+      var last = d.data[d.data.length - 1];
+
+      svg.append('circle')
+        .attr('class', 'sparkcircle animate')
+        .attr('cx', x(last.date))
+        .attr('cy', y(last.value))
+        .style('fill', layers[layers.length - 1].fill)
+        .attr('r', 4);
+
+      // Populate overview content.
+      el.append('strong')
+        .attr('class', 'col12 center text-shadow sparklabel')
+        .text(function() {
+          var suffix = (d.suffix) ? d.suffix : '';
+          return d.label + ': ' + d3.format(',')(last.value) + suffix;
+        });
+    });
+  });
+
 })();
