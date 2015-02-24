@@ -188,7 +188,7 @@ var range = scrubber.append('input')
   .attr('max', layers.length * 100)
   .attr('value', layers.length * 100)
   .on('input', function() { rangeControl(this); })
-  .on('focus', function() {
+  .on('mousedown', function() {
     // If playback is enabled, stop it.
     // the user wants to scrub using the range slider.
     if (playback) {
