@@ -239,8 +239,11 @@ var locations = [{
   title: 'Japan',
   coords: [36.0891, 136.0822, 7]
 }, {
-  title: 'Sochi, Russia',
-  coords: [43.5859, 39.7235, 14]
+  title: 'Switzerland',
+  coords: [47.5151, 7.7343, 10]
+}, {
+  title: 'Los Angeles',
+  coords: [33.9829, -117.8860, 11]
 }, {
   title: 'Ayacucho, Peru',
   coords: [50.8398, 4.3274, 12]
@@ -254,8 +257,8 @@ var locations = [{
   title: 'Washington DC, USA',
   coords: [38.9011, -77.0406, 13]
 }, {
-  title: 'Netherlands',
-  coords: [51.9603, 5.1540, 9]
+  title: 'Sochi, Russia',
+  coords: [43.5859, 39.7235, 14]
 }];
 
 var locationIndex = 0;
@@ -347,7 +350,7 @@ d3.select('body').call(d3.keybinding()
 
 var graphData = [
   { 'label': 'Users', 'source': 'highest-uid.csv' },
-  { 'label': 'Active editors', 'source': 'active-ever.csv' },
+  { 'label': 'Active users', 'source': 'active-ever.csv' },
   { 'label': 'Buildings', 'source': 'total-buildings.csv' },
   { 'label': 'Major roads', 'source': 'major-roads.csv', 'suffix': ' miles' }
 ], done = 0;
@@ -416,7 +419,7 @@ function reset() {
     // Margin is for padding so sparklines aren't weirdly cropped.
     margin = {top:4, right:8, bottom:8, left:4};
     width = (parseInt(overview.style('width'), 10)) - margin.left - margin.right;
-    height = 60 - margin.top - margin.bottom;
+    height = 40 - margin.top - margin.bottom;
 
     x = d3.scale.linear().range([0, width]);
     y = d3.scale.linear().range([height, 0]);
