@@ -56,7 +56,7 @@ function reviseHash() {
 
 function findLocation() {
   if (map.getZoom() > 3) {
-    geocoder.reverseQuery([parseFloat(parts.lng, 10), parseFloat(parts.lat, 10)], function(err, res) {
+    geocoder.reverseQuery([parseFloat(parts.lng), parseFloat(parts.lat)], function(err, res) {
       if (res && res.features && res.features[0]) {
         labelText.text(res.features[0].place_name);
       }
