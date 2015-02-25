@@ -21,8 +21,8 @@ var hash = document.location.hash ? document.location.hash.split('#') : [];
 var parts = (hash.length) ? hash[1].split('/') : [];
 
 parts = {
-  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0], 10).toFixed(6) : -0,
-  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1], 10).toFixed(6) : 21,
+  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0]).toFixed(6) : -0,
+  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1]).toFixed(6) : 21,
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
@@ -55,7 +55,7 @@ function reviseHash() {
 
 function findLocation() {
   if (map.getZoom() > 3) {
-    geocoder.reverseQuery([parseInt(parts.lng, 10), parseInt(parts.lat, 10)], function(err, res) {
+    geocoder.reverseQuery([parseFloat(parts.lng, 10), parseFloat(parts.lat, 10)], function(err, res) {
       if (res && res.features && res.features[0]) {
         labelText.text(res.features[0].place_name);
       }

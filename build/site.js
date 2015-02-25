@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/tristen/dev/mapbox/osm-data-report/index.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/tristen/dev/mapbox/ten-years-openstreetmap/index.js":[function(require,module,exports){
 require('mapbox.js');
 L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJiUzBYOEJzIn0.VyXs9qNWgTfABLzSI3YcrQ';
 var geocoder = L.mapbox.geocoder('mapbox.places');
@@ -22,8 +22,8 @@ var hash = document.location.hash ? document.location.hash.split('#') : [];
 var parts = (hash.length) ? hash[1].split('/') : [];
 
 parts = {
-  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0], 10).toFixed(6) : -0,
-  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1], 10).toFixed(6) : 21,
+  lng: !isNaN(parts[0] && parts[0]) ? parseFloat(parts[0]).toFixed(6) : -0,
+  lat: !isNaN(parts[1] && parts[1]) ? parseFloat(parts[1]).toFixed(6) : 21,
   zoom: !isNaN(parts[2] && parts[2]) ? parts[2] : 2,
 };
 
@@ -56,7 +56,7 @@ function reviseHash() {
 
 function findLocation() {
   if (map.getZoom() > 3) {
-    geocoder.reverseQuery([parseInt(parts.lng, 10), parseInt(parts.lat, 10)], function(err, res) {
+    geocoder.reverseQuery([parseFloat(parts.lng, 10), parseFloat(parts.lat, 10)], function(err, res) {
       if (res && res.features && res.features[0]) {
         labelText.text(res.features[0].place_name);
       }
@@ -423,7 +423,7 @@ function reset() {
 
 })();
 
-},{"./js/keybinding.js":"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js","d3":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js","raven-js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/src/raven.js"}],"/Users/tristen/dev/mapbox/osm-data-report/js/keybinding.js":[function(require,module,exports){
+},{"./js/keybinding.js":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/js/keybinding.js","d3":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/d3/d3.js","mapbox.js":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/index.js","raven-js":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/raven-js/src/raven.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/js/keybinding.js":[function(require,module,exports){
 d3.keybinding = function() {
     // via https://github.com/keithamus/jwerty/
     // and https://github.com/madrobby/keymaster
@@ -546,7 +546,7 @@ d3.keybinding = function() {
 };
 
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/d3/d3.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/d3/d3.js":[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.5"
@@ -10051,7 +10051,7 @@ d3.keybinding = function() {
   if (typeof define === "function" && define.amd) define(d3); else if (typeof module === "object" && module.exports) module.exports = d3;
   this.d3 = d3;
 }();
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/corslite/corslite.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/corslite/corslite.js":[function(require,module,exports){
 function corslite(url, callback, cors) {
     var sent = false;
 
@@ -10146,7 +10146,7 @@ function corslite(url, callback, cors) {
 
 if (typeof module !== 'undefined') module.exports = corslite;
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/leaflet/dist/leaflet-src.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/leaflet/dist/leaflet-src.js":[function(require,module,exports){
 /*
  Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin
@@ -19327,7 +19327,7 @@ L.Map.include({
 
 
 }(window, document));
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/mustache/mustache.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/mustache/mustache.js":[function(require,module,exports){
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js
@@ -19880,7 +19880,7 @@ L.Map.include({
 
 }));
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js":[function(require,module,exports){
 var html_sanitize = require('./sanitizer-bundle.js');
 
 module.exports = function(_) {
@@ -19900,7 +19900,7 @@ function cleanUrl(url) {
 
 function cleanId(id) { return id; }
 
-},{"./sanitizer-bundle.js":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/sanitizer-bundle.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/sanitizer-bundle.js":[function(require,module,exports){
+},{"./sanitizer-bundle.js":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/sanitizer-bundle.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/sanitizer-bundle.js":[function(require,module,exports){
 
 // Copyright (C) 2010 Google Inc.
 //
@@ -22348,7 +22348,7 @@ if (typeof module !== 'undefined') {
     module.exports = html_sanitize;
 }
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/package.json":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/package.json":[function(require,module,exports){
 module.exports={
   "author": {
     "name": "Mapbox"
@@ -22396,7 +22396,7 @@ module.exports={
   },
   "_id": "mapbox.js@2.1.5",
   "_shasum": "065a7c4e5a7ff949a01842fa24d6dfb69b6c50c4",
-  "_from": "mapbox.js@*",
+  "_from": "mapbox.js@>=2.1.5 <3.0.0",
   "_npmVersion": "2.1.6",
   "_nodeVersion": "0.10.33",
   "_npmUser": {
@@ -22538,10 +22538,11 @@ module.exports={
     "tarball": "http://registry.npmjs.org/mapbox.js/-/mapbox.js-2.1.5.tgz"
   },
   "directories": {},
-  "_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-2.1.5.tgz"
+  "_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-2.1.5.tgz",
+  "readme": "ERROR: No README data found!"
 }
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/config.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/config.js":[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -22551,7 +22552,7 @@ module.exports = {
     REQUIRE_ACCESS_TOKEN: true
 };
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/feature_layer.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/feature_layer.js":[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -22668,7 +22669,7 @@ module.exports.featureLayer = function(_, options) {
     return new FeatureLayer(_, options);
 };
 
-},{"./marker":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/marker.js","./request":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/request.js","./simplestyle":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/simplestyle.js","./url":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/geocoder.js":[function(require,module,exports){
+},{"./marker":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/marker.js","./request":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/request.js","./simplestyle":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/simplestyle.js","./url":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/geocoder.js":[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -22767,7 +22768,7 @@ module.exports = function(url, options) {
     return geocoder;
 };
 
-},{"./request":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/request.js","./url":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/geocoder_control.js":[function(require,module,exports){
+},{"./request":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/request.js","./url":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/geocoder_control.js":[function(require,module,exports){
 'use strict';
 
 var geocoder = require('./geocoder'),
@@ -22959,7 +22960,7 @@ module.exports.geocoderControl = function(_, options) {
     return new GeocoderControl(_, options);
 };
 
-},{"./geocoder":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/geocoder.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid.js":[function(require,module,exports){
+},{"./geocoder":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/geocoder.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid.js":[function(require,module,exports){
 'use strict';
 
 function utfDecode(c) {
@@ -22977,7 +22978,7 @@ module.exports = function(data) {
     };
 };
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid_control.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid_control.js":[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -23177,7 +23178,7 @@ module.exports.gridControl = function(_, options) {
     return new GridControl(_, options);
 };
 
-},{"./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js","mustache":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/mustache/mustache.js","sanitize-caja":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid_layer.js":[function(require,module,exports){
+},{"./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js","mustache":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/mustache/mustache.js","sanitize-caja":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid_layer.js":[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -23402,11 +23403,11 @@ module.exports.gridLayer = function(_, options) {
     return new GridLayer(_, options);
 };
 
-},{"./grid":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid.js","./load_tilejson":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/load_tilejson.js","./request":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/request.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/index.js":[function(require,module,exports){
+},{"./grid":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid.js","./load_tilejson":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/load_tilejson.js","./request":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/request.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/index.js":[function(require,module,exports){
 require('./leaflet');
 require('./mapbox');
 
-},{"./leaflet":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/leaflet.js","./mapbox":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/mapbox.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/info_control.js":[function(require,module,exports){
+},{"./leaflet":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/leaflet.js","./mapbox":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/mapbox.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/info_control.js":[function(require,module,exports){
 'use strict';
 
 var InfoControl = L.Control.extend({
@@ -23522,10 +23523,10 @@ module.exports.infoControl = function(options) {
     return new InfoControl(options);
 };
 
-},{"sanitize-caja":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/leaflet.js":[function(require,module,exports){
+},{"sanitize-caja":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/leaflet.js":[function(require,module,exports){
 window.L = require('leaflet/dist/leaflet-src');
 
-},{"leaflet/dist/leaflet-src":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/leaflet/dist/leaflet-src.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/legend_control.js":[function(require,module,exports){
+},{"leaflet/dist/leaflet-src":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/leaflet/dist/leaflet-src.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/legend_control.js":[function(require,module,exports){
 'use strict';
 
 var LegendControl = L.Control.extend({
@@ -23594,7 +23595,7 @@ module.exports.legendControl = function(options) {
     return new LegendControl(options);
 };
 
-},{"sanitize-caja":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/load_tilejson.js":[function(require,module,exports){
+},{"sanitize-caja":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/load_tilejson.js":[function(require,module,exports){
 'use strict';
 
 var request = require('./request'),
@@ -23620,7 +23621,7 @@ module.exports = {
     }
 };
 
-},{"./request":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/request.js","./url":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/map.js":[function(require,module,exports){
+},{"./request":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/request.js","./url":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/map.js":[function(require,module,exports){
 'use strict';
 
 var util = require('./util'),
@@ -23807,7 +23808,7 @@ module.exports.map = function(element, _, options) {
     return new LMap(element, _, options);
 };
 
-},{"./feature_layer":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/feature_layer.js","./grid_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/legend_control.js","./load_tilejson":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/load_tilejson.js","./mapbox_logo":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/mapbox_logo.js","./share_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/share_control.js","./tile_layer":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/tile_layer.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/mapbox.js":[function(require,module,exports){
+},{"./feature_layer":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/feature_layer.js","./grid_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/legend_control.js","./load_tilejson":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/load_tilejson.js","./mapbox_logo":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/mapbox_logo.js","./share_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/share_control.js","./tile_layer":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/tile_layer.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/mapbox.js":[function(require,module,exports){
 'use strict';
 
 var geocoderControl = require('./geocoder_control'),
@@ -23859,7 +23860,7 @@ window.L.Icon.Default.imagePath =
     '//api.tiles.mapbox.com/mapbox.js/' + 'v' +
     require('../package.json').version + '/images';
 
-},{"../package.json":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/package.json","./config":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/config.js","./feature_layer":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/feature_layer.js","./geocoder":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/geocoder.js","./geocoder_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/geocoder_control.js","./grid_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/legend_control.js","./map":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/map.js","./marker":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/marker.js","./share_control":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/share_control.js","./simplestyle":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/simplestyle.js","./tile_layer":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/tile_layer.js","mustache":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/mustache/mustache.js","sanitize-caja":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/mapbox_logo.js":[function(require,module,exports){
+},{"../package.json":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/package.json","./config":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/config.js","./feature_layer":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/feature_layer.js","./geocoder":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/geocoder.js","./geocoder_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/geocoder_control.js","./grid_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/legend_control.js","./map":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/map.js","./marker":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/marker.js","./share_control":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/share_control.js","./simplestyle":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/simplestyle.js","./tile_layer":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/tile_layer.js","mustache":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/mustache/mustache.js","sanitize-caja":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/mapbox_logo.js":[function(require,module,exports){
 'use strict';
 
 var MapboxLogoControl = L.Control.extend({
@@ -23893,7 +23894,7 @@ module.exports.mapboxLogoControl = function(options) {
     return new MapboxLogoControl(options);
 };
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/marker.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/marker.js":[function(require,module,exports){
 'use strict';
 
 var url = require('./url'),
@@ -23960,7 +23961,7 @@ module.exports = {
     createPopup: createPopup
 };
 
-},{"./url":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/request.js":[function(require,module,exports){
+},{"./url":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/url.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/request.js":[function(require,module,exports){
 'use strict';
 
 var corslite = require('corslite'),
@@ -23992,7 +23993,7 @@ module.exports = function(url, callback) {
     }
 };
 
-},{"./config":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/config.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js","corslite":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/node_modules/corslite/corslite.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/share_control.js":[function(require,module,exports){
+},{"./config":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/config.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js","corslite":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/node_modules/corslite/corslite.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/share_control.js":[function(require,module,exports){
 'use strict';
 
 var urlhelper = require('./url');
@@ -24095,7 +24096,7 @@ module.exports.shareControl = function(_, options) {
     return new ShareControl(_, options);
 };
 
-},{"./load_tilejson":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/load_tilejson.js","./url":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/url.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/simplestyle.js":[function(require,module,exports){
+},{"./load_tilejson":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/load_tilejson.js","./url":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/url.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/simplestyle.js":[function(require,module,exports){
 'use strict';
 
 // an implementation of the simplestyle spec for polygon and linestring features
@@ -24142,7 +24143,7 @@ module.exports = {
     defaults: defaults
 };
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/tile_layer.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/tile_layer.js":[function(require,module,exports){
 'use strict';
 
 var util = require('./util');
@@ -24238,7 +24239,7 @@ module.exports.tileLayer = function(_, options) {
     return new TileLayer(_, options);
 };
 
-},{"./load_tilejson":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/load_tilejson.js","./util":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/url.js":[function(require,module,exports){
+},{"./load_tilejson":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/load_tilejson.js","./util":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/url.js":[function(require,module,exports){
 'use strict';
 
 var config = require('./config'),
@@ -24282,7 +24283,7 @@ module.exports.tileJSON = function(urlOrMapID, accessToken) {
     return url;
 };
 
-},{"../package.json":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/package.json","./config":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/config.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/mapbox.js/src/util.js":[function(require,module,exports){
+},{"../package.json":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/package.json","./config":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/config.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/mapbox.js/src/util.js":[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -24329,7 +24330,7 @@ function contains(item, list) {
     return false;
 }
 
-},{}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/src/raven.js":[function(require,module,exports){
+},{}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/raven-js/src/raven.js":[function(require,module,exports){
 'use strict';
 
 var TraceKit = require('../vendor/TraceKit/tracekit');
@@ -25022,7 +25023,7 @@ function generateUUID4() {
 Raven.afterLoad();
 module.exports = Raven;
 
-},{"../vendor/TraceKit/tracekit":"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/vendor/TraceKit/tracekit.js"}],"/Users/tristen/dev/mapbox/osm-data-report/node_modules/raven-js/vendor/TraceKit/tracekit.js":[function(require,module,exports){
+},{"../vendor/TraceKit/tracekit":"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/raven-js/vendor/TraceKit/tracekit.js"}],"/Users/tristen/dev/mapbox/ten-years-openstreetmap/node_modules/raven-js/vendor/TraceKit/tracekit.js":[function(require,module,exports){
 /*
  TraceKit - Cross brower stack traces - github.com/occ/TraceKit
  MIT license
@@ -26116,4 +26117,4 @@ TraceKit.computeStackTrace = (function computeStackTraceWrapper() {
 
 module.exports = TraceKit;
 
-},{}]},{},["/Users/tristen/dev/mapbox/osm-data-report/index.js"]);
+},{}]},{},["/Users/tristen/dev/mapbox/ten-years-openstreetmap/index.js"]);
