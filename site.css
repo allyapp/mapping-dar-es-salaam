@@ -52,7 +52,7 @@ button,
 .button,
 [type=button],
 [type=submit] {
-  padding:5px 20px;
+  padding:5px 40px;
   line-height:20px;
   height:40px;
   line-height:30px;
@@ -331,15 +331,11 @@ header .title-link:before { font-size:38px; }
 .stats.active { display:block; }
 
 /*
-#controls,
 header,
 .leaflet-control-container,
 .mapbox-logo,
 .attribution {
   opacity:0;
-  }
-#controls:hover {
-  opacity:1;
   }
 */
 
