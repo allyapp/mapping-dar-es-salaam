@@ -1,27 +1,13 @@
 @font-face {
   font-family:'icon';
-    src:url('fonts/icon.eot?v=1');
-    src:url('fonts/icon.eot?v=1#iefix') format('embedded-opentype'),
-        url('fonts/icon.woff?v=1') format('woff');
+    src:url('img/icon.eot?v=1');
+    src:url('img/icon.eot?v=1#iefix') format('embedded-opentype'),
+        url('img/icon.woff?v=1') format('woff');
   font-weight:normal;
   font-style:normal;
   }
-@font-face {
-  font-family:'Born';
-    src:url('fonts/born.eot');
-    src:url('fonts/born.eot#iefix') format('embedded-opentype'),
-        url('fonts/born.woff2') format('woff2'),
-        url('fonts/born.woff') format('woff');
-  }
-@font-face {
-  font-family:'Merriweather Bold';
-    src:url('fonts/merriweather-bold.eot');
-    src:url('fonts/merriweather-bold.eot#iefix') format('embedded-opentype'),
-        url('fonts/merriweather-bold.woff2') format('woff2'),
-        url('fonts/merriweather-bold.woff') format('woff');
-  }
 body {
-  font:14px/22px 'Helvetica neue', Helvetica, sans-serif;
+  font:14px/22px 'Asap', Helvetica, sans-serif;
   }
 h1 {
   font-size:16px;
@@ -36,14 +22,14 @@ label {
 .small-circle .icon:before { font-size:24px; line-height:30px; }
 
 .prose {
-  font-family:'Born';
+  font-family:'Asap';
   }
   .prose.strong,
   .prose .strong,
   .prose h1,
   .prose h2,
   .prose h3 {
-    font-family:'Merriweather Bold';
+    font-family:'Asap';
     }
   .prose h1 { font-size:28px; line-height:38px; }
   .prose p { font-size:18px; line-height:28px; }
