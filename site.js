@@ -173,7 +173,7 @@ function setPlayback() {
     r.value++;
     if (r.value === r.getAttribute('max')) r.value = 0;
     rangeControl(r);
-  }, 10);
+  }, 20);
 }
 
 var range = scrubber.append('input')
