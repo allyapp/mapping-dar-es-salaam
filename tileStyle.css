@@ -1,0 +1,11 @@
+#original[highway!=''] {
+  line-width: 1;
+  line-color: rgba(214, 137, 21, 0.5);
+}
+
+#original[building!=''] {
+  line-width: 1;
+  polygon-fill: rgba(214, 137, 21, 0.5);
+  line-color:  rgba(214, 137, 21, 0.5);
+}
+
