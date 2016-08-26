@@ -1,0 +1,13 @@
+language: node_js
+
+script: echo
+
+deploy:
+  provider: s3
+  access_key_id: AKIAIOKADW3V3M45COSA
+  secret_access_key:
+    secure: JXwteraRVSkFHjJoWscPwEomzZsgsqJ8b/ustBD3wGpklJx3qqohJRj0R9p/BkVhiDNO1Zpn++3kZXIKTwg6DktCdLCudhVU2mADvYKdV+8qnCynL9NTZeLBfveHfA+jgEF5yKm6QZhe8ZDyQGWJIp/Q2WW/5gLbiSyq7MV5oSsxnZUP4qckzdh7rVbqfQO4loUHV4FGUEAoBIspEzhFudjSsA6tVM9poR6/eQFrFxTCIvbCtLL7/iVGfSKYCucim+P7sm1PD9pLzAi62112bta49U0LMg7jW0buVYP1pjOYMwm07Cpwp05irVyJ+aqNyIXvS6KTuwti3Ta9Ieg70mlUB1sliG8u0hYvrUqv3BwDIkFyQcMoDYbmvIfPKRRe0N6MJRDmx7Ou6ol9GXCCd0xQprDF9UP8eSb8tESceSN2EQCYvx6njFp6HqPFeJW4Ct0sHbg4LBpPKUM6UGsgSNdnMj4jS7t/yMQQOXDEBMWKEfSkMum8YQo2h4qFesA9Db7TS9/wPVkJEcAFEoQsW/OmAh9ClgKVqR0wzJmtPotVmNGxtHYCvL6FTI+wJm0LaB/CBziL9AC4Vr531Yi9kuDH8ZWGTJfvOGnOY8iojuc5Cc9+R+bVxopMrGHO5LNYLvIXbW+ZkeHKHGsZUCq0hHkCYIVggVPSPx86Ith1bjY=
+  bucket: demo.door2door.io
+  upload-dir: DAR-TYC-mapping
+  on:
+    repo: door2door-io/mapping-dar-es-salaam
